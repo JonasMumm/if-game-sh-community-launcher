@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EscapeKeyDownTracker": {
+      "commandName": "Project",
+      "commandLineArgs": "--outputbytes"
+    }
+  }
+}

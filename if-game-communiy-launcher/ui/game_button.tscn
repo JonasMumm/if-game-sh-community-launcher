@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqwqh413qg74s"]
+
+[ext_resource type="Script" uid="uid://dlrrp22auy1s3" path="res://game_button.gd" id="1_xur5r"]
+
+[node name="GameButton" type="Button"]
+theme_override_font_sizes/font_size = 90
+text = "Button!"
+script = ExtResource("1_xur5r")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://donnvmvbqack2"]
+
+[ext_resource type="Script" uid="uid://bes2y6x8kph2i" path="res://itch_login.gd" id="1_63mqi"]
+[ext_resource type="Script" uid="uid://b1k11sxneg1ar" path="res://butler_connection.gd" id="2_21nvm"]
+
+[node name="Node" type="Node" node_paths=PackedStringArray("connection")]
+script = ExtResource("1_63mqi")
+connection = NodePath("butler_connection")
+metadata/_custom_type_script = "uid://bes2y6x8kph2i"
+
+[node name="butler_connection" type="Node" parent="."]
+script = ExtResource("2_21nvm")
+metadata/_custom_type_script = "uid://b1k11sxneg1ar"
