@@ -63,7 +63,7 @@ func initialize_connection():
 		printerr(tcp_open_result)
 
 func _exit_tree() -> void:
-	_tcpPeer.disconnect_from_host()
+	if _tcpPeer:_tcpPeer.disconnect_from_host()
 
 func _process(delta: float) -> void:
 	if _tcpPeer!=null:
