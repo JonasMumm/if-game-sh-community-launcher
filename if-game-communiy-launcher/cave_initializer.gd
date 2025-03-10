@@ -26,10 +26,11 @@ static func initialize_cave(connection: butler_connection, game: Dictionary)->ca
 				best_upload = upload
 		best_upload.id = best_upload.id as int
 		var install_queue_rq = await connection.send_request("Install.Queue",{installLocationId = install_location_id, game = game, upload = best_upload, queueDownload = true})		
-		printerr("Install Queued now perform");
+
+		if !install_queue_rq.successful:
+			return
 		
 		var install_perform_rq = await  connection.send_request("Install.Perform",{id = install_queue_rq.result.id, stagingFolder = install_queue_rq.result.stagingFolder})
-		printerr("performed!");
 		
 		if install_perform_rq.successful:
 			return await initialize_cave(connection, game)
