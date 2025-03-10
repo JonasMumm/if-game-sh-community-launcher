@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b1k11sxneg1ar" path="res://butler_connection.gd" id="2_21nvm"]
 [ext_resource type="Script" uid="uid://bsa6o5ox4ok1a" path="res://input_quit_game_controller.gd" id="3_147q3"]
 [ext_resource type="Script" uid="uid://cg27bp0xwfy4t" path="res://cave_launcher.gd" id="4_rm38c"]
-[ext_resource type="PackedScene" uid="uid://bi4mxp4w8msr" path="res://games_ui_controller.tscn" id="5_ipikq"]
+[ext_resource type="PackedScene" uid="uid://bi4mxp4w8msr" path="res://ui/games/games_ui_controller.tscn" id="5_ipikq"]
 [ext_resource type="Script" uid="uid://dl47qghvx374s" path="res://input_editor_quit.gd" id="6_ipikq"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("connection", "cave_launcher", "games_ui")]

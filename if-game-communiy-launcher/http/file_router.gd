@@ -14,10 +14,13 @@ func handle_get(request: HttpRequest, response: HttpResponse):
 		
 	if file_path.ends_with(".br"):
 		response.headers["Content-Encoding"] ="br"
-	if file_path.ends_with(".wasm.br"):
-		response.headers["Content-Type"] ="application/wasm"
+	if file_path.ends_with(".gz"):
+		response.headers["Content-Encoding"] = "gzip"
 		
 	var type := "text/html";
+	
+	if file_path.ends_with(".wasm.br") || file_path.ends_with(".wasm.gz"):
+		type = "application/wasm"
 	
 	if(file_path.ends_with(".css")): type = "text/css"
 	

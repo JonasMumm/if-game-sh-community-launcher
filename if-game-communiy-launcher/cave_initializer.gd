@@ -14,6 +14,9 @@ static func initialize_cave(connection: butler_connection, game: Dictionary)->ca
 		install_location_id =install_locations_rq.result.installLocations[0].id #todo: Choose install location
 		
 		var find_uploads_rq := await connection.send_request("Game.FindUploads",{game = game})
+		
+		if !find_uploads_rq.successful: return
+		
 		var uploads = find_uploads_rq.result.uploads;
 		uploads = uploads.filter(func(element): return element.type == "html" || (element.platforms as Dictionary).has("windows"))
 		

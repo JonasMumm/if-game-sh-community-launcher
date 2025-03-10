@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://brexit1dmp54x"]
-
-[ext_resource type="Script" uid="uid://cxvxlx57p0s14" path="res://regex_test.gd" id="1_0thao"]
-
-[node name="Node" type="Node"]
-script = ExtResource("1_0thao")
