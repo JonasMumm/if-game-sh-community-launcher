@@ -127,6 +127,8 @@ func jsonrpc_handle_request(id: int, method: String, params: Dictionary):
 		printerr(method+" request has no handler!");
 	
 func jsonrpc_handle_error(id : int, error : Dictionary):
+	printerr("butler error: "+str(error.code)+" - "+str(error.message))
+	
 	for i in range(_in_flight_requests.size()):
 		var rq := _in_flight_requests[i]
 		if rq.request_id == id:
