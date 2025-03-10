@@ -12,7 +12,7 @@ config_version=5
 
 config/name="if-game-communiy-launcher"
 run/main_scene="uid://donnvmvbqack2"
-config/features=PackedStringArray("4.4", "C#", "Mobile")
+config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
 [display]
