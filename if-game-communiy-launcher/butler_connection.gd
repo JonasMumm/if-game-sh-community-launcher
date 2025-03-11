@@ -105,8 +105,8 @@ func _process(delta: float) -> void:
 				printerr("Auth Failed! "+str(rq.result))
 				printerr(rq.error.message)
 
-func jsonrpc_handle_notification(method_name: String, params: Dictionary):
-	print("jsonrpc: receive notification "+method_name+" "+str(params))
+func jsonrpc_handle_notification(method_name: String, params: Dictionary): #todo: do smth
+	pass
 	
 func jsonrpc_handle_result(id : int, result : Dictionary):
 	for i in range(_in_flight_requests.size()):
