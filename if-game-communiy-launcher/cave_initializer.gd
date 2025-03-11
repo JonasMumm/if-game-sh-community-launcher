@@ -42,4 +42,24 @@ static func initialize_cave(connection: butler_connection, game: Dictionary)->ca
 			return null;
 	else:
 		cave = caves[0]
+		
+		var chech_update_rq := await connection.send_request("CheckUpdate", {caveIds=[cave.id]})
+		var updates = chech_update_rq.result.updates;
+		
+		if updates.size() > 0:
+			var update = updates[0]
+			var best_choice = update.choices[0]
+			for choice in update.choices: #todo: manual upload selection
+				if choice.confidence > best_choice.confidence:
+					best_choice = choice
+			var update_queue_rq = await connection.send_request("Install.Queue",{caveId = cave.id, reason = "update", upload = best_choice.upload, queueDownload = true})		
+
+			if !update_queue_rq.successful:
+				return cave_info.new(cave);
+		
+			var update_perform_rq = await  connection.send_request("Install.Perform",{id = update_queue_rq.result.id, stagingFolder = update_queue_rq.result.stagingFolder})
+		
+			if update_perform_rq.successful:
+				return await initialize_cave(connection, game)
+
 	return cave_info.new(cave);
