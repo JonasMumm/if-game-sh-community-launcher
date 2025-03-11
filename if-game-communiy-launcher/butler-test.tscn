@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://donnvmvbqack2"]
+[gd_scene load_steps=8 format=3 uid="uid://donnvmvbqack2"]
 
 [ext_resource type="Script" uid="uid://bes2y6x8kph2i" path="res://itch_login.gd" id="1_63mqi"]
 [ext_resource type="Script" uid="uid://b1k11sxneg1ar" path="res://butler_connection.gd" id="2_21nvm"]
@@ -6,12 +6,14 @@
 [ext_resource type="Script" uid="uid://cg27bp0xwfy4t" path="res://cave_launcher.gd" id="4_rm38c"]
 [ext_resource type="PackedScene" uid="uid://bi4mxp4w8msr" path="res://ui/games/games_ui_controller.tscn" id="5_ipikq"]
 [ext_resource type="Script" uid="uid://dl47qghvx374s" path="res://input_editor_quit.gd" id="6_ipikq"]
+[ext_resource type="PackedScene" uid="uid://bxltecj7uxmp3" path="res://ui/choice_selector/choice_selector.tscn" id="7_hqorg"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("connection", "cave_launcher", "games_ui")]
+[node name="Main" type="Node" node_paths=PackedStringArray("connection", "cave_launcher", "games_ui", "choicer")]
 script = ExtResource("1_63mqi")
 connection = NodePath("butler_connection")
 cave_launcher = NodePath("cave_launcher")
 games_ui = NodePath("CanvasLayer/games_ui_controller")
+choicer = NodePath("CanvasLayer/ChoiceSelector")
 metadata/_custom_type_script = "uid://bes2y6x8kph2i"
 
 [node name="butler_connection" type="Node" parent="."]
@@ -36,3 +38,5 @@ launcher = NodePath("../cave_launcher")
 [node name="games_ui_controller" parent="CanvasLayer" node_paths=PackedStringArray("launcher", "connection") instance=ExtResource("5_ipikq")]
 launcher = NodePath("../../cave_launcher")
 connection = NodePath("../../butler_connection")
+
+[node name="ChoiceSelector" parent="CanvasLayer" instance=ExtResource("7_hqorg")]

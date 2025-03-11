@@ -4,6 +4,7 @@ extends Node
 @export var connection : butler_connection
 @export var cave_launcher : cave_launcher
 @export var games_ui : games_ui_controller
+@export var choicer : choice_selector
 
 func _ready() -> void:
 	await connection.wait_for_connection()
@@ -24,13 +25,18 @@ func _ready() -> void:
 	var profile_id := profile["id"] as int;
 	var collections_rq := await connection.send_request_freshable("Fetch.ProfileCollections",{profileId=profile_id}) #todo: paging
 	var collections = collections_rq.result.items
-	var collection = collections[0]
+	
+	var collection_index := 0
+	if collections.size()>1:
+		collection_index = await choicer.async_get_choice_index("Select Collection",collections.map(func(v):return str(v)), false)
+	
+	var collection = collections[collection_index]
 	
 	var collection_games_rq := await connection.send_request_freshable("Fetch.Collection.Games",{profileId=profile_id,collectionId=int(collection.id) })
 	
 	var all_gameData : Array[game_data]
 	for collection_game in collection_games_rq.result.items:
-		var cave_info := await cave_initializer.initialize_cave(connection, collection_game.game)
+		var cave_info := await cave_initializer.initialize_cave(connection, collection_game.game, choicer)
 		if cave_info != null: 
 			all_gameData.append(game_data.new(cave_info, collection_game))
 

@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxltecj7uxmp3"]
+
+[ext_resource type="Script" uid="uid://cxt1yo6sajwxj" path="res://choice_selector.gd" id="1_v1jt6"]
+[ext_resource type="PackedScene" uid="uid://gcnmi5tgas1q" path="res://ui/choice_selector/choice_selector_button.tscn" id="2_y8vwb"]
+
+[node name="ChoiceSelector" type="Control" node_paths=PackedStringArray("choice_text", "choice_button_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v1jt6")
+choice_text = NodePath("Label")
+choice_button_container = NodePath("ListContainer/ScrollContainer/ButtonContainer")
+choice_button_packed_scene = ExtResource("2_y8vwb")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 28.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Sel"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ListContainer" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 120.0
+offset_right = -40.0
+offset_bottom = -20.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ListContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="ButtonContainer" type="VBoxContainer" parent="ListContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

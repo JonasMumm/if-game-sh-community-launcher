@@ -1,6 +1,6 @@
 class_name cave_initializer
 
-static func initialize_cave(connection: butler_connection, game: Dictionary)->cave_info:
+static func initialize_cave(connection: butler_connection, game: Dictionary, choicer : choice_selector)->cave_info:
 	var game_id := game.id as int;
 	game.id = game_id
 	var fetch_caves_rq = await connection.send_request("Fetch.Caves",{filters={gameId = game_id}});
@@ -20,14 +20,20 @@ static func initialize_cave(connection: butler_connection, game: Dictionary)->ca
 		var uploads = find_uploads_rq.result.uploads;
 		uploads = uploads.filter(func(element): return element.type == "html" || (element.platforms as Dictionary).has("windows"))
 		
+		var best_upload := {}
 		if(uploads.size() == 0): 
 			printerr("No Cave available for "+str(game_id));
-			return null;
-		var best_upload = uploads[0]
-		for upload in uploads: #todo: manual upload selection
-			if upload.updatedAt > best_upload.updatedAt:
-				best_upload = upload
-		best_upload.id = best_upload.id as int
+			
+			var fetch_uploads_rq := await connection.send_request_freshable("Fetch.GameUploads",{gameId = game_id})
+			if !fetch_uploads_rq.successful: return null
+			
+			var upload_index := await choicer.async_get_choice_index("Select Upload for "+str(game), fetch_uploads_rq.result.uploads.map(func(v): return str(v)), true)
+			if upload_index<0:return null
+			best_upload = fetch_uploads_rq.result.uploads[upload_index]
+		else:
+			var upload_index := await choicer.async_get_choice_index("Select Upload for "+str(game), uploads.map(func(v): return str(v)), true)
+			if upload_index<0:return null
+			best_upload = uploads[upload_index]
 		var install_queue_rq = await connection.send_request("Install.Queue",{installLocationId = install_location_id, game = game, upload = best_upload, queueDownload = true})		
 
 		if !install_queue_rq.successful:
@@ -36,7 +42,7 @@ static func initialize_cave(connection: butler_connection, game: Dictionary)->ca
 		var install_perform_rq = await  connection.send_request("Install.Perform",{id = install_queue_rq.result.id, stagingFolder = install_queue_rq.result.stagingFolder})
 		
 		if install_perform_rq.successful:
-			return await initialize_cave(connection, game)
+			return await initialize_cave(connection, game, choicer)
 		else:
 			printerr("Cave install for "+str(game)+" failed")
 			return null;
@@ -60,6 +66,6 @@ static func initialize_cave(connection: butler_connection, game: Dictionary)->ca
 			var update_perform_rq = await  connection.send_request("Install.Perform",{id = update_queue_rq.result.id, stagingFolder = update_queue_rq.result.stagingFolder})
 		
 			if update_perform_rq.successful:
-				return await initialize_cave(connection, game)
+				return await initialize_cave(connection, game, choicer)
 
 	return cave_info.new(cave);
