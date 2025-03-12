@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://donnvmvbqack2"]
+[gd_scene load_steps=10 format=3 uid="uid://donnvmvbqack2"]
 
 [ext_resource type="Script" uid="uid://bes2y6x8kph2i" path="res://itch_login.gd" id="1_63mqi"]
 [ext_resource type="Script" uid="uid://b1k11sxneg1ar" path="res://butler_connection.gd" id="2_21nvm"]
@@ -6,14 +6,17 @@
 [ext_resource type="Script" uid="uid://cg27bp0xwfy4t" path="res://cave_launcher.gd" id="4_rm38c"]
 [ext_resource type="PackedScene" uid="uid://bi4mxp4w8msr" path="res://ui/games/games_ui_controller.tscn" id="5_ipikq"]
 [ext_resource type="Script" uid="uid://dl47qghvx374s" path="res://input_editor_quit.gd" id="6_ipikq"]
+[ext_resource type="PackedScene" uid="uid://3xjflh5pkjeb" path="res://ui/main_ui_state_manager.tscn" id="6_k6ji6"]
+[ext_resource type="Script" uid="uid://wqchuqxpjksy" path="res://game_ui_state_controller.gd" id="6_lm0l2"]
 [ext_resource type="PackedScene" uid="uid://bxltecj7uxmp3" path="res://ui/choice_selector/choice_selector.tscn" id="7_hqorg"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("connection", "cave_launcher", "games_ui", "choicer")]
+[node name="Main" type="Node" node_paths=PackedStringArray("connection", "cave_launcher", "games_ui", "choicer", "main_ui_manager")]
 script = ExtResource("1_63mqi")
 connection = NodePath("butler_connection")
 cave_launcher = NodePath("cave_launcher")
-games_ui = NodePath("CanvasLayer/games_ui_controller")
+games_ui = NodePath("CanvasLayer/MainUiStateManager/games_ui_controller")
 choicer = NodePath("CanvasLayer/ChoiceSelector")
+main_ui_manager = NodePath("CanvasLayer/MainUiStateManager")
 metadata/_custom_type_script = "uid://bes2y6x8kph2i"
 
 [node name="butler_connection" type="Node" parent="."]
@@ -33,10 +36,63 @@ metadata/_custom_type_script = "uid://cg27bp0xwfy4t"
 script = ExtResource("6_ipikq")
 launcher = NodePath("../cave_launcher")
 
+[node name="game_ui_state_controller" type="Node" parent="." node_paths=PackedStringArray("main_ui", "launcher", "connection", "games_ui", "launching_ui", "running_ui")]
+script = ExtResource("6_lm0l2")
+main_ui = NodePath("../CanvasLayer/MainUiStateManager")
+launcher = NodePath("../cave_launcher")
+connection = NodePath("../butler_connection")
+games_ui = NodePath("../CanvasLayer/MainUiStateManager/games_ui_controller")
+launching_ui = NodePath("../CanvasLayer/MainUiStateManager/ui_launching")
+running_ui = NodePath("../CanvasLayer/MainUiStateManager/ui_running")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="games_ui_controller" parent="CanvasLayer" node_paths=PackedStringArray("launcher", "connection") instance=ExtResource("5_ipikq")]
-launcher = NodePath("../../cave_launcher")
-connection = NodePath("../../butler_connection")
+[node name="MainUiStateManager" parent="CanvasLayer" instance=ExtResource("6_k6ji6")]
+
+[node name="games_ui_controller" parent="CanvasLayer/MainUiStateManager" node_paths=PackedStringArray("launcher", "connection") instance=ExtResource("5_ipikq")]
+layout_mode = 1
+launcher = NodePath("../../../cave_launcher")
+connection = NodePath("../../../butler_connection")
+
+[node name="ui_launching" type="Control" parent="CanvasLayer/MainUiStateManager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/MainUiStateManager/ui_launching"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Launching, hold on to ya seat"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ui_running" type="Control" parent="CanvasLayer/MainUiStateManager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/MainUiStateManager/ui_running"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Running"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ChoiceSelector" parent="CanvasLayer" instance=ExtResource("7_hqorg")]
+visible = false

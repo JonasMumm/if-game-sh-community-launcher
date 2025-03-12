@@ -5,6 +5,7 @@ extends Node
 @export var cave_launcher : cave_launcher
 @export var games_ui : games_ui_controller
 @export var choicer : choice_selector
+@export var main_ui_manager : main_state_manager
 
 func _ready() -> void:
 	await connection.wait_for_connection()
@@ -41,7 +42,7 @@ func _ready() -> void:
 			all_gameData.append(game_data.new(cave_info, collection_game))
 
 	games_ui.set_data(all_gameData)
-	games_ui.process_mode = Node.PROCESS_MODE_INHERIT
+	main_ui_manager.set_active_content(games_ui)
 		
 func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_DELETE):

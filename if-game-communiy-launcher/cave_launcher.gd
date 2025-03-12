@@ -1,7 +1,7 @@
 class_name cave_launcher
 extends Node
 
-signal cave_running_changed (is_launched : bool)
+signal cave_launched_changed (is_launched : bool, cave : cave_info)
 
 @export var quit_input_handler : input_quit_game_controller
 
@@ -16,8 +16,12 @@ func _ready() -> void:
 func launch_cave(v: cave_info, connection : butler_connection):
 	if _cave_running:
 		quit_cave(true)
+		
+	force_clean_up_run_lock(v)
 	
 	_connection = connection
+	_cave_running = true
+	cave_launched_changed.emit(_cave_running, v)
 	await _connection.wait_for_connection()
 	var cave := v.cave;
 	var install_location_id = cave.installInfo.installLocation
@@ -26,8 +30,6 @@ func launch_cave(v: cave_info, connection : butler_connection):
 	var base_path := install_locations_rq.result.installLocation.path as String;
 	var prereqsPath := base_path.path_join("prereqs").path_join(str(cave.id))
 	_pre_launch_processes = get_all_process_ids()
-	_cave_running = true
-	cave_running_changed.emit(_cave_running)
 	connection.add_request_handler("HTMLLaunch", handler_html_launch);
 	printerr("Will launch")
 	await connection.send_request("Launch",{caveId = cave.id, prereqsDir = prereqsPath})
@@ -47,8 +49,6 @@ static func get_all_process_ids() -> PackedInt32Array:
 	
 static func wait_then_kill(prev_processes : PackedInt32Array, tree : SceneTree):
 	var after_launch_processes := get_all_process_ids()
-		
-	print("Pre count: "+str(prev_processes.size())+" to "+str(after_launch_processes.size()))
 		
 	for pid in after_launch_processes:
 		if !prev_processes.has(pid):
@@ -92,5 +92,15 @@ func quit_cave(kill_spawned_processes : bool):
 		_server.queue_free()
 		_server = null
 	
-	cave_running_changed.emit(false)
+	cave_launched_changed.emit(false, null)
 	_connection.initialize_connection() #don't know why, but not resetting the connection after exiting a cave causes errors when launching another cave
+
+func force_clean_up_run_lock(v:cave_info):
+	var folder_path:=v.cave.installInfo.installFolder as String;
+	var lock_file_path := folder_path.path_join(".itch").path_join("runlock.json")
+	
+	if FileAccess.file_exists(lock_file_path):
+		print("Has runlock File at "+str(lock_file_path)+", deleting forcefully...")
+		var result := DirAccess.remove_absolute(lock_file_path)
+		if(result!=OK):
+			printerr(result)

@@ -33,6 +33,7 @@ var _request_id : int
 var _in_flight_requests : Array[in_flight_request]
 var request_handlers : Dictionary[String,Callable]
 var process_launcher : butler_daemon_process_launcher
+var _notification_subscribers : Array[Dictionary]
 
 func _init() -> void:
 	_jsonrpc = jsonrpc_butler.new()
@@ -105,8 +106,9 @@ func _process(delta: float) -> void:
 				printerr("Auth Failed! "+str(rq.result))
 				printerr(rq.error.message)
 
-func jsonrpc_handle_notification(method_name: String, params: Dictionary): #todo: do smth
-	pass
+func jsonrpc_handle_notification(method_name: String, params: Dictionary):
+	for sub in _notification_subscribers:
+		if sub.method == method_name: sub.callback.call(params)
 	
 func jsonrpc_handle_result(id : int, result : Dictionary):
 	for i in range(_in_flight_requests.size()):
@@ -205,3 +207,6 @@ func remove_request_handler(method: String, handler : Callable):
 		printerr(method+" request doesnt even have a handler subscribed");
 	else:
 		request_handlers.erase(method);
+
+func subscribe_notification(method : String, subscriber : Callable):
+	_notification_subscribers.append({"method" : method, "callback" : subscriber})

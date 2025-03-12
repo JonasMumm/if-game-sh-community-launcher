@@ -13,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bafub")
 game_button_packed_scene = ExtResource("2_3d77s")
-game_buttons_container = NodePath("GamesListContainer/ScrollContainer/ButtonContainer")
+game_buttons_container = NodePath("SelectionContainer/GamesListContainer/ScrollContainer/ButtonContainer")
 metadata/_custom_type_script = "uid://2qioqorem5i1"
 
 [node name="BG" type="ColorRect" parent="."]
@@ -24,7 +24,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GamesListContainer" type="Control" parent="."]
+[node name="SelectionContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GamesListContainer" type="Control" parent="SelectionContainer"]
 layout_mode = 1
 anchor_right = 0.5
 anchor_bottom = 1.0
@@ -33,7 +41,7 @@ offset_top = 40.0
 offset_right = -40.0
 offset_bottom = -40.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="GamesListContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="SelectionContainer/GamesListContainer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,14 +51,14 @@ grow_vertical = 2
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="ButtonContainer" type="VBoxContainer" parent="GamesListContainer/ScrollContainer"]
+[node name="ButtonContainer" type="VBoxContainer" parent="SelectionContainer/GamesListContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="GameButton" parent="GamesListContainer/ScrollContainer/ButtonContainer" instance=ExtResource("2_3d77s")]
+[node name="GameButton" parent="SelectionContainer/GamesListContainer/ScrollContainer/ButtonContainer" instance=ExtResource("2_3d77s")]
 layout_mode = 2
 
-[node name="GameContainer" type="Control" parent="."]
+[node name="GameContainer" type="Control" parent="SelectionContainer"]
 layout_mode = 1
 anchor_left = 0.5
 anchor_right = 1.0
@@ -59,9 +67,8 @@ offset_left = 40.0
 offset_top = 40.0
 offset_right = -40.0
 offset_bottom = -40.0
-metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="GameContainer"]
+[node name="TextureRect" type="TextureRect" parent="SelectionContainer/GameContainer"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -69,7 +76,7 @@ anchor_bottom = 0.414
 texture = ExtResource("3_3d77s")
 stretch_mode = 6
 
-[node name="Label" type="Label" parent="GameContainer"]
+[node name="Label" type="Label" parent="SelectionContainer/GameContainer"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.431
@@ -79,7 +86,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 70
 text = "Game Name"
 
-[node name="ButtonLaunch" type="Button" parent="GameContainer"]
+[node name="ButtonLaunch" type="Button" parent="SelectionContainer/GameContainer"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.836
