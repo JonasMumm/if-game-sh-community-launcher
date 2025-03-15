@@ -1,6 +1,6 @@
 class_name cave_initializer
 
-static func initialize_cave(connection: butler_connection, game: Dictionary, choicer : choice_selector)->cave_info:
+static func initialize_cave(connection: butler_connection, game: Dictionary, choicer : choice_selector, profileId : int)->cave_info:
 	var game_id := game.id as int;
 	game.id = game_id
 	var fetch_caves_rq = await connection.send_request("Fetch.Caves",{filters={gameId = game_id}});
@@ -13,6 +13,7 @@ static func initialize_cave(connection: butler_connection, game: Dictionary, cho
 		var install_locations_rq := await connection.send_request("Install.Locations.List",{});
 		install_location_id =install_locations_rq.result.installLocations[0].id #todo: Choose install location
 		
+		await connection.send_request_freshable("Fetch.DownloadKeys",{profileId = profileId, limit = 24, filters = {gameId = game_id}})
 		var find_uploads_rq := await connection.send_request("Game.FindUploads",{game = game})
 		
 		if !find_uploads_rq.successful: return
@@ -22,8 +23,6 @@ static func initialize_cave(connection: butler_connection, game: Dictionary, cho
 		
 		var best_upload := {}
 		if(uploads.size() == 0): 
-			printerr("No Cave available for "+str(game_id));
-			
 			var fetch_uploads_rq := await connection.send_request_freshable("Fetch.GameUploads",{gameId = game_id})
 			if !fetch_uploads_rq.successful: return null
 			
@@ -42,7 +41,7 @@ static func initialize_cave(connection: butler_connection, game: Dictionary, cho
 		var install_perform_rq = await  connection.send_request("Install.Perform",{id = install_queue_rq.result.id, stagingFolder = install_queue_rq.result.stagingFolder})
 		
 		if install_perform_rq.successful:
-			return await initialize_cave(connection, game, choicer)
+			return await initialize_cave(connection, game, choicer, profileId)
 		else:
 			printerr("Cave install for "+str(game)+" failed")
 			return null;
@@ -62,7 +61,7 @@ static func perform_installs(connection: butler_connection):
 		await connection.send_request("Downloads.Discard",{downloadId = download.id}) #todo: seems stupid we have to discard all supposedly finished downloads here, but else updating a cave fails if the download list already has an entry for that cave
 	await connection.send_request("Downloads.ClearFinished",{})
 
-static func check_updates(connection: butler_connection, games : Array[game_data], choicer : choice_selector) -> void:
+static func check_updates(connection: butler_connection, games : Array[game_data], choicer : choice_selector, profile_id : int) -> void:
 	var check_update_rq := await connection.send_request("CheckUpdate", {})
 	var updates = check_update_rq.result.updates;
 	for update in updates:
@@ -86,11 +85,11 @@ static func check_updates(connection: butler_connection, games : Array[game_data
 				
 			if(full_reinstall_choice == 1):
 				await connection.send_request("Uninstall.Perform",{caveId = cave.id})
-				game.cave_info = await initialize_cave(connection, game.collection_game.game, choicer)
+				game.cave_info = await initialize_cave(connection, game.collection_game.game, choicer, profile_id)
 				continue
 		
 		var update_perform_rq = await connection.send_request("Install.Perform",{id = update_queue_rq.result.id, stagingFolder = update_queue_rq.result.stagingFolder})
 		
 		if update_perform_rq.successful:
-			var new_cave := await initialize_cave(connection, game.collection_game.game, choicer)
+			var new_cave := await initialize_cave(connection, game.collection_game.game, choicer, profile_id)
 			game.cave_info = new_cave

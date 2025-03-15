@@ -38,12 +38,12 @@ func _ready() -> void:
 	
 	var all_gameData : Array[game_data]
 	for collection_game in collection_games_rq.result.items:
-		var cave_info := await cave_initializer.initialize_cave(connection, collection_game.game, choicer)
+		var cave_info := await cave_initializer.initialize_cave(connection, collection_game.game, choicer, profile.id)
 		if cave_info != null: 
 			all_gameData.append(game_data.new(cave_info, collection_game))
  
 	#await cave_initializer.perform_installs(connection) probably bs
-	await cave_initializer.check_updates(connection, all_gameData, choicer)
+	await cave_initializer.check_updates(connection, all_gameData, choicer, profile.id)
 	
 	games_ui.set_data(all_gameData)
 	main_ui_manager.set_active_content(games_ui_state)
