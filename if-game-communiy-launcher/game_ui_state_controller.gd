@@ -4,9 +4,9 @@ extends Node
 @export var main_ui : main_state_manager
 @export var launcher : cave_launcher
 @export var connection : butler_connection
-@export var games_ui : Control
-@export var launching_ui : Control
-@export var running_ui : Control
+@export var games_ui : ui_state_entry
+@export var launching_ui : ui_state_entry
+@export var running_ui : ui_state_entry
 
 func _ready():
 	launcher.cave_launched_changed.connect(on_cave_launched_changed)

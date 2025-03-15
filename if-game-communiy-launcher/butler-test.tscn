@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://donnvmvbqack2"]
+[gd_scene load_steps=12 format=3 uid="uid://donnvmvbqack2"]
 
 [ext_resource type="Script" uid="uid://bes2y6x8kph2i" path="res://itch_login.gd" id="1_63mqi"]
 [ext_resource type="Script" uid="uid://b1k11sxneg1ar" path="res://butler_connection.gd" id="2_21nvm"]
@@ -9,12 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://3xjflh5pkjeb" path="res://ui/main_ui_state_manager.tscn" id="6_k6ji6"]
 [ext_resource type="Script" uid="uid://wqchuqxpjksy" path="res://game_ui_state_controller.gd" id="6_lm0l2"]
 [ext_resource type="PackedScene" uid="uid://bxltecj7uxmp3" path="res://ui/choice_selector/choice_selector.tscn" id="7_hqorg"]
+[ext_resource type="Script" uid="uid://bybbytduq32gx" path="res://ui/ui_state_entry.gd" id="8_oxlym"]
+[ext_resource type="Script" uid="uid://bqxwdwj6mso0a" path="res://games_ui_focus_controller.gd" id="10_yw4le"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("connection", "cave_launcher", "games_ui", "choicer", "main_ui_manager")]
+[node name="Main" type="Node" node_paths=PackedStringArray("connection", "cave_launcher", "games_ui", "games_ui_state", "choicer", "main_ui_manager")]
 script = ExtResource("1_63mqi")
 connection = NodePath("butler_connection")
 cave_launcher = NodePath("cave_launcher")
-games_ui = NodePath("CanvasLayer/MainUiStateManager/games_ui_controller")
+games_ui = NodePath("CanvasLayer/MainUiStateManager/state_games_ui_controller/games_ui_controller")
+games_ui_state = NodePath("CanvasLayer/MainUiStateManager/state_games_ui_controller")
 choicer = NodePath("CanvasLayer/ChoiceSelector")
 main_ui_manager = NodePath("CanvasLayer/MainUiStateManager")
 metadata/_custom_type_script = "uid://bes2y6x8kph2i"
@@ -41,20 +44,45 @@ script = ExtResource("6_lm0l2")
 main_ui = NodePath("../CanvasLayer/MainUiStateManager")
 launcher = NodePath("../cave_launcher")
 connection = NodePath("../butler_connection")
-games_ui = NodePath("../CanvasLayer/MainUiStateManager/games_ui_controller")
-launching_ui = NodePath("../CanvasLayer/MainUiStateManager/ui_launching")
-running_ui = NodePath("../CanvasLayer/MainUiStateManager/ui_running")
+games_ui = NodePath("../CanvasLayer/MainUiStateManager/state_games_ui_controller")
+launching_ui = NodePath("../CanvasLayer/MainUiStateManager/state_ui_launching")
+running_ui = NodePath("../CanvasLayer/MainUiStateManager/state_ui_running")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MainUiStateManager" parent="CanvasLayer" instance=ExtResource("6_k6ji6")]
 
-[node name="games_ui_controller" parent="CanvasLayer/MainUiStateManager" node_paths=PackedStringArray("launcher", "connection") instance=ExtResource("5_ipikq")]
+[node name="state_games_ui_controller" type="Control" parent="CanvasLayer/MainUiStateManager"]
 layout_mode = 1
-launcher = NodePath("../../../cave_launcher")
-connection = NodePath("../../../butler_connection")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_oxlym")
+metadata/_custom_type_script = "uid://bybbytduq32gx"
 
-[node name="ui_launching" type="Control" parent="CanvasLayer/MainUiStateManager"]
+[node name="games_ui_controller" parent="CanvasLayer/MainUiStateManager/state_games_ui_controller" node_paths=PackedStringArray("launcher", "connection") instance=ExtResource("5_ipikq")]
+layout_mode = 1
+launcher = NodePath("../../../../cave_launcher")
+connection = NodePath("../../../../butler_connection")
+
+[node name="games_ui_focus_controller" type="Node" parent="CanvasLayer/MainUiStateManager/state_games_ui_controller" node_paths=PackedStringArray("games_ui", "games_ui_state")]
+script = ExtResource("10_yw4le")
+games_ui = NodePath("../games_ui_controller")
+games_ui_state = NodePath("..")
+
+[node name="state_ui_launching" type="Control" parent="CanvasLayer/MainUiStateManager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_oxlym")
+metadata/_custom_type_script = "uid://bybbytduq32gx"
+
+[node name="ui_launching" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_launching"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,7 +90,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/MainUiStateManager/ui_launching"]
+[node name="Label" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,7 +102,17 @@ text = "Launching, hold on to ya seat"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ui_running" type="Control" parent="CanvasLayer/MainUiStateManager"]
+[node name="state_ui_running" type="Control" parent="CanvasLayer/MainUiStateManager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_oxlym")
+metadata/_custom_type_script = "uid://bybbytduq32gx"
+
+[node name="ui_running" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_running"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,7 +120,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/MainUiStateManager/ui_running"]
+[node name="Label" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

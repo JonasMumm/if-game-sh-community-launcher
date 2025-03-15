@@ -7,6 +7,8 @@ extends Control
 @export var connection : butler_connection
 
 var _games : Array[game_data]
+var buttons : Array[game_button]
+var focused_button : game_button
 
 func set_data(games : Array[game_data]):
 	_games = games
@@ -18,7 +20,15 @@ func set_data(games : Array[game_data]):
 		button._set_data(game)
 		var cave := game.cave_info
 		button.pressed.connect(launcher.launch_cave.bind(cave, connection))
+		button.focus_entered.connect(set_focused_button.bind(button))
 		game_buttons_container.add_child(button)
 		buttons.append(button)
 	
+	set_focused_button(buttons[0])
 	buttons[0].grab_focus()
+
+func grab_context_focus(shown : bool):
+	if shown: focused_button.grab_focus()
+	
+func set_focused_button(b : game_button):
+	focused_button = b

@@ -4,6 +4,7 @@ extends Node
 @export var connection : butler_connection
 @export var cave_launcher : cave_launcher
 @export var games_ui : games_ui_controller
+@export var games_ui_state : ui_state_entry
 @export var choicer : choice_selector
 @export var main_ui_manager : main_state_manager
 
@@ -40,9 +41,12 @@ func _ready() -> void:
 		var cave_info := await cave_initializer.initialize_cave(connection, collection_game.game, choicer)
 		if cave_info != null: 
 			all_gameData.append(game_data.new(cave_info, collection_game))
-
+ 
+	#await cave_initializer.perform_installs(connection) probably bs
+	await cave_initializer.check_updates(connection, all_gameData, choicer)
+	
 	games_ui.set_data(all_gameData)
-	main_ui_manager.set_active_content(games_ui)
+	main_ui_manager.set_active_content(games_ui_state)
 		
 func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_DELETE):
