@@ -10,8 +10,9 @@ config_version=5
 
 [application]
 
-config/name="if-game-communiy-launcher"
+config/name="if-game-community-kiosk"
 run/main_scene="uid://donnvmvbqack2"
+config/use_custom_user_dir=true
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
