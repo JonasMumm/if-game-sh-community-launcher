@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="if-game-community-kiosk"
+config/name="IFgameSH Community Kiosk"
 run/main_scene="uid://donnvmvbqack2"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.4", "Mobile")
