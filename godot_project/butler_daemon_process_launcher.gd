@@ -17,8 +17,7 @@ func _ready() -> void:
 	var butlerDbPath:= ProjectSettings.globalize_path("user://butler.db");
 	
 	var processId := 	OS.get_process_id()
-	
-	var pipeResult := OS.execute_with_pipe(butlerExecutablePath,["daemon","-v","--json","--dbpath", "\""+butlerDbPath+"\"", "--destiny-pid", str(processId)],false)
+	var pipeResult := OS.execute_with_pipe(butlerExecutablePath,["daemon","-v","--json", "--dbpath",butlerDbPath, "--destiny-pid", str(processId)],false)
 	_stdio = pipeResult["stdio"] as FileAccess
 	_stderr = pipeResult["stderr"] as FileAccess
 	_butler_daemon_process.pid = pipeResult["pid"] as int
