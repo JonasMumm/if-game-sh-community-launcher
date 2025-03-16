@@ -16,13 +16,19 @@ func _ready() -> void:
 	var rq := await connection.send_request("Profile.LoginWithAPIKey",{apiKey = api_key});
 	
 	var profile:Dictionary
-	if !rq.successful:
-		var profile_list_rq = await connection.send_request("Profile.List",{});
-		profile = profile_list_rq.result["profiles"][0]
-	else:
-		profile = rq.result["profile"]
+	var profile_list_rq = await connection.send_request("Profile.List",{});
+	var profile_index = await choicer.async_get_choice_index("Select Profile",profile_list_rq.result.profiles.map(func(v): return str(v)), false)
+	profile = profile_list_rq.result["profiles"][profile_index]
 		
 	print("Logged into profile "+str(profile["id"])+" ("+str(profile["user"]["displayName"]+")"))
+	
+	#init one location
+	var install_locations_rq := await connection.send_request("Install.Locations.List",{});
+	if(install_locations_rq.result.installLocations.size() == 0):
+		var location_path := ProjectSettings.globalize_path("user://game_installs")
+		DirAccess.make_dir_absolute(location_path)
+		await connection.send_request("Install.Locations.Add", { path = location_path})
+	
 	
 	var profile_id := profile["id"] as int;
 	var collections_rq := await connection.send_request_freshable("Fetch.ProfileCollections",{profileId=profile_id}) #todo: paging

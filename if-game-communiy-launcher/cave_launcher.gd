@@ -67,7 +67,7 @@ func handler_html_launch(id: int, method:String, params:Dictionary):
 	var command := env.get_string("browser-launch-command");
 	print(str(params))
 	command = command.replace("$url","http://localhost:"+str(_server.port).path_join(params.indexPath))
-	command = command.replace("$userDataDir",ProjectSettings.globalize_path("user://"))
+	command = command.replace("$userDataDir",ProjectSettings.globalize_path("user://browser_user_data"))
 	print("Launch Command: "+command)
 	var array : Array
 	OS.execute(command,[],array, true, false);

@@ -44,6 +44,8 @@ offset_left = 40.0
 offset_top = 120.0
 offset_right = -40.0
 offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ListContainer"]

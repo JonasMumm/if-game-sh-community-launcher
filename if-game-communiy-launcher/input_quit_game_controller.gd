@@ -3,8 +3,9 @@ extends Node
 
 signal quit;
 
-const hold_duration_millis:= 2000;
+const hold_duration_millis:= 1500;
 const poll_interval_seconds := 0.35
+const executable_dir := "user://EscapeKeyDownTracker/"
 
 var _stdio : FileAccess
 var _stderr : FileAccess
@@ -15,10 +16,17 @@ var _pid : int
 var _was_signal_emitted: bool
 var _key_down_unix_millis : int
 
+func _init():
+	extract_all_from_zip()
+
 func _enter_tree() -> void:
 	_key_down_unix_millis = 0
 	
-	var executable_path := "res://EscapeKeyDownTracker/bin/EscapeKeyDownTracker.exe";
+	var executable_path := executable_dir.path_join("EscapeKeyDownTracker.exe");
+	
+	if(!FileAccess.file_exists(executable_path)):
+		printerr("EscapeKeyDownTracker.exe file does not exist")
+	
 	var executable_path_global := ProjectSettings.globalize_path(executable_path)
 	var pipeResult := OS.execute_with_pipe(executable_path_global,[],false)
 	_stdio = pipeResult.stdio as FileAccess
@@ -64,3 +72,35 @@ func on_stdio_timer_timeout():
 			_key_down_unix_millis = key_down_unix_millis;
 			if _key_down_unix_millis==0:
 				_was_signal_emitted = false
+
+func extract_all_from_zip():
+	var zip_reader = ZIPReader.new()
+	var err = zip_reader.open("res://EscapeKeyDownTracker/bin/EscapeKeyDownTracker.zip")
+	
+	if(err!=OK):
+		printerr("open zip failed w/ "+error_string(err))
+		return
+	
+	# Destination directory for the extracted files (this folder must exist before extraction).
+	# Not all ZIP archives put everything in a single root folder,
+	# which means several files/folders may be created in `root_dir` after extraction.
+	DirAccess.make_dir_absolute(executable_dir)
+	var root_dir = DirAccess.open(executable_dir)
+
+	var files = zip_reader.get_files()
+	for file_path in files:
+		# If the current entry is a directory.
+		if file_path.ends_with("/"):
+			root_dir.make_dir_recursive(file_path)
+			continue
+
+		# Write file contents, creating folders automatically when needed.
+		# Not all ZIP archives are strictly ordered, so we need to do this in case
+		# the file entry comes before the folder entry.
+		root_dir.make_dir_recursive(root_dir.get_current_dir().path_join(file_path).get_base_dir())
+		var result_file_path := root_dir.get_current_dir().path_join(file_path)
+		var file = FileAccess.open(result_file_path, FileAccess.WRITE)
+		if file != null: #todo: the file may not have opened correctly, because it is still used by previous sessions process if it didnt exit cleanly. deal with that.
+			var buffer = zip_reader.read_file(file_path)
+			file.store_buffer(buffer)
+	zip_reader.close()

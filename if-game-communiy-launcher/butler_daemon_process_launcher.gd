@@ -14,7 +14,7 @@ func _ready() -> void:
 	var env := env_loader.new()
 	
 	var butlerExecutablePath:= env.get_string("butlerExecutablePath");
-	var butlerDbPath:= env.get_string("butlerDbPath");
+	var butlerDbPath:= ProjectSettings.globalize_path("user://butler.db");
 	
 	var processId := 	OS.get_process_id()
 	
