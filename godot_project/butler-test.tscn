@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://donnvmvbqack2"]
+[gd_scene load_steps=13 format=3 uid="uid://donnvmvbqack2"]
 
 [ext_resource type="Script" uid="uid://bes2y6x8kph2i" path="res://itch_login.gd" id="1_63mqi"]
 [ext_resource type="Script" uid="uid://b1k11sxneg1ar" path="res://butler_connection.gd" id="2_21nvm"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dl47qghvx374s" path="res://input_editor_quit.gd" id="6_ipikq"]
 [ext_resource type="PackedScene" uid="uid://3xjflh5pkjeb" path="res://ui/main_ui_state_manager.tscn" id="6_k6ji6"]
 [ext_resource type="Script" uid="uid://wqchuqxpjksy" path="res://game_ui_state_controller.gd" id="6_lm0l2"]
+[ext_resource type="PackedScene" uid="uid://tqukidx1wx50" path="res://logging/log_display.tscn" id="7_0oqte"]
 [ext_resource type="PackedScene" uid="uid://bxltecj7uxmp3" path="res://ui/choice_selector/choice_selector.tscn" id="7_hqorg"]
 [ext_resource type="Script" uid="uid://bybbytduq32gx" path="res://ui/ui_state_entry.gd" id="8_oxlym"]
 [ext_resource type="Script" uid="uid://bqxwdwj6mso0a" path="res://games_ui_focus_controller.gd" id="10_yw4le"]
@@ -49,6 +50,8 @@ launching_ui = NodePath("../CanvasLayer/MainUiStateManager/state_ui_launching")
 running_ui = NodePath("../CanvasLayer/MainUiStateManager/state_ui_running")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="log_display" parent="CanvasLayer" instance=ExtResource("7_0oqte")]
 
 [node name="MainUiStateManager" parent="CanvasLayer" instance=ExtResource("6_k6ji6")]
 

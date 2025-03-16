@@ -92,6 +92,7 @@ func quit_cave(kill_spawned_processes : bool):
 		_server.queue_free()
 		_server = null
 	
+	get_window().grab_focus()
 	cave_launched_changed.emit(false, null)
 	_connection.initialize_connection() #don't know why, but not resetting the connection after exiting a cave causes errors when launching another cave
 

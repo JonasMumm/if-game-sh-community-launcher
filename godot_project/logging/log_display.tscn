@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://tqukidx1wx50"]
+
+[ext_resource type="Script" uid="uid://cjesckjtyh4sh" path="res://logging/log_display.gd" id="1_h11cc"]
+
+[node name="log_display" type="Control" node_paths=PackedStringArray("log_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h11cc")
+log_label = NodePath("ColorRect/RichTextLabel")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.440979, 0.440979, 0.440979, 1)
+text = "nsdjmfnsmfnsjfm"
+vertical_alignment = 2

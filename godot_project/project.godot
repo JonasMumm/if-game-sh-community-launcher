@@ -16,6 +16,10 @@ config/use_custom_user_dir=true
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+LogManager="*res://logging/log_manager.tscn"
+
 [display]
 
 window/size/viewport_width=1280

@@ -67,7 +67,6 @@ func on_stdio_timer_timeout():
 			if(down_duration_millis >= hold_duration_millis):
 				_was_signal_emitted = true
 				quit.emit()
-				printerr("QUIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		else:
 			_key_down_unix_millis = key_down_unix_millis;
 			if _key_down_unix_millis==0:

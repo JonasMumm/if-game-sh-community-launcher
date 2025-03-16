@@ -77,7 +77,7 @@ func _process(delta: float) -> void:
 			var received := _tcpPeer.get_utf8_string(_tcpPeer.get_available_bytes())
 			var received_messages := received.split("\n", false);
 			for message in received_messages:
-				print("Receive RPC: " + message)
+				LogManager.add_log("Receive RPC: " + message, log_manager.log_type.log)
 				var jsonrpc := JSON.parse_string(message) as Dictionary
 				var id := jsonrpc.get("id",-1) as int
 				if id == -1: 
@@ -162,7 +162,7 @@ func send_request_freshable(method: String, params: Variant) -> in_flight_reques
 func send_rpc(jsonrpc:Dictionary):
 	sanitize_numbers_dict(jsonrpc)
 	var json = _json.stringify(jsonrpc)
-	print("Send RPC: "+json)
+	LogManager.add_log("Send RPC: "+json, log_manager.log_type.log)
 	_tcpPeer.put_data(json.to_utf8_buffer())
 	_tcpPeer.put_data("\n".to_utf8_buffer())
 	

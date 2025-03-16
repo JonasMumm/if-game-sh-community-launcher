@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbw1nytsjcm4i"]
+
+[ext_resource type="Script" uid="uid://db8nopdyeohsf" path="res://logging/log_manager.gd" id="1_m5eyj"]
+
+[node name="log_manager" type="Node"]
+script = ExtResource("1_m5eyj")
+metadata/_custom_type_script = "uid://db8nopdyeohsf"
