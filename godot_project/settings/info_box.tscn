@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3lpp8ofcwq5g"]
+
+[ext_resource type="Script" uid="uid://dv2baybb08pty" path="res://settings/settings_info_box.gd" id="1_ojw6n"]
+
+[sub_resource type="Theme" id="Theme_gjdk6"]
+
+[node name="info_box" type="MarginContainer" node_paths=PackedStringArray("bg", "info_label")]
+theme_override_constants/margin_left = 0
+script = ExtResource("1_ojw6n")
+bg = NodePath("ColorRect")
+info_label = NodePath("MarginContainer/Label")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.0431373, 0.45098, 0.145098, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="MarginContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = SubResource("Theme_gjdk6")
+text = "You need Butler to do anything really"
+autowrap_mode = 3
