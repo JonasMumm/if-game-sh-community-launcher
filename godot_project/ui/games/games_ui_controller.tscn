@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bi4mxp4w8msr"]
 
 [ext_resource type="Script" uid="uid://2qioqorem5i1" path="res://ui/games/games_ui_controller.gd" id="1_bafub"]
-[ext_resource type="PackedScene" uid="uid://bqwqh413qg74s" path="res://ui/games/game_button.tscn" id="2_3d77s"]
+[ext_resource type="PackedScene" uid="uid://cm610sgk56qp0" path="res://ui/games/game_button.tscn" id="2_e7u60"]
 [ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icon.svg" id="3_3d77s"]
 
 [node name="games_ui_controller" type="Control" node_paths=PackedStringArray("game_buttons_container")]
@@ -12,7 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bafub")
-game_button_packed_scene = ExtResource("2_3d77s")
+game_button_packed_scene = ExtResource("2_e7u60")
 game_buttons_container = NodePath("SelectionContainer/GamesListContainer/ScrollContainer/ButtonContainer")
 metadata/_custom_type_script = "uid://2qioqorem5i1"
 
@@ -54,9 +54,6 @@ horizontal_scroll_mode = 0
 [node name="ButtonContainer" type="VBoxContainer" parent="SelectionContainer/GamesListContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="GameButton" parent="SelectionContainer/GamesListContainer/ScrollContainer/ButtonContainer" instance=ExtResource("2_3d77s")]
-layout_mode = 2
 
 [node name="GameContainer" type="Control" parent="SelectionContainer"]
 layout_mode = 1

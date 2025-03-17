@@ -1,11 +1,82 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqwqh413qg74s"]
+[gd_scene load_steps=5 format=3 uid="uid://cm610sgk56qp0"]
 
-[ext_resource type="Script" uid="uid://dlrrp22auy1s3" path="res://game_button.gd" id="1_xur5r"]
+[ext_resource type="Script" uid="uid://dlrrp22auy1s3" path="res://game_button.gd" id="1_m5nst"]
+[ext_resource type="Texture2D" uid="uid://8kaysca263sh" path="res://icons/joystick_60dp_1F1F1F_FILL0_wght400_GRAD0_opsz48.svg" id="2_gkttu"]
+[ext_resource type="Texture2D" uid="uid://cq47y6d03vu2s" path="res://icons/group_60dp_1F1F1F_FILL0_wght400_GRAD0_opsz48.svg" id="3_uqv4c"]
+[ext_resource type="Texture2D" uid="uid://b1wdtvyne7dxr" path="res://icons/schedule_60dp_1F1F1F_FILL0_wght400_GRAD0_opsz48.svg" id="4_71hlu"]
 
-[node name="GameButton" type="Button"]
-offset_right = 237.48
-offset_bottom = 77.0
-theme_override_font_sizes/font_size = 50
-text = "Button!"
+[node name="game_button" type="MarginContainer" node_paths=PackedStringArray("button", "game_name_label")]
+offset_right = 685.0
+offset_bottom = 83.0
+script = ExtResource("1_m5nst")
+button = NodePath("Button")
+game_name_label = NodePath("VBoxContainer/Game Name")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
 autowrap_mode = 3
-script = ExtResource("1_xur5r")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Game Name" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Super Game Name 202020200202020202020202djjenjd"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Stats" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Stats/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Stats/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_gkttu")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/Stats/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Genre"
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/Stats"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Stats/MarginContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Stats/MarginContainer2/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("3_uqv4c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/Stats/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+text = "1-2"
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/Stats"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Stats/MarginContainer3"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Stats/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_71hlu")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/Stats/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+text = "5 Min"

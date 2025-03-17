@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://gcnmi5tgas1q"]
-
-[ext_resource type="Script" uid="uid://dlrrp22auy1s3" path="res://game_button.gd" id="1_edecf"]
+[gd_scene format=3 uid="uid://gcnmi5tgas1q"]
 
 [node name="choice_selector_button" type="Button"]
 offset_right = 237.48
@@ -8,4 +6,3 @@ offset_bottom = 42.0
 theme_override_font_sizes/font_size = 19
 text = "Button!"
 autowrap_mode = 3
-script = ExtResource("1_edecf")

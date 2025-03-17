@@ -19,7 +19,7 @@ func set_data(games : Array[game_data]):
 		var button := game_button_packed_scene.instantiate() as game_button
 		button._set_data(game)
 		var cave := game.cave_info
-		button.pressed.connect(launcher.launch_cave.bind(cave, connection))
+		button.button.pressed.connect(launcher.launch_cave.bind(cave, connection))
 		button.focus_entered.connect(set_focused_button.bind(button))
 		game_buttons_container.add_child(button)
 		buttons.append(button)
