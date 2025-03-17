@@ -1,14 +1,20 @@
 class_name itch_login
 extends Node
 
-@export var connection : butler_connection
 @export var cave_launcher : cave_launcher
 @export var games_ui : games_ui_controller
 @export var games_ui_state : ui_state_entry
 @export var choicer : choice_selector
 @export var main_ui_manager : main_state_manager
+@export var game_ui_state_controller : game_ui_state_controller
+
+var connection : butler_connection
 
 func _ready() -> void:
+	var save_data := save_data.load_from_file()
+	connection = butler_connection.new(save_data.butler_path)
+	add_child(connection)
+	game_ui_state_controller.set_connection(connection)
 	await connection.wait_for_connection()
 	
 	var env = env_loader.new()

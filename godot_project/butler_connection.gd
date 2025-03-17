@@ -34,10 +34,14 @@ var _in_flight_requests : Array[in_flight_request]
 var request_handlers : Dictionary[String,Callable]
 var process_launcher : butler_daemon_process_launcher
 var _notification_subscribers : Array[Dictionary]
+var butler_path : String
 
-func _init() -> void:
+func _init(butler_path : String) -> void:
+	self.butler_path = butler_path
 	_jsonrpc = jsonrpc_butler.new()
 	_json = JSON.new()
+	
+func _enter_tree():
 	initialize_connection();
 	
 func initialize_connection():
@@ -46,7 +50,7 @@ func initialize_connection():
 	
 	if(process_launcher != null): process_launcher.queue_free()
 	
-	process_launcher = butler_daemon_process_launcher.new()
+	process_launcher = butler_daemon_process_launcher.new(butler_path)
 	add_child(process_launcher)
 	await process_launcher.butler_daemon_started
 	var process := process_launcher._butler_daemon_process;

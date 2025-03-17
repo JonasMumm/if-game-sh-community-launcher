@@ -8,16 +8,25 @@ var _stderr : FileAccess;
 var _butler_daemon_process:butler_daemon_process
 var _stdio_timer: Timer
 var _buffer : PackedByteArray
+var butler_path : String
+
+func _init(butler_path : String):
+	self.butler_path = butler_path; 
 
 func _ready() -> void:
 	_butler_daemon_process = butler_daemon_process.new()
-	var env := env_loader.new()
 	
-	var butlerExecutablePath:= env.get_string("butlerExecutablePath");
+	var butlerExecutablePath:= ProjectSettings.globalize_path(butler_path);
+	
 	var butlerDbPath:= ProjectSettings.globalize_path("user://butler.db");
 	
 	var processId := 	OS.get_process_id()
 	var pipeResult := OS.execute_with_pipe(butlerExecutablePath,["daemon","-v","--json", "--dbpath",butlerDbPath, "--destiny-pid", str(processId)],false)
+	
+	if pipeResult.is_empty():
+		LogManager.add_log("Couldn't start butler process at path "+butlerExecutablePath, log_manager.log_type.error);
+		return
+	
 	_stdio = pipeResult["stdio"] as FileAccess
 	_stderr = pipeResult["stderr"] as FileAccess
 	_butler_daemon_process.pid = pipeResult["pid"] as int

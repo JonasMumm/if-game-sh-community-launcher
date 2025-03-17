@@ -1,16 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://gurl8mgrosm5"]
+[gd_scene load_steps=7 format=3 uid="uid://gurl8mgrosm5"]
 
 [ext_resource type="PackedScene" uid="uid://tqukidx1wx50" path="res://logging/log_display.tscn" id="1_1np8e"]
 [ext_resource type="Theme" uid="uid://d3afgootd7erb" path="res://settings/settings_header.tres" id="1_gjdk6"]
+[ext_resource type="Script" uid="uid://cfi4ul7innswy" path="res://settings/settings_menu.gd" id="1_shoos"]
 [ext_resource type="PackedScene" uid="uid://b3lpp8ofcwq5g" path="res://settings/info_box.tscn" id="2_olm1t"]
+[ext_resource type="PackedScene" uid="uid://bxltecj7uxmp3" path="res://ui/choice_selector/choice_selector.tscn" id="4_76kmu"]
+[ext_resource type="Script" uid="uid://bmxbnp20n40d5" path="res://settings/butler_settings.gd" id="5_7fpik"]
 
-[node name="SettingsMenu" type="Control"]
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("butler")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_shoos")
+butler = NodePath("Controllers/butler_settings")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
 layout_mode = 1
@@ -182,7 +187,24 @@ text = "Select Browser"
 layout_mode = 2
 text = "Check Browser"
 
+[node name="ChoiceSelector" parent="HSplitContainer/InputArea" instance=ExtResource("4_76kmu")]
+visible = false
+layout_mode = 1
+
 [node name="log_display" parent="HSplitContainer" instance=ExtResource("1_1np8e")]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Controllers" type="Node" parent="."]
+
+[node name="butler_settings" type="Node" parent="Controllers" node_paths=PackedStringArray("info", "choicer", "request", "install_button", "uninstall_button")]
+script = ExtResource("5_7fpik")
+info = NodePath("../../HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection/butler_info_box")
+choicer = NodePath("../../HSplitContainer/InputArea/ChoiceSelector")
+request = NodePath("HTTPRequest")
+install_button = NodePath("../../HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection/InstallButlerButton")
+uninstall_button = NodePath("../../HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection/UninstallButlerButton")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Controllers/butler_settings"]
+max_redirects = 18

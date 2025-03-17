@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://donnvmvbqack2"]
+[gd_scene load_steps=12 format=3 uid="uid://donnvmvbqack2"]
 
 [ext_resource type="Script" uid="uid://bes2y6x8kph2i" path="res://itch_login.gd" id="1_63mqi"]
-[ext_resource type="Script" uid="uid://b1k11sxneg1ar" path="res://butler_connection.gd" id="2_21nvm"]
 [ext_resource type="Script" uid="uid://bsa6o5ox4ok1a" path="res://input_quit_game_controller.gd" id="3_147q3"]
 [ext_resource type="Script" uid="uid://cg27bp0xwfy4t" path="res://cave_launcher.gd" id="4_rm38c"]
 [ext_resource type="PackedScene" uid="uid://bi4mxp4w8msr" path="res://ui/games/games_ui_controller.tscn" id="5_ipikq"]
@@ -13,19 +12,15 @@
 [ext_resource type="Script" uid="uid://bybbytduq32gx" path="res://ui/ui_state_entry.gd" id="8_oxlym"]
 [ext_resource type="Script" uid="uid://bqxwdwj6mso0a" path="res://games_ui_focus_controller.gd" id="10_yw4le"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("connection", "cave_launcher", "games_ui", "games_ui_state", "choicer", "main_ui_manager")]
+[node name="Main" type="Node" node_paths=PackedStringArray("cave_launcher", "games_ui", "games_ui_state", "choicer", "main_ui_manager", "game_ui_state_controller")]
 script = ExtResource("1_63mqi")
-connection = NodePath("butler_connection")
 cave_launcher = NodePath("cave_launcher")
 games_ui = NodePath("CanvasLayer/MainUiStateManager/state_games_ui_controller/games_ui_controller")
 games_ui_state = NodePath("CanvasLayer/MainUiStateManager/state_games_ui_controller")
 choicer = NodePath("CanvasLayer/ChoiceSelector")
 main_ui_manager = NodePath("CanvasLayer/MainUiStateManager")
+game_ui_state_controller = NodePath("game_ui_state_controller")
 metadata/_custom_type_script = "uid://bes2y6x8kph2i"
-
-[node name="butler_connection" type="Node" parent="."]
-script = ExtResource("2_21nvm")
-metadata/_custom_type_script = "uid://b1k11sxneg1ar"
 
 [node name="input_quit_game_controller" type="Node" parent="."]
 script = ExtResource("3_147q3")
@@ -40,11 +35,10 @@ metadata/_custom_type_script = "uid://cg27bp0xwfy4t"
 script = ExtResource("6_ipikq")
 launcher = NodePath("../cave_launcher")
 
-[node name="game_ui_state_controller" type="Node" parent="." node_paths=PackedStringArray("main_ui", "launcher", "connection", "games_ui", "launching_ui", "running_ui")]
+[node name="game_ui_state_controller" type="Node" parent="." node_paths=PackedStringArray("main_ui", "launcher", "games_ui", "launching_ui", "running_ui")]
 script = ExtResource("6_lm0l2")
 main_ui = NodePath("../CanvasLayer/MainUiStateManager")
 launcher = NodePath("../cave_launcher")
-connection = NodePath("../butler_connection")
 games_ui = NodePath("../CanvasLayer/MainUiStateManager/state_games_ui_controller")
 launching_ui = NodePath("../CanvasLayer/MainUiStateManager/state_ui_launching")
 running_ui = NodePath("../CanvasLayer/MainUiStateManager/state_ui_running")
@@ -68,7 +62,7 @@ metadata/_custom_type_script = "uid://bybbytduq32gx"
 [node name="games_ui_controller" parent="CanvasLayer/MainUiStateManager/state_games_ui_controller" node_paths=PackedStringArray("launcher", "connection") instance=ExtResource("5_ipikq")]
 layout_mode = 1
 launcher = NodePath("../../../../cave_launcher")
-connection = NodePath("../../../../butler_connection")
+connection = NodePath("")
 
 [node name="games_ui_focus_controller" type="Node" parent="CanvasLayer/MainUiStateManager/state_games_ui_controller" node_paths=PackedStringArray("games_ui", "games_ui_state")]
 script = ExtResource("10_yw4le")

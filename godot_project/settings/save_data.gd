@@ -2,6 +2,8 @@ class_name save_data
 
 const save_path := "user://save_data.json";
 
+signal saved;
+
 @export var butler_path : String
 @export var profile_id : int
 @export var profile_name_hint : String
@@ -19,3 +21,4 @@ static func load_from_file() -> save_data:
 	
 func save_to_file() -> void:
 	JsonClassConverter.store_json_file(save_path, JsonClassConverter.class_to_json(self))
+	saved.emit()

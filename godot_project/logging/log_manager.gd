@@ -19,7 +19,7 @@ func _init():
 	logs.resize(capacity)
 	pass
 	
-func add_log(log: String, type : log_type):
+func add_log(log: String, type : log_type = log_type.log):
 	logs[loop_index] = log
 	loop_index = (loop_index + 1) % capacity 
 	cached_string_valid = false
