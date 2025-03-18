@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://gurl8mgrosm5"]
+[gd_scene load_steps=12 format=3 uid="uid://gurl8mgrosm5"]
 
 [ext_resource type="PackedScene" uid="uid://tqukidx1wx50" path="res://logging/log_display.tscn" id="1_1np8e"]
 [ext_resource type="Theme" uid="uid://d3afgootd7erb" path="res://settings/settings_header.tres" id="1_gjdk6"]
 [ext_resource type="Script" uid="uid://cfi4ul7innswy" path="res://settings/settings_menu.gd" id="1_shoos"]
 [ext_resource type="PackedScene" uid="uid://b3lpp8ofcwq5g" path="res://settings/info_box.tscn" id="2_olm1t"]
+[ext_resource type="PackedScene" uid="uid://dvu5ocouhu1el" path="res://settings/hint_box.tscn" id="3_tm82m"]
 [ext_resource type="PackedScene" uid="uid://bxltecj7uxmp3" path="res://ui/choice_selector/choice_selector.tscn" id="4_76kmu"]
 [ext_resource type="Script" uid="uid://bmxbnp20n40d5" path="res://settings/butler_settings.gd" id="5_7fpik"]
 [ext_resource type="Script" uid="uid://cg5xjsa1nl6vd" path="res://settings/profile_settings.gd" id="7_oy4mk"]
@@ -75,6 +76,12 @@ theme = ExtResource("1_gjdk6")
 text = "Butler"
 autowrap_mode = 3
 
+[node name="hint_box" parent="HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection" instance=ExtResource("3_tm82m")]
+layout_mode = 2
+text = "Butler is itch.io's command line tool and required to fetch collections of games and to install and launch them. Installing Butler requires an active internet connection. By default the latest stable build of Butler is used. Please be patient during installation, you can keep up with the state of things in the right-hand log window.
+Uninstalling Butler does not remove local user data associated with Butler. To Update Butler, uninstall the installed version before reinstalling from the internet."
+enabled_by_default = false
+
 [node name="butler_info_box" parent="HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection" instance=ExtResource("2_olm1t")]
 layout_mode = 2
 
@@ -98,6 +105,11 @@ layout_mode = 2
 theme = ExtResource("1_gjdk6")
 text = "Profile"
 autowrap_mode = 3
+
+[node name="hint_box" parent="HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/Profile" instance=ExtResource("3_tm82m")]
+layout_mode = 2
+text = "You need to log into an itch.io account to fetch and install games. Logging in happens via an API Key you can obtain from your Account Settings page on the itch.io web interface. The initial login requires an internet connection. Once logged in, the account is stored locally and can be used without an internet connection."
+enabled_by_default = false
 
 [node name="profile_info_box" parent="HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/Profile" instance=ExtResource("2_olm1t")]
 layout_mode = 2
@@ -135,6 +147,11 @@ theme = ExtResource("1_gjdk6")
 text = "Collection (Games)"
 autowrap_mode = 3
 
+[node name="hint_box" parent="HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/Collection" instance=ExtResource("3_tm82m")]
+layout_mode = 2
+text = "Choose a collection containing the games that should be installed. Games will be downloaded and installed upon launching the main launcher. Once downloaded, games can be launched without an internet connection."
+enabled_by_default = false
+
 [node name="collection_info_box" parent="HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/Collection" instance=ExtResource("2_olm1t")]
 layout_mode = 2
 
@@ -159,6 +176,13 @@ layout_mode = 2
 theme = ExtResource("1_gjdk6")
 text = "Web Browser Launch"
 autowrap_mode = 3
+
+[node name="hint_box" parent="HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/Browser" instance=ExtResource("3_tm82m")]
+layout_mode = 2
+text = "A Browser is required to launch web-based games. There two kinds of browser configurations: To launch with predefined launch options, you can select an installed executable of Google Chrome or Microsoft Edge. If you choose to use a different browser, you can supply a custom command to launch whatever browser you like. $URL and $USER_DATA_DIR template strings will be filled in during launch. $URL is the pre-escaped url to be opened. $USER_DATA_DIR points to a pre-escaped directory that can be used to store browser data, as to not pollute existing browser users' data. Chrome and Edge use an internal user directory by default.
+Note that Chrome and Edge may pop up overlay dialogs on the very first launch. They should not reappear a second time.
+Despite browser-based games not featuring a quit button, it is possible to quit them by keeping the ESC key pressed for 2 seconds."
+enabled_by_default = false
 
 [node name="browser_info_box" parent="HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/Browser" instance=ExtResource("2_olm1t")]
 layout_mode = 2
@@ -190,6 +214,12 @@ text = "Save"
 [node name="BrowserCheckExecutable2" type="Button" parent="HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/Browser"]
 layout_mode = 2
 text = "Test Browser Launch"
+
+[node name="hint_box2" parent="HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/Browser" instance=ExtResource("3_tm82m")]
+layout_mode = 2
+text = "Launching a browser-based game requires a server on localhost to supply game files. Here you can choose the port used for the local server."
+enabled = false
+enabled_by_default = false
 
 [node name="Port" type="HBoxContainer" parent="HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/Browser"]
 layout_mode = 2

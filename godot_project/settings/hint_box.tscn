@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvu5ocouhu1el"]
+
+[ext_resource type="Script" uid="uid://cx15mwheh4x8b" path="res://settings/hint_box.gd" id="1_xsedh"]
+
+[node name="hint_box" type="MarginContainer" node_paths=PackedStringArray("label", "hint_content", "check_button")]
+script = ExtResource("1_xsedh")
+label = NodePath("VerticalLayout/MarginContainer/Label")
+text = "Helpful"
+hint_content = NodePath("VerticalLayout/MarginContainer")
+check_button = NodePath("VerticalLayout/CheckButton")
+enabled = true
+enabled_by_default = null
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.268983, 0.307236, 0.430223, 1)
+
+[node name="VerticalLayout" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="VerticalLayout"]
+layout_mode = 2
+button_pressed = true
+text = "Show Hint"
+
+[node name="MarginContainer" type="MarginContainer" parent="VerticalLayout"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 2
+
+[node name="Label" type="Label" parent="VerticalLayout/MarginContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Helpful"
+autowrap_mode = 3

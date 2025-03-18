@@ -60,6 +60,7 @@ func on_request_completed(result: int, response_code: int, headers: PackedString
 	
 	extract_all_from_zip(zip_file_path,butler_install_path);
 	save.butler_path = butler_install_path.path_join("butler.exe") #todo: thats very windows
+	LogManager.add_log("Butler path set!")
 	save.save_to_file()
 	
 static func extract_all_from_zip(zip_file_path:String, extract_into_folder : String):
