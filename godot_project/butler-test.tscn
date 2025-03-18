@@ -59,10 +59,9 @@ grow_vertical = 2
 script = ExtResource("8_oxlym")
 metadata/_custom_type_script = "uid://bybbytduq32gx"
 
-[node name="games_ui_controller" parent="CanvasLayer/MainUiStateManager/state_games_ui_controller" node_paths=PackedStringArray("launcher", "connection") instance=ExtResource("5_ipikq")]
+[node name="games_ui_controller" parent="CanvasLayer/MainUiStateManager/state_games_ui_controller" node_paths=PackedStringArray("launcher") instance=ExtResource("5_ipikq")]
 layout_mode = 1
 launcher = NodePath("../../../../cave_launcher")
-connection = NodePath("")
 
 [node name="games_ui_focus_controller" type="Node" parent="CanvasLayer/MainUiStateManager/state_games_ui_controller" node_paths=PackedStringArray("games_ui", "games_ui_state")]
 script = ExtResource("10_yw4le")

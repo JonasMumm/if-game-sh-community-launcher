@@ -50,7 +50,7 @@ func _ready() -> void:
 	if save_data.check_for_updates_on_startup:
 		await cave_initializer.check_updates(connection, all_gameData, choicer, profile.id)
 	
-	games_ui.set_data(all_gameData)
+	games_ui.set_data(connection, all_gameData)
 	main_ui_manager.set_active_content(games_ui_state)
 		
 func _process(delta: float) -> void:

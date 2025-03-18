@@ -18,6 +18,7 @@ autowrap_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Game Name" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -26,19 +27,24 @@ text = "Super Game Name 202020200202020202020202djjenjd"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Stats" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Stats"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Stats/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/Stats/MarginContainer/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("2_gkttu")
 expand_mode = 2
 stretch_mode = 5
@@ -49,14 +55,17 @@ text = "Genre"
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/Stats"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Stats/MarginContainer2"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/Stats/MarginContainer2/HBoxContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("3_uqv4c")
 expand_mode = 1
 stretch_mode = 5
@@ -67,12 +76,15 @@ text = "1-2"
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/Stats"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Stats/MarginContainer3"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/Stats/MarginContainer3/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("4_71hlu")
 expand_mode = 3
 stretch_mode = 5

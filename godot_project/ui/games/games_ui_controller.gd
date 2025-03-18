@@ -4,13 +4,13 @@ extends Control
 @export var game_button_packed_scene:PackedScene
 @export var game_buttons_container:Control
 @export var launcher : cave_launcher
-@export var connection : butler_connection
 
+var connection : butler_connection
 var _games : Array[game_data]
 var buttons : Array[game_button]
 var focused_button : game_button
 
-func set_data(games : Array[game_data]):
+func set_data(connection : butler_connection, games : Array[game_data]):
 	_games = games
 	
 	var buttons : Array[game_button]
