@@ -35,7 +35,7 @@ func on_stdio_timer_timeout():
 		if _buffer.size() != 0:
 			if print_ascii:
 				var ascii = _buffer.get_string_from_ascii()
-				print(ascii)
+				LogManager.add_log(ascii)
 			received_bytes.emit(_buffer)
 			
 	if _stderr.is_open():

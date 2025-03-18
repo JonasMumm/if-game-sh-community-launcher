@@ -23,9 +23,10 @@ func _ready():
 func init_ui(save : save_data, connection : butler_connection):
 	self.save = save;
 	self.connection = connection
-	info.set_data("Waiting for butler to initialize...\nCurrent butler path: "+save.butler_path, false)
+	var global_butler_path := ProjectSettings.globalize_path(save.butler_path)
+	info.set_data("Waiting for butler to initialize...\nCurrent butler path: "+global_butler_path, false)
 	await connection.wait_for_connection()
-	info.set_data("Butler connected!\nCurrent butler path: "+save.butler_path, true)
+	info.set_data("Butler connected!\nCurrent butler path: "+global_butler_path, true)
 
 func install_butler():
 	var channels:= PackedStringArray(["windows-amd64","windows-386"])

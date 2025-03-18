@@ -4,12 +4,12 @@ extends Node
 signal cave_launched_changed (is_launched : bool, cave : cave_info)
 
 @export var quit_input_handler : input_quit_game_controller
+@export var browser_launcher : browser_launcher
 
 var _cave_running : bool
 var _pre_launch_processes : PackedInt32Array
 var _connection : butler_connection
 var _server : HttpServer
-var _browser_pipe : pipe_handler
 
 func _ready() -> void:
 	quit_input_handler.quit.connect(quit_cave.bind(true))
@@ -32,7 +32,6 @@ func launch_cave(v: cave_info, connection : butler_connection):
 	var prereqsPath := base_path.path_join("prereqs").path_join(str(cave.id))
 	_pre_launch_processes = get_all_process_ids()
 	connection.add_request_handler("HTMLLaunch", handler_html_launch);
-	printerr("Will launch")
 	await connection.send_request("Launch",{caveId = cave.id, prereqsDir = prereqsPath})
 	quit_cave(false)
 
@@ -57,24 +56,16 @@ static func wait_then_kill(prev_processes : PackedInt32Array, tree : SceneTree):
 			OS.kill(pid)
 			
 func handler_html_launch(id: int, method:String, params:Dictionary):
+	var save := save_data.load_from_file()
 	_server = HttpServer.new()
 	_server.register_router("^.*", file_router.new(params.rootFolder))
-	_server.port = 39902
+	_server.port = save.local_server_port
 	#_server.bind_address = "localhost"
 	add_child(_server)
 	_server.start()
-	
-	var env := env_loader.new();
-	var command := env.get_string("browser-launch-command");
-	print(str(params))
-	command = command.replace("$url","http://localhost:"+str(_server.port).path_join(params.indexPath))
-	command = command.replace("$userDataDir",ProjectSettings.globalize_path("user://browser_user_data"))
-	print("Launch Command: "+command)
-	var array : Array
-	var pipe_result := OS.execute_with_pipe("cmd.exe",["/c", command],false)
-	_browser_pipe = pipe_handler.new(pipe_result);
-	_browser_pipe.print_ascii = true
-	add_child(_browser_pipe)
+	var url := "http://localhost:"+str(_server.port).path_join(params.indexPath)
+	LogManager.add_log("Preparing to launch url "+url)
+	browser_launcher.launch(save, url)
 
 func quit_cave(kill_spawned_processes : bool):
 	print("QUIT CAVE "+str(kill_spawned_processes))
@@ -90,10 +81,6 @@ func quit_cave(kill_spawned_processes : bool):
 	
 	if _server != null:
 		_server.queue_free()
-		_server = null
-		
-	if _browser_pipe != null:
-		_browser_pipe.queue_free()
 		_server = null
 	
 	get_window().grab_focus()

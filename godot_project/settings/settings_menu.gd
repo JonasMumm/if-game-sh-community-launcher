@@ -3,6 +3,7 @@ extends Control
 @export var butler : butler_settings
 @export var profile : profile_settings
 @export var collection : collection_settings
+@export var browser : browser_settings
 
 var connection : butler_connection
 var save : save_data
@@ -27,3 +28,4 @@ func _refresh_all_ui():
 	butler.init_ui(save, connection)
 	profile.init_ui(save, connection)
 	collection.init_ui(save, connection)
+	browser.init_ui(save)
