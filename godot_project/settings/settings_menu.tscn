@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://gurl8mgrosm5"]
+[gd_scene load_steps=8 format=3 uid="uid://gurl8mgrosm5"]
 
 [ext_resource type="PackedScene" uid="uid://tqukidx1wx50" path="res://logging/log_display.tscn" id="1_1np8e"]
 [ext_resource type="Theme" uid="uid://d3afgootd7erb" path="res://settings/settings_header.tres" id="1_gjdk6"]
@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://b3lpp8ofcwq5g" path="res://settings/info_box.tscn" id="2_olm1t"]
 [ext_resource type="PackedScene" uid="uid://bxltecj7uxmp3" path="res://ui/choice_selector/choice_selector.tscn" id="4_76kmu"]
 [ext_resource type="Script" uid="uid://bmxbnp20n40d5" path="res://settings/butler_settings.gd" id="5_7fpik"]
+[ext_resource type="Script" uid="uid://cg5xjsa1nl6vd" path="res://settings/profile_settings.gd" id="7_oy4mk"]
 
-[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("butler")]
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("butler", "profile")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,6 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_shoos")
 butler = NodePath("Controllers/butler_settings")
+profile = NodePath("Controllers/profile_Settings")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
 layout_mode = 1
@@ -115,10 +117,6 @@ text = "Submit"
 layout_mode = 2
 text = "Select Profile"
 
-[node name="ProfileCheck" type="Button" parent="HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/Profile"]
-layout_mode = 2
-text = "Check Profile"
-
 [node name="HSeparator2" type="HSeparator" parent="HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -208,3 +206,11 @@ uninstall_button = NodePath("../../HSplitContainer/InputArea/ScrollContainer/Mar
 
 [node name="HTTPRequest" type="HTTPRequest" parent="Controllers/butler_settings"]
 max_redirects = 18
+
+[node name="profile_Settings" type="Node" parent="Controllers" node_paths=PackedStringArray("info_box", "api_token_edit", "api_token_submit", "profile_select", "choicer")]
+script = ExtResource("7_oy4mk")
+info_box = NodePath("../../HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/Profile/profile_info_box")
+api_token_edit = NodePath("../../HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/Profile/HBoxContainer/LineEdit")
+api_token_submit = NodePath("../../HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/Profile/HBoxContainer/Button")
+profile_select = NodePath("../../HSplitContainer/InputArea/ScrollContainer/MarginContainer/VBoxContainer/Profile/ProfileSelect")
+choicer = NodePath("../../HSplitContainer/InputArea/ChoiceSelector")

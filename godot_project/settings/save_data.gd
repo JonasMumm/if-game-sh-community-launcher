@@ -6,9 +6,8 @@ signal saved;
 
 @export var butler_path : String
 @export var profile_id : int
-@export var profile_name_hint : String
 @export var collection_id : int
-@export var collection_hint : String
+@export var check_for_updates_on_startup := true
 @export var browser_mode : int #0 = uninitialized / none
 @export var browser_chromium_generic_executable_path : String
 @export var browser_chrome_executable_path : String

@@ -1,6 +1,7 @@
 extends Control
 
 @export var butler : butler_settings
+@export var profile : profile_settings
 
 var connection : butler_connection
 var save : save_data
@@ -23,3 +24,4 @@ func _refresh_all_ui():
 	add_child(connection)
 	
 	butler.init_ui(save, connection)
+	profile.init_ui(save, connection)

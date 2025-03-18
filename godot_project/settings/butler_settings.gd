@@ -1,7 +1,7 @@
 class_name butler_settings
 extends Node
 
-const broth_url := "https://broth.itch.zone/butler/$CHANNEL/LATEST/archive/default"
+const broth_url := "https://broth.itch.ovh/butler/$CHANNEL/LATEST/archive/default"
 const zip_file_path := "user://butler-temp.zip"
 const butler_install_path := "user://butler"
 
@@ -24,7 +24,7 @@ func init_ui(save : save_data, connection : butler_connection):
 	self.save = save;
 	self.connection = connection
 	info.set_data("Waiting for butler to initialize...\nCurrent butler path: "+save.butler_path, false)
-	await connection.connected
+	await connection.wait_for_connection()
 	info.set_data("Butler connected!\nCurrent butler path: "+save.butler_path, true)
 
 func install_butler():
