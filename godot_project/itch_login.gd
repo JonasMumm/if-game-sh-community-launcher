@@ -15,18 +15,15 @@ func _ready() -> void:
 	connection = butler_connection.new(save_data.butler_path)
 	add_child(connection)
 	game_ui_state_controller.set_connection(connection)
+	LogManager.add_log("Waiting for butler connection. If you don't see any progress, you may need to launch the configuration tool.")
 	await connection.wait_for_connection()
 	
-	var env = env_loader.new()
-	var api_key = env.get_string("itch-api-key");
-	var rq := await connection.send_request("Profile.LoginWithAPIKey",{apiKey = api_key});
+	var profile := await profile_settings.get_profile_from_profiles(connection, save_data.profile_id)
 	
-	var profile:Dictionary
-	var profile_list_rq = await connection.send_request("Profile.List",{});
-	var profile_index = await choicer.async_get_choice_index("Select Profile",profile_list_rq.result.profiles.map(func(v): return str(v)), false)
-	profile = profile_list_rq.result["profiles"][profile_index]
-		
-	print("Logged into profile "+str(profile["id"])+" ("+str(profile["user"]["displayName"]+")"))
+	if profile.is_empty():
+		LogManager.add_log("Could'nt sign into profile "+str(save_data.profile_id), log_manager.log_type.error)
+		return
+	LogManager.add_log("Logged into profile "+str(profile.id)+" ("+str(profile.user.displayName+")"))
 	
 	#init one location
 	var install_locations_rq := await connection.send_request("Install.Locations.List",{});
@@ -36,16 +33,12 @@ func _ready() -> void:
 		await connection.send_request("Install.Locations.Add", { path = location_path})
 	
 	
-	var profile_id := profile["id"] as int;
-	var collections_rq := await connection.send_request_freshable("Fetch.ProfileCollections",{profileId=profile_id}) #todo: paging
-	var collections = collections_rq.result.items
+	var profile_id :int= profile.id;
+	var collection_rq := await connection.send_request_freshable("Fetch.Collection",{profileId=profile_id, collectionId=save_data.collection_id})
 	
-	var collection_index := 0
-	if collections.size()>1:
-		collection_index = await choicer.async_get_choice_index("Select Collection",collections.map(func(v):return str(v)), false)
+	if !collection_rq.successful: return
 	
-	var collection = collections[collection_index]
-	
+	var collection = collection_rq.result.collection
 	var collection_games_rq := await connection.send_request_freshable("Fetch.Collection.Games",{profileId=profile_id,collectionId=int(collection.id) })
 	
 	var all_gameData : Array[game_data]
@@ -54,8 +47,8 @@ func _ready() -> void:
 		if cave_info != null: 
 			all_gameData.append(game_data.new(cave_info, collection_game))
  
-	#await cave_initializer.perform_installs(connection) probably bs
-	await cave_initializer.check_updates(connection, all_gameData, choicer, profile.id)
+	if save_data.check_for_updates_on_startup:
+		await cave_initializer.check_updates(connection, all_gameData, choicer, profile.id)
 	
 	games_ui.set_data(all_gameData)
 	main_ui_manager.set_active_content(games_ui_state)

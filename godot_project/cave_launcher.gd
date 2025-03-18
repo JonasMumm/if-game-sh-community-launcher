@@ -9,6 +9,7 @@ var _cave_running : bool
 var _pre_launch_processes : PackedInt32Array
 var _connection : butler_connection
 var _server : HttpServer
+var _browser_pipe : pipe_handler
 
 func _ready() -> void:
 	quit_input_handler.quit.connect(quit_cave.bind(true))
@@ -70,11 +71,10 @@ func handler_html_launch(id: int, method:String, params:Dictionary):
 	command = command.replace("$userDataDir",ProjectSettings.globalize_path("user://browser_user_data"))
 	print("Launch Command: "+command)
 	var array : Array
-	OS.execute(command,[],array, true, false);
 	var pipe_result := OS.execute_with_pipe("cmd.exe",["/c", command],false)
-	var pipe_handler = pipe_handler.new(pipe_result);
-	pipe_handler.print_ascii = true
-	add_child(pipe_handler)
+	_browser_pipe = pipe_handler.new(pipe_result);
+	_browser_pipe.print_ascii = true
+	add_child(_browser_pipe)
 
 func quit_cave(kill_spawned_processes : bool):
 	print("QUIT CAVE "+str(kill_spawned_processes))
@@ -90,6 +90,10 @@ func quit_cave(kill_spawned_processes : bool):
 	
 	if _server != null:
 		_server.queue_free()
+		_server = null
+		
+	if _browser_pipe != null:
+		_browser_pipe.queue_free()
 		_server = null
 	
 	get_window().grab_focus()

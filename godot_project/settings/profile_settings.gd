@@ -25,21 +25,22 @@ func init_ui(save : save_data, connection : butler_connection):
 	
 	info_box.set_data("Selected profile: "+str(save.profile_id)+"\nfetching profile info.", false)
 	
-	var user := await get_user_from_profiles(save.profile_id);
+	var profile := await get_profile_from_profiles(connection, save.profile_id);
 	
-	if user.is_empty():
+	if profile.is_empty():
 		info_box.set_data("Selected Profile: "+str(save.profile_id)+"\nProfile for user could not be found.", false)
 	else:
+		var user = profile.user
 		info_box.set_data("Selected Profile: "+str(user.displayName)+" ("+str(user.username)+")", true)
 	
-func get_user_from_profiles(profile_id : int) -> Dictionary:
+static func get_profile_from_profiles(connection : butler_connection, profile_id : int) -> Dictionary:
 	var rq_profiles := await connection.send_request("Profile.List",{})
 	var profiles : Array = rq_profiles.result.profiles;
 	var index := profiles.find_custom(func (v): return v.id == profile_id);
 	
 	if index == -1: return {}
 	
-	return profiles[index].user;
+	return profiles[index];
 
 func register_api_key():
 	await connection.wait_for_connection()
