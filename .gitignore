@@ -3,4 +3,5 @@ godot_project/.vscode/
 EscapeKeyDownTracker-NetFrameworkWindowsConsoleApp/.vs/
 EscapeKeyDownTracker-NetFrameworkWindowsConsoleApp/bin/
 EscapeKeyDownTracker-NetFrameworkWindowsConsoleApp/obj/
-godot_project/build/
+godot_project/build/**/*.exe
+godot_project/build/**/*.pck

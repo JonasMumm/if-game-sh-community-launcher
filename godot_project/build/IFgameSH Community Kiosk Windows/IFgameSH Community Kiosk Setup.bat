@@ -1,0 +1,1 @@
+"%~dp0IFgameSH Community Kiosk.exe" --setup
