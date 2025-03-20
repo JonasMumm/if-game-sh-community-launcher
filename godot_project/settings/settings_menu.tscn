@@ -85,7 +85,6 @@ autowrap_mode = 3
 layout_mode = 2
 text = "Butler is itch.io's command line tool and required to fetch collections of games and to install and launch them. Installing Butler requires an active internet connection. By default the latest stable build of Butler is used. Please be patient during installation, you can keep up with the state of things in the right-hand log window.
 Uninstalling Butler does not remove local user data associated with Butler. To Update Butler, uninstall the installed version before reinstalling from the internet."
-enabled_by_default = false
 
 [node name="butler_info_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection" instance=ExtResource("2_olm1t")]
 layout_mode = 2
@@ -114,7 +113,6 @@ autowrap_mode = 3
 [node name="hint_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile" instance=ExtResource("3_tm82m")]
 layout_mode = 2
 text = "You need to log into an itch.io account to fetch and install games. Logging in happens via an API Key you can obtain from your Account Settings page on the itch.io web interface. The initial login requires an internet connection. Once logged in, the account is stored locally and can be used without an internet connection."
-enabled_by_default = false
 
 [node name="profile_info_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile" instance=ExtResource("2_olm1t")]
 layout_mode = 2
@@ -155,7 +153,6 @@ autowrap_mode = 3
 [node name="hint_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection" instance=ExtResource("3_tm82m")]
 layout_mode = 2
 text = "Choose a collection containing the games that should be installed. Games will be downloaded and installed upon launching the main launcher. Once downloaded, games can be launched without an internet connection."
-enabled_by_default = false
 
 [node name="collection_info_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection" instance=ExtResource("2_olm1t")]
 layout_mode = 2
@@ -187,7 +184,6 @@ layout_mode = 2
 text = "A Browser is required to launch web-based games. There two kinds of browser configurations: To launch with predefined launch options, you can select an installed executable of Google Chrome or Microsoft Edge. If you choose to use a different browser, you can supply a custom command to launch whatever browser you like. $URL and $USER_DATA_DIR template strings will be filled in during launch. $URL is the pre-escaped url to be opened. $USER_DATA_DIR points to a pre-escaped directory that can be used to store browser data, as to not pollute existing browser users' data. Chrome and Edge use an internal user directory by default.
 Note that Chrome and Edge may pop up overlay dialogs on the very first launch. They should not reappear a second time.
 Despite browser-based games not featuring a quit button, it is possible to quit them by keeping the ESC key pressed for 2 seconds."
-enabled_by_default = false
 
 [node name="browser_info_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser" instance=ExtResource("2_olm1t")]
 layout_mode = 2
@@ -223,8 +219,6 @@ text = "Test Browser Launch"
 [node name="hint_box2" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser" instance=ExtResource("3_tm82m")]
 layout_mode = 2
 text = "Launching a browser-based game requires a server on localhost to supply game files. Here you can choose the port used for the local server."
-enabled = false
-enabled_by_default = false
 
 [node name="Port" type="HBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser"]
 layout_mode = 2

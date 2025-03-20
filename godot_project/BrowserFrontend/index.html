@@ -1,0 +1,257 @@
+<html>
+    <head>
+        <style type="text/css">
+            * {margin: 0; padding: 0;}
+            .closePanelContainer{
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                pointer-events: none;
+            }
+            .closePanel{
+                padding: 0.5rem;
+                display: flex;
+                align-items: center;
+            }
+            .closeButton{
+                height: 4rem;
+                min-width: 4rem;
+                cursor: pointer;
+                color: white;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgb(0, 0, 0, 0.5);
+                padding-top: 5px;
+                padding-bottom: 5px;
+                padding-left: 5px;
+                padding-right: 5px;
+                animation-name: animCloseButton;
+                animation-duration: 5s;
+                animation-iteration-count: 2;
+                pointer-events: auto;
+            }
+            .closeButton:hover{
+                background-color: rgb(27, 27, 65);
+                color:white;
+            }
+            .material-symbols-outlined {
+                font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+            }
+            .exitIcon
+            {
+                height: 3rem; 
+                width: 3rem;
+            }
+            .infoTextContainer
+            {
+                max-width: 16em;
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr;
+            }
+            .infoText
+            {
+                font-size: 1.2em;
+                font-weight: 500;
+            }
+            .infoTextDE
+            {
+                animation-name: animInfoTextDE;
+                animation-duration: 10s;
+                animation-fill-mode: both;
+                grid-area : 1 / 1
+            }
+            .infoTextEN
+            {
+                animation-name: animInfoTextEN;
+                animation-duration: 10s;
+                animation-fill-mode: both;
+                grid-area : 1 / 1
+            }
+
+            @keyframes animInfoTextDE {
+                0% {
+                    opacity: 0;
+                }
+                5% {
+                    opacity: 1;
+                }
+                45%{
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 0;
+                    display: none;
+                }
+            }
+
+            @keyframes animInfoTextEN {
+                0% {
+                    opacity: 0;
+                }
+                50% {
+                    opacity: 0;
+                }
+                55% {
+                    opacity: 1;
+                }
+                95%{
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                    display: none;
+                }
+            }
+            @keyframes animCloseButton{
+                0%{
+                    background: linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.49701953535320376) 44%, rgba(248,87,41,1) 52%, rgba(220,248,11,1) 58%, rgba(77,236,35,1) 63%, rgba(34,255,207,1) 69%, rgba(15,192,195,1) 74%, rgba(196,88,242,1) 78%, rgba(0,0,0,0.5) 82%, rgba(0,0,0,0.499820655801383) 100%);
+                    background-size: 1000% 1000%;
+                    background-position: 100% 50%;
+                }
+                100%{
+                    background: linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.49701953535320376) 44%, rgba(248,87,41,1) 52%, rgba(220,248,11,1) 58%, rgba(77,236,35,1) 63%, rgba(34,255,207,1) 69%, rgba(15,192,195,1) 74%, rgba(196,88,242,1) 78%, rgba(0,0,0,0.5) 82%, rgba(0,0,0,0.499820655801383) 100%);
+                    background-position: 0% 50%;
+                    background-size: 1000% 1000%;
+                }
+            }
+            .quitForm{
+                pointer-events: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <iframe id="frame_game" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden;" autofocus>
+            Your browser doesn't support iframes
+        </iframe>
+            <div id = "closePanelTopLeft" class="closePanel" style="position: absolute; top: 0; left: 0; display: none;">
+                <form class="quitForm" action="/launcherQuit" method="post">
+                    <button class = "closeButton" name="foo" value="valueee">
+                        <img src="exit_to_app_60dp_FFFFFF_FILL1_wght600_GRAD0_opsz48.png" class="exitIcon">
+                        <div class="infoTextContainer">
+                            <p class="infoText infoTextDE">
+                                Klicke jederzeit hier, um ein anderes Spiel zu w&auml;hlen!
+                            </p>
+                            <p class="infoText infoTextEN">
+                                Click here anytime to select a different game!
+                            </p>
+                        </div>
+                    </button>
+                </form>
+            </div>
+            <div id = "closePanelBottomLeft" class="closePanel" style="position: absolute; bottom: 0; left: 0; display: none;">
+                <form class="quitForm" action="/launcherQuit" method="post">
+                    <button class = "closeButton" name="foo" value="valueee">
+                        <img src="exit_to_app_60dp_FFFFFF_FILL1_wght600_GRAD0_opsz48.png" class="exitIcon">
+                        <div class="infoTextContainer">
+                            <p class="infoText infoTextDE">
+                                Klicke jederzeit hier, um ein anderes Spiel zu w&auml;hlen!
+                            </p>
+                            <p class="infoText infoTextEN">
+                                Click here anytime to select a different game!
+                            </p>
+                        </div>
+                    </button>
+                </form>
+            </div>
+            <div id = "closePanelTopRight" class="closePanel" style="position: absolute; top: 0; right: 0; display: none;">
+                <form class="quitForm" action="/launcherQuit" method="post">
+                    <button class = "closeButton" name="foo" value="valueee">
+                        <div class="infoTextContainer">
+                            <p class="infoText infoTextDE">
+                                Klicke jederzeit hier, um ein anderes Spiel zu w&auml;hlen!
+                            </p>
+                            <p class="infoText infoTextEN">
+                                Click here anytime to select a different game!
+                            </p>
+                        </div>
+                        <img src="exit_to_app_60dp_FFFFFF_FILL1_wght600_GRAD0_opsz48.png" class="exitIcon">
+                    </button>
+                </form>
+            </div>
+            <div id = "closePanelBottomRight" class="closePanel" style="position: absolute; bottom: 0; right: 0; display: none;">
+                <form class="quitForm" action="/launcherQuit" method="post">
+                    <button class = "closeButton" name="foo" value="valueee">
+                        <div class="infoTextContainer">
+                            <p class="infoText infoTextDE">
+                                Klicke jederzeit hier, um ein anderes Spiel zu w&auml;hlen!
+                            </p>
+                            <p class="infoText infoTextEN">
+                                Click here anytime to select a different game!
+                            </p>
+                        </div>
+                        <img src="exit_to_app_60dp_FFFFFF_FILL1_wght600_GRAD0_opsz48.png" class="exitIcon">
+                    </button>
+                </form>
+            </div>
+            <div id = "centerContainer" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; text-align: center; pointer-events: none;">
+                <div id = "closePanelTopCenterPos" class="closePanel" style="margin-left: auto; margin-right: auto; display: inline-block;">
+                    <div id = "closePanelTopCenter" style="display: none;">
+                        <form class="quitForm" action="/launcherQuit" method="post">
+                            <button class = "closeButton" name="foo" value="valueee">
+                                <img src="exit_to_app_60dp_FFFFFF_FILL1_wght600_GRAD0_opsz48.png" class="exitIcon">
+                                <div class="infoTextContainer">
+                                    <p class="infoText infoTextDE">
+                                        Klicke jederzeit hier, um ein anderes Spiel zu w&auml;hlen!
+                                    </p>
+                                    <p class="infoText infoTextEN">
+                                        Click here anytime to select a different game!
+                                    </p>
+                                </div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <script type= "application/javascript">
+            window.onload = function(){
+                var frame = document.getElementById("frame_game")
+                frame.src = "index.html"
+
+                console.log("QUERRY: "+JSON.stringify(getQueryParams(document.location.search)))
+                var query_params = getQueryParams(document.location.search)
+                frame.src = query_params.iframeTarget
+                var closePanelLocation = query_params.closePanelLocation;
+
+                if(closePanelLocation!=null && closePanelLocation.length > 0)
+                {
+                    closePanelLocation = capitalizeFirstLetter(closePanelLocation);
+                    var closePanelElement = document.getElementById("closePanel"+closePanelLocation)
+                    if(closePanelElement != null)
+                    {
+                        closePanelElement.style.display = ""
+                    }
+                }
+            }
+
+function getQueryParams(qs) {
+    qs = qs.split('+').join(' ');
+
+    var params = {},
+        tokens,
+        re = /[?&]?([^=]+)=([^&]*)/g;
+
+    while (tokens = re.exec(qs)) {
+        params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+    }
+
+    return params;
+}
+
+function capitalizeFirstLetter(val) {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+}
+        </script>
+    </body>
+</html>

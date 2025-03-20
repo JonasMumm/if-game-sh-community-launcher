@@ -1,16 +1,17 @@
 class_name file_router
 extends HttpRouter
 
+signal quit_received
+
 var _root_folder : String
 
 func _init(root_folder: String) -> void:
 	_root_folder = root_folder;
 
 func handle_get(request: HttpRequest, response: HttpResponse):
-	#response.send(200, "Hello!" + request_path_to_file_path(request.path)+"   "+_root_folder)
 	var file_path := request_path_to_file_path(request.path);
 	if !FileAccess.file_exists(file_path):
-		response.send(404,"Not found");
+		response.send(404,"Not found "+file_path);
 		
 	if file_path.ends_with(".br"):
 		response.headers["Content-Encoding"] ="br"
@@ -25,6 +26,16 @@ func handle_get(request: HttpRequest, response: HttpResponse):
 	if(file_path.ends_with(".css")): type = "text/css"
 	
 	response.send_raw(200,FileAccess.get_file_as_bytes(file_path),type)
-	
+
+func handle_post(request: HttpRequest, response: HttpResponse) -> void:
+	if request.path == "/launcherQuit":
+		response.send(200)
+		quit_received.emit()
+	response.send(404,"unknown path "+request.path)
+
 func request_path_to_file_path(req_path : String) -> String:
+	var req_path_decoded := req_path.uri_decode()
+	var internal_data_route = "/"+cave_launcher.internal_data_route
+	if(req_path_decoded.begins_with(internal_data_route)):
+		return "res://BrowserFrontend".path_join(req_path_decoded.substr(internal_data_route.length()))
 	return _root_folder.path_join(req_path.uri_decode())

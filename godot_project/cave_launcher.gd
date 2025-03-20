@@ -1,6 +1,8 @@
 class_name cave_launcher
 extends Node
 
+const internal_data_route = "IFgameSHCommunityLauncherData";
+
 signal cave_launched_changed (is_launched : bool, cave : cave_info)
 
 @export var quit_input_handler : input_quit_game_controller
@@ -10,6 +12,7 @@ var _cave_running : bool
 var _pre_launch_processes : PackedInt32Array
 var _connection : butler_connection
 var _server : HttpServer
+var _router : file_router
 
 func _ready() -> void:
 	quit_input_handler.quit.connect(quit_cave.bind(true))
@@ -58,17 +61,21 @@ static func wait_then_kill(prev_processes : PackedInt32Array, tree : SceneTree):
 func handler_html_launch(id: int, method:String, params:Dictionary):
 	var save := save_data.load_from_file()
 	_server = HttpServer.new()
-	_server.register_router("^.*", file_router.new(params.rootFolder))
+	_router = file_router.new(params.rootFolder)
+	_router.quit_received.connect(on_router_quit_received)
+	_server.register_router("^.*", _router)
 	_server.port = save.local_server_port
-	#_server.bind_address = "localhost"
 	add_child(_server)
 	_server.start()
-	var url := "http://localhost:"+str(_server.port).path_join(params.indexPath)
+	var file :String= params.indexPath
+	var frameFile := internal_data_route.path_join("index.html")
+	var url := "http://localhost:"+str(_server.port).path_join(frameFile)
+	url+="?iframeTarget="+("/"+file).uri_encode()
+	url+="&closePanelLocation="+"topLeft"
 	LogManager.add_log("Preparing to launch url "+url)
 	browser_launcher.launch(save, url)
 
 func quit_cave(kill_spawned_processes : bool):
-	print("QUIT CAVE "+str(kill_spawned_processes))
 	if !_cave_running: return;
 	_cave_running = false
 	_connection.remove_request_handler("HTMLLaunch", handler_html_launch);
@@ -81,11 +88,18 @@ func quit_cave(kill_spawned_processes : bool):
 	
 	if _server != null:
 		_server.queue_free()
-		_server = null
+		_server = null#
+		
+	if _router != null:
+		_router.quit_received.disconnect(on_router_quit_received)
+		_router = null
 	
 	get_window().grab_focus()
 	cave_launched_changed.emit(false, null)
 	_connection.initialize_connection() #don't know why, but not resetting the connection after exiting a cave causes errors when launching another cave
+
+func on_router_quit_received():
+	quit_cave(true)
 
 func force_clean_up_run_lock(v:cave_info):
 	var folder_path:=v.cave.installInfo.installFolder as String;
