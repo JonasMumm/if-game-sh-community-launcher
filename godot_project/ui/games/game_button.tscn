@@ -5,63 +5,76 @@
 [ext_resource type="Texture2D" uid="uid://cq47y6d03vu2s" path="res://icons/group_60dp_1F1F1F_FILL0_wght400_GRAD0_opsz48.svg" id="3_uqv4c"]
 [ext_resource type="Texture2D" uid="uid://b1wdtvyne7dxr" path="res://icons/schedule_60dp_1F1F1F_FILL0_wght400_GRAD0_opsz48.svg" id="4_71hlu"]
 
-[node name="game_button" type="MarginContainer" node_paths=PackedStringArray("button", "game_name_label")]
+[node name="game_button" type="MarginContainer" node_paths=PackedStringArray("button", "game_name_label", "genre_label", "player_count_label", "session_duration_label")]
 offset_right = 685.0
 offset_bottom = 83.0
 script = ExtResource("1_m5nst")
 button = NodePath("Button")
-game_name_label = NodePath("VBoxContainer/Game Name")
+game_name_label = NodePath("ContentInset/VBoxContainer/Game Name")
+genre_label = NodePath("ContentInset/VBoxContainer/Stats/MarginContainer/HBoxContainer/Label")
+player_count_label = NodePath("ContentInset/VBoxContainer/Stats/MarginContainer2/HBoxContainer/Label")
+session_duration_label = NodePath("ContentInset/VBoxContainer/Stats/MarginContainer3/HBoxContainer/Label")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
 autowrap_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ContentInset" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentInset"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Game Name" type="Label" parent="VBoxContainer"]
+[node name="Game Name" type="Label" parent="ContentInset/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
-text = "Super Game Name 202020200202020202020202djjenjd"
+text = "Super Game Name 202020200202020202020202djjenjdbndahskc ndsh bcjhds bcdshf jhdsmf bjsmdf bdmf dsf bhjf b"
+autowrap_mode = 3
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="ContentInset/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Stats" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Stats" type="HBoxContainer" parent="ContentInset/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Stats"]
+[node name="MarginContainer" type="MarginContainer" parent="ContentInset/VBoxContainer/Stats"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Stats/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ContentInset/VBoxContainer/Stats/MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Stats/MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="ContentInset/VBoxContainer/Stats/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("2_gkttu")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="VBoxContainer/Stats/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="ContentInset/VBoxContainer/Stats/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "Genre"
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/Stats"]
+[node name="MarginContainer2" type="MarginContainer" parent="ContentInset/VBoxContainer/Stats"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Stats/MarginContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ContentInset/VBoxContainer/Stats/MarginContainer2"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Stats/MarginContainer2/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="ContentInset/VBoxContainer/Stats/MarginContainer2/HBoxContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
@@ -70,25 +83,27 @@ texture = ExtResource("3_uqv4c")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="VBoxContainer/Stats/MarginContainer2/HBoxContainer"]
+[node name="Label" type="Label" parent="ContentInset/VBoxContainer/Stats/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 text = "1-2"
 
-[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/Stats"]
+[node name="MarginContainer3" type="MarginContainer" parent="ContentInset/VBoxContainer/Stats"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Stats/MarginContainer3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ContentInset/VBoxContainer/Stats/MarginContainer3"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Stats/MarginContainer3/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="ContentInset/VBoxContainer/Stats/MarginContainer3/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("4_71hlu")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="VBoxContainer/Stats/MarginContainer3/HBoxContainer"]
+[node name="Label" type="Label" parent="ContentInset/VBoxContainer/Stats/MarginContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 text = "5 Min"
