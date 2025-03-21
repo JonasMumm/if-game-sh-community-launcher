@@ -2,6 +2,7 @@ class_name game_data
 extends RefCounted
 
 var cave_info : cave_info
+#https://docs.itch.ovh/butlerd/master/#/?id=collectiongame-struct
 var collection_game : Dictionary
 var collection_entry : collection_game_info
 

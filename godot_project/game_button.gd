@@ -7,7 +7,10 @@ extends MarginContainer
 @export var player_count_label : Label
 @export var session_duration_label : Label
 
+var _game : game_data
+
 func _set_data(game : game_data):
+	_game = game
 	game_name_label.text = str(game.collection_game.game.title)
 	genre_label.text = str(game.collection_entry.details.genre)
 	

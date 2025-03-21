@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cm610sgk56qp0" path="res://ui/games/game_button.tscn" id="2_e7u60"]
 [ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icon.svg" id="3_3d77s"]
 
-[node name="games_ui_controller" type="Control" node_paths=PackedStringArray("game_buttons_container")]
+[node name="games_ui_controller" type="Control" node_paths=PackedStringArray("game_buttons_container", "launch_button", "title_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +14,8 @@ grow_vertical = 2
 script = ExtResource("1_bafub")
 game_button_packed_scene = ExtResource("2_e7u60")
 game_buttons_container = NodePath("SelectionContainer/GamesListContainer/ScrollContainer/ButtonContainer")
+launch_button = NodePath("SelectionContainer/GameContainer/ButtonLaunch")
+title_label = NodePath("SelectionContainer/GameContainer/Label")
 metadata/_custom_type_script = "uid://2qioqorem5i1"
 
 [node name="BG" type="ColorRect" parent="."]
