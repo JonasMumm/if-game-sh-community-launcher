@@ -18,12 +18,22 @@ func handle_get(request: HttpRequest, response: HttpResponse):
 	if file_path.ends_with(".gz"):
 		response.headers["Content-Encoding"] = "gzip"
 		
+			
+	response.headers["Cross-Origin-Embedder-Policy"] = "require-corp"
+	response.headers["Cross-Origin-Resource-Policy"] = "cross-origin"
+		
+	if file_path.ends_with(".html"):
+		response.headers["Cross-Origin-Opener-Policy"] = "same-origin"
+		if file_path.begins_with("res://"):
+			response.headers["Cross-Origin-Embedder-Policy"] = "credentialless"
+		
 	var type := "text/html";
 	
 	if file_path.ends_with(".wasm.br") || file_path.ends_with(".wasm.gz"):
 		type = "application/wasm"
 	
 	if(file_path.ends_with(".css")): type = "text/css"
+	if(file_path.ends_with(".js")): type = "text/javascript"
 	
 	response.send_raw(200,FileAccess.get_file_as_bytes(file_path),type)
 
