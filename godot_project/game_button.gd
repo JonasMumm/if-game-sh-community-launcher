@@ -6,6 +6,7 @@ extends MarginContainer
 @export var genre_label : Label
 @export var player_count_label : Label
 @export var session_duration_label : Label
+@export var cover : TextureRect
 
 var _game : game_data
 
@@ -34,4 +35,6 @@ func _set_data(game : game_data):
 		session_duration_label.text = str(details.session_duration_seconds)+" s"
 	else:
 		session_duration_label.text = ""
+	
+	cover.texture = game.get_image()
 	
