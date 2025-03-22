@@ -15,14 +15,16 @@ func _init(cave : cave_info, col_game : Dictionary, images : image_loader):
 	var blurb : String= collection_game.blurb
 	blurb = blurb.replace("<p>","")
 	blurb = blurb.replace("</p>","")
+	blurb = blurb.replace("<span>","")
+	blurb = blurb.replace("</span>","")
 	blurb = blurb.replace("&nbsp; ","")
 	blurb = blurb.replace("\n","")
 	collection_entry = JsonClassConverter.json_string_to_class(collection_game_info, blurb)
-	
-	#apply collection_entry overrides to collection_game_info
-	
 	if collection_entry.details == null:
 		collection_entry.details = collection_game_details.new()
+		
+	for key in collection_entry.game_overrides:
+		collection_game.game[key] = collection_entry.game_overrides[key]
 
 	await images.preload_url(get_image_url())
 	
