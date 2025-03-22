@@ -1,19 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://cm610sgk56qp0"]
+[gd_scene load_steps=6 format=3 uid="uid://cm610sgk56qp0"]
 
 [ext_resource type="Script" uid="uid://dlrrp22auy1s3" path="res://game_button.gd" id="1_m5nst"]
 [ext_resource type="Texture2D" uid="uid://8kaysca263sh" path="res://icons/joystick_60dp_1F1F1F_FILL0_wght400_GRAD0_opsz48.svg" id="2_gkttu"]
+[ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icon.svg" id="2_mtdcu"]
 [ext_resource type="Texture2D" uid="uid://cq47y6d03vu2s" path="res://icons/group_60dp_1F1F1F_FILL0_wght400_GRAD0_opsz48.svg" id="3_uqv4c"]
 [ext_resource type="Texture2D" uid="uid://b1wdtvyne7dxr" path="res://icons/schedule_60dp_1F1F1F_FILL0_wght400_GRAD0_opsz48.svg" id="4_71hlu"]
 
-[node name="game_button" type="MarginContainer" node_paths=PackedStringArray("button", "game_name_label", "genre_label", "player_count_label", "session_duration_label")]
-offset_right = 685.0
-offset_bottom = 83.0
+[node name="game_button" type="MarginContainer" node_paths=PackedStringArray("button", "game_name_label", "genre_label", "player_count_label", "session_duration_label", "cover")]
+offset_right = 293.0
+offset_bottom = 677.0
+size_flags_horizontal = 3
 script = ExtResource("1_m5nst")
 button = NodePath("Button")
 game_name_label = NodePath("ContentInset/VBoxContainer/Game Name")
-genre_label = NodePath("ContentInset/VBoxContainer/Stats/MarginContainer/HBoxContainer/Label")
+genre_label = NodePath("ContentInset/VBoxContainer/Label")
 player_count_label = NodePath("ContentInset/VBoxContainer/Stats/MarginContainer2/HBoxContainer/Label")
 session_duration_label = NodePath("ContentInset/VBoxContainer/Stats/MarginContainer3/HBoxContainer/Label")
+cover = NodePath("ContentInset/VBoxContainer/Cover")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
@@ -31,22 +34,37 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Game Name" type="Label" parent="ContentInset/VBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
+[node name="Cover" type="TextureRect" parent="ContentInset/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 26
+texture = ExtResource("2_mtdcu")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="Game Name" type="Label" parent="ContentInset/VBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
 text = "Super Game Name 202020200202020202020202djjenjdbndahskc ndsh bcjhds bcdshf jhdsmf bjsmdf bdmf dsf bhjf b"
 autowrap_mode = 3
+
+[node name="Control" type="Control" parent="ContentInset/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="HSeparator" type="HSeparator" parent="ContentInset/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
+
+[node name="Label" type="Label" parent="ContentInset/VBoxContainer"]
+layout_mode = 2
+text = "Genre"
 
 [node name="Stats" type="HBoxContainer" parent="ContentInset/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="ContentInset/VBoxContainer/Stats"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
@@ -61,10 +79,6 @@ mouse_filter = 2
 texture = ExtResource("2_gkttu")
 expand_mode = 2
 stretch_mode = 5
-
-[node name="Label" type="Label" parent="ContentInset/VBoxContainer/Stats/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "Genre"
 
 [node name="MarginContainer2" type="MarginContainer" parent="ContentInset/VBoxContainer/Stats"]
 layout_mode = 2

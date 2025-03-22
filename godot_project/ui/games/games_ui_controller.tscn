@@ -41,7 +41,6 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = 40.0
 offset_top = 40.0
-offset_right = -40.0
 offset_bottom = -40.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="SelectionContainer/GamesListContainer"]
@@ -54,9 +53,20 @@ grow_vertical = 2
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="ButtonContainer" type="VBoxContainer" parent="SelectionContainer/GamesListContainer/ScrollContainer"]
+[node name="ButtonContainer" type="GridContainer" parent="SelectionContainer/GamesListContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="game_button" parent="SelectionContainer/GamesListContainer/ScrollContainer/ButtonContainer" instance=ExtResource("2_e7u60")]
+visible = false
+layout_mode = 2
+
+[node name="game_button2" parent="SelectionContainer/GamesListContainer/ScrollContainer/ButtonContainer" instance=ExtResource("2_e7u60")]
+visible = false
+layout_mode = 2
 
 [node name="GameContainer" type="Control" parent="SelectionContainer"]
 layout_mode = 1
