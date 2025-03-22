@@ -7,6 +7,7 @@ extends Control
 @export var launch_button : Button
 
 @export var title_label : Label
+@export var cover_texture_rect : TextureRect
 
 var connection : butler_connection
 var games : Array[game_data]
@@ -40,6 +41,7 @@ func grab_context_focus(shown : bool):
 func set_focused_button(b : game_button):
 	focused_button = b
 	title_label.text = focused_button._game.collection_game.game.title
+	cover_texture_rect.texture = focused_button._game.get_image()
 	
 func on_launch_button_pressed():
 	launcher.launch_cave(focused_button._game.cave_info, connection)

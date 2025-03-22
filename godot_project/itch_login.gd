@@ -7,6 +7,7 @@ extends Node
 @export var choicer : choice_selector
 @export var main_ui_manager : main_state_manager
 @export var game_ui_state_controller : game_ui_state_controller
+@export var cover_image_loader : image_loader
 
 var connection : butler_connection
 
@@ -45,7 +46,8 @@ func _ready() -> void:
 	for collection_game in collection_games_rq.result.items:
 		var cave_info := await cave_initializer.initialize_cave(connection, collection_game.game, choicer, profile.id)
 		if cave_info != null: 
-			all_gameData.append(game_data.new(cave_info, collection_game))
+			var v := await game_data.new(cave_info, collection_game, cover_image_loader)
+			all_gameData.append(v)
  
 	if save_data.check_for_updates_on_startup:
 		await cave_initializer.check_updates(connection, all_gameData, choicer, profile.id)
