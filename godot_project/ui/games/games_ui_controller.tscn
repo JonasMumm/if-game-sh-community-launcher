@@ -1,10 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bi4mxp4w8msr"]
+[gd_scene load_steps=11 format=3 uid="uid://bi4mxp4w8msr"]
 
 [ext_resource type="Script" uid="uid://2qioqorem5i1" path="res://ui/games/games_ui_controller.gd" id="1_bafub"]
 [ext_resource type="PackedScene" uid="uid://cm610sgk56qp0" path="res://ui/games/game_button.tscn" id="2_e7u60"]
 [ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icon.svg" id="3_3d77s"]
+[ext_resource type="Script" uid="uid://blvc838s4o80v" path="res://ui/games/games_ui_list_layout_data.gd" id="4_e7u60"]
+[ext_resource type="StyleBox" uid="uid://bh6llqyqvkk22" path="res://ui/games/game_button_focus.tres" id="4_qod8e"]
+[ext_resource type="StyleBox" uid="uid://coi68i1w00ibf" path="res://ui/games/launch_button_press.tres" id="6_63xg4"]
+[ext_resource type="Texture2D" uid="uid://c54sfad57xnlu" path="res://icons/joystick_60dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.svg" id="6_kkyur"]
+[ext_resource type="StyleBox" uid="uid://bqjst1on3dc28" path="res://ui/games/launch_button_hover.tres" id="7_dx8p0"]
+[ext_resource type="StyleBox" uid="uid://csbx6exl4r4b0" path="res://ui/games/launch_button_normal.tres" id="8_o7dic"]
 
-[node name="games_ui_controller" type="Control" node_paths=PackedStringArray("game_buttons_container", "launch_button", "title_label", "cover_texture_rect")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qod8e"]
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+
+[node name="games_ui_controller" type="Control" node_paths=PackedStringArray("games_ui_list_layout_data", "launch_button", "title_label", "cover_texture_rect", "author_label", "shortText_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,11 +22,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bafub")
-game_button_packed_scene = ExtResource("2_e7u60")
-game_buttons_container = NodePath("SelectionContainer/GamesListContainer/ScrollContainer/ButtonContainer")
-launch_button = NodePath("SelectionContainer/GameContainer/ButtonLaunch")
-title_label = NodePath("SelectionContainer/GameContainer/Label")
-cover_texture_rect = NodePath("SelectionContainer/GameContainer/TextureRect")
+games_ui_list_layout_data = NodePath("SelectionContainer/HBoxContainer/ScrollContainer/TileLayout")
+launch_button = NodePath("SelectionContainer/HBoxContainer/PanelContainer/GameContainer/ButtonLaunch")
+title_label = NodePath("SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer/Label")
+cover_texture_rect = NodePath("SelectionContainer/HBoxContainer/PanelContainer/GameContainer/PanelContainer/TextureRect")
+author_label = NodePath("SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Author")
+shortText_label = NodePath("SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/About")
 metadata/_custom_type_script = "uid://2qioqorem5i1"
 
 [node name="BG" type="ColorRect" parent="."]
@@ -27,81 +38,176 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SelectionContainer" type="Control" parent="."]
+[node name="SelectionContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="GamesListContainer" type="Control" parent="SelectionContainer"]
-layout_mode = 1
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = 40.0
-offset_bottom = -40.0
+[node name="HBoxContainer" type="HBoxContainer" parent="SelectionContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SelectionContainer/GamesListContainer"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ScrollContainer" type="ScrollContainer" parent="SelectionContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 20.0
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="ButtonContainer" type="GridContainer" parent="SelectionContainer/GamesListContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="SelectionContainer/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="TilesButtonContainer" type="GridContainer" parent="SelectionContainer/HBoxContainer/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
-columns = 2
+columns = 3
 
-[node name="game_button" parent="SelectionContainer/GamesListContainer/ScrollContainer/ButtonContainer" instance=ExtResource("2_e7u60")]
+[node name="game_button" parent="SelectionContainer/HBoxContainer/ScrollContainer/MarginContainer/TilesButtonContainer" instance=ExtResource("2_e7u60")]
 visible = false
 layout_mode = 2
 
-[node name="game_button2" parent="SelectionContainer/GamesListContainer/ScrollContainer/ButtonContainer" instance=ExtResource("2_e7u60")]
+[node name="game_button2" parent="SelectionContainer/HBoxContainer/ScrollContainer/MarginContainer/TilesButtonContainer" instance=ExtResource("2_e7u60")]
 visible = false
 layout_mode = 2
 
-[node name="GameContainer" type="Control" parent="SelectionContainer"]
-layout_mode = 1
-anchor_left = 0.5
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = 40.0
-offset_right = -40.0
-offset_bottom = -40.0
+[node name="game_button3" parent="SelectionContainer/HBoxContainer/ScrollContainer/MarginContainer/TilesButtonContainer" instance=ExtResource("2_e7u60")]
+visible = false
+layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="SelectionContainer/GameContainer"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.414
+[node name="game_button4" parent="SelectionContainer/HBoxContainer/ScrollContainer/MarginContainer/TilesButtonContainer" instance=ExtResource("2_e7u60")]
+visible = false
+layout_mode = 2
+
+[node name="game_button5" parent="SelectionContainer/HBoxContainer/ScrollContainer/MarginContainer/TilesButtonContainer" instance=ExtResource("2_e7u60")]
+visible = false
+layout_mode = 2
+
+[node name="TileLayout" type="Node" parent="SelectionContainer/HBoxContainer/ScrollContainer" node_paths=PackedStringArray("button_container")]
+script = ExtResource("4_e7u60")
+button_container = NodePath("../MarginContainer/TilesButtonContainer")
+button_packed_scene = ExtResource("2_e7u60")
+metadata/_custom_type_script = "uid://blvc838s4o80v"
+
+[node name="GamesListContainer" type="Control" parent="SelectionContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="SelectionContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_qod8e")
+
+[node name="GameContainer" type="VBoxContainer" parent="SelectionContainer/HBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(390, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.23
+
+[node name="PanelContainer" type="PanelContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer"]
+clip_children = 2
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qod8e")
+
+[node name="TextureRect" type="TextureRect" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/PanelContainer"]
+layout_mode = 2
 texture = ExtResource("3_3d77s")
-stretch_mode = 6
+expand_mode = 5
+stretch_mode = 4
 
-[node name="Label" type="Label" parent="SelectionContainer/GameContainer"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.431
-anchor_right = 1.0
-anchor_bottom = 0.71
+[node name="MarginContainer" type="MarginContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 70
+theme_override_font_sizes/font_size = 34
 text = "Game Name"
+autowrap_mode = 3
 
-[node name="ButtonLaunch" type="Button" parent="SelectionContainer/GameContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="About" type="Label" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 21
+text = "About the game About the game About the game About the gameAbout the game "
+autowrap_mode = 3
+
+[node name="Author" type="Label" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.353438, 0.353438, 0.353438, 1)
+text = "Who done it"
+autowrap_mode = 3
+
+[node name="ButtonLaunch" type="Button" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer"]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 34
+theme_override_styles/hover_pressed = ExtResource("6_63xg4")
+theme_override_styles/hover = ExtResource("7_dx8p0")
+theme_override_styles/pressed = ExtResource("6_63xg4")
+theme_override_styles/normal = ExtResource("8_o7dic")
+text = "
+"
+icon_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/ButtonLaunch"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.836
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme_override_font_sizes/font_size = 60
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="PlayButtonLabel" type="Label" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/ButtonLaunch/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
 text = "Play"
-metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/ButtonLaunch/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("6_kkyur")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="GameContainerFlex" type="HBoxContainer" parent="SelectionContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(390, 0)
+layout_mode = 2
+size_flags_horizontal = 3

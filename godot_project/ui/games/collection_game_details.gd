@@ -7,3 +7,4 @@ extends  Resource
 @export var session_duration_seconds : int
 @export var blurb : String
 @export var image : String
+@export var authors : String

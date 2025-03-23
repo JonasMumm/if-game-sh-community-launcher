@@ -1,63 +1,107 @@
-[gd_scene load_steps=6 format=3 uid="uid://cm610sgk56qp0"]
+[gd_scene load_steps=10 format=3 uid="uid://cm610sgk56qp0"]
 
 [ext_resource type="Script" uid="uid://dlrrp22auy1s3" path="res://game_button.gd" id="1_m5nst"]
 [ext_resource type="Texture2D" uid="uid://8kaysca263sh" path="res://icons/joystick_60dp_1F1F1F_FILL0_wght400_GRAD0_opsz48.svg" id="2_gkttu"]
+[ext_resource type="StyleBox" uid="uid://bh6llqyqvkk22" path="res://ui/games/game_button_focus.tres" id="2_guirf"]
 [ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icon.svg" id="2_mtdcu"]
-[ext_resource type="Texture2D" uid="uid://cq47y6d03vu2s" path="res://icons/group_60dp_1F1F1F_FILL0_wght400_GRAD0_opsz48.svg" id="3_uqv4c"]
-[ext_resource type="Texture2D" uid="uid://b1wdtvyne7dxr" path="res://icons/schedule_60dp_1F1F1F_FILL0_wght400_GRAD0_opsz48.svg" id="4_71hlu"]
+[ext_resource type="StyleBox" uid="uid://ch3xf8gqf063x" path="res://ui/games/game_button_hover.tres" id="3_jwhsw"]
+[ext_resource type="StyleBox" uid="uid://c427ck1338fw5" path="res://ui/games/game_button_normal.tres" id="3_rqwey"]
+[ext_resource type="Texture2D" uid="uid://chr631hcddo4r" path="res://icons/group_60dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.svg" id="4_mtdcu"]
+[ext_resource type="Texture2D" uid="uid://dm62gfpdynqir" path="res://icons/schedule_60dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.svg" id="5_cbgq5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbgq5"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [node name="game_button" type="MarginContainer" node_paths=PackedStringArray("button", "game_name_label", "genre_label", "player_count_label", "session_duration_label", "cover")]
-offset_right = 293.0
-offset_bottom = 677.0
-size_flags_horizontal = 3
+offset_right = 260.0
+offset_bottom = 349.0
 script = ExtResource("1_m5nst")
 button = NodePath("Button")
 game_name_label = NodePath("ContentInset/VBoxContainer/Game Name")
-genre_label = NodePath("ContentInset/VBoxContainer/Label")
+genre_label = NodePath("ContentInset/VBoxContainer/Genre")
 player_count_label = NodePath("ContentInset/VBoxContainer/Stats/MarginContainer2/HBoxContainer/Label")
 session_duration_label = NodePath("ContentInset/VBoxContainer/Stats/MarginContainer3/HBoxContainer/Label")
-cover = NodePath("ContentInset/VBoxContainer/Cover")
+cover = NodePath("ContentInset/VBoxContainer/PanelContainer/Cover")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
+theme_override_styles/focus = ExtResource("2_guirf")
+theme_override_styles/hover = ExtResource("3_jwhsw")
+theme_override_styles/pressed = ExtResource("3_jwhsw")
+theme_override_styles/normal = ExtResource("3_rqwey")
 autowrap_mode = 3
 
 [node name="ContentInset" type="MarginContainer" parent="."]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ContentInset"]
 layout_mode = 2
 mouse_filter = 2
+theme_override_constants/separation = 0
 
-[node name="Cover" type="TextureRect" parent="ContentInset/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="ContentInset/VBoxContainer"]
+clip_children = 2
 layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cbgq5")
+
+[node name="Cover" type="TextureRect" parent="ContentInset/VBoxContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("2_mtdcu")
 expand_mode = 5
 stretch_mode = 4
 
-[node name="Game Name" type="Label" parent="ContentInset/VBoxContainer"]
-custom_minimum_size = Vector2(160, 0)
+[node name="Spacer" type="Control" parent="ContentInset/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
-text = "Super Game Name 202020200202020202020202djjenjdbndahskc ndsh bcjhds bcdshf jhdsmf bjsmdf bdmf dsf bhjf b"
-autowrap_mode = 3
+mouse_filter = 2
+
+[node name="Game Name" type="Label" parent="ContentInset/VBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 21
+text = "Lovely Lava Lamps 2024"
+text_overrun_behavior = 3
+
+[node name="Spacer2" type="Control" parent="ContentInset/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+mouse_filter = 2
 
 [node name="Control" type="Control" parent="ContentInset/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="HSeparator" type="HSeparator" parent="ContentInset/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="ContentInset/VBoxContainer"]
+[node name="Spacer4" type="Control" parent="ContentInset/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
+mouse_filter = 2
+
+[node name="Genre" type="Label" parent="ContentInset/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.25, 0.25, 1)
 text = "Genre"
+
+[node name="Spacer3" type="Control" parent="ContentInset/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+mouse_filter = 2
 
 [node name="Stats" type="HBoxContainer" parent="ContentInset/VBoxContainer"]
 layout_mode = 2
@@ -89,17 +133,19 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="ContentInset/VBoxContainer/Stats/MarginContainer2/HBoxContainer"]
+self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
 clip_contents = true
-custom_minimum_size = Vector2(35, 35)
+custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("3_uqv4c")
+texture = ExtResource("4_mtdcu")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="ContentInset/VBoxContainer/Stats/MarginContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.270588, 0.270588, 0.270588, 1)
 text = "1-2"
 
 [node name="MarginContainer3" type="MarginContainer" parent="ContentInset/VBoxContainer/Stats"]
@@ -111,13 +157,16 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="ContentInset/VBoxContainer/Stats/MarginContainer3/HBoxContainer"]
+self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
+custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("4_71hlu")
+texture = ExtResource("5_cbgq5")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="ContentInset/VBoxContainer/Stats/MarginContainer3/HBoxContainer"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.27, 0.27, 0.27, 1)
 text = "5 Min"

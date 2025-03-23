@@ -61,6 +61,5 @@ func get_image(url : String) -> Texture2D:
 	
 	var image := Image.load_from_file(file_path)
 	var texture := ImageTexture.create_from_image(image)
-	#todo: free image??
 	loaded_images[url] = texture
 	return texture

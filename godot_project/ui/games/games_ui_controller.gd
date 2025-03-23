@@ -1,13 +1,14 @@
 class_name games_ui_controller
 extends Control
 
-@export var game_button_packed_scene:PackedScene
-@export var game_buttons_container:Control
+@export var games_ui_list_layout_data: games_ui_list_layout_data
 @export var launcher : cave_launcher
 @export var launch_button : Button
 
 @export var title_label : Label
 @export var cover_texture_rect : TextureRect
+@export var author_label : Label
+@export var shortText_label : Label
 
 var connection : butler_connection
 var games : Array[game_data]
@@ -24,12 +25,12 @@ func set_data(connection : butler_connection, games : Array[game_data]):
 	var buttons : Array[game_button]
 	
 	for game in games:
-		var button := game_button_packed_scene.instantiate() as game_button
+		var button := games_ui_list_layout_data.button_packed_scene.instantiate() as game_button
 		button._set_data(game)
 		var cave := game.cave_info
 		button.button.pressed.connect(set_focused_button.bind(button))
 		button.button.focus_entered.connect(set_focused_button.bind(button))
-		game_buttons_container.add_child(button)
+		games_ui_list_layout_data.button_container.add_child(button)
 		buttons.append(button)
 	
 	set_focused_button(buttons[0])
@@ -42,6 +43,19 @@ func set_focused_button(b : game_button):
 	focused_button = b
 	title_label.text = focused_button._game.collection_game.game.title
 	cover_texture_rect.texture = focused_button._game.get_image()
+	
+	var game =focused_button._game.collection_game.game
+	if game.has("shortText"):
+		shortText_label.text = "\""+game.shortText+"\""
+	else :
+		shortText_label.text = ""
+		
+	var authors := focused_button._game.collection_entry.details.authors
+	if !authors.is_empty():
+		author_label.text = "by "+focused_button._game.collection_entry.details.authors
+		author_label.visible = true
+	else:
+		author_label.visible = false
 	
 func on_launch_button_pressed():
 	launcher.launch_cave(focused_button._game.cave_info, connection)
