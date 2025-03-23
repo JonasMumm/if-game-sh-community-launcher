@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://gurl8mgrosm5"]
+[gd_scene load_steps=13 format=3 uid="uid://gurl8mgrosm5"]
 
 [ext_resource type="PackedScene" uid="uid://tqukidx1wx50" path="res://logging/log_display.tscn" id="1_1np8e"]
 [ext_resource type="Theme" uid="uid://d3afgootd7erb" path="res://settings/settings_header.tres" id="1_gjdk6"]
@@ -11,8 +11,9 @@
 [ext_resource type="Script" uid="uid://cnevngq6h3yk3" path="res://settings/collection_settings.gd" id="8_lakpe"]
 [ext_resource type="Script" uid="uid://1kbw3i836l7p" path="res://settings/browser_settings.gd" id="9_r82a5"]
 [ext_resource type="Script" uid="uid://p3d4p8j8pknk" path="res://browser_launcher.gd" id="10_a5d6h"]
+[ext_resource type="Script" uid="uid://b6psrvtbicqic" path="res://settings/game_settings.gd" id="12_ocg8h"]
 
-[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("butler", "profile", "collection", "browser", "quit_button")]
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("butler", "profile", "collection", "browser", "games", "quit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,6 +25,7 @@ butler = NodePath("Controllers/butler_settings")
 profile = NodePath("Controllers/profile_Settings")
 collection = NodePath("Controllers/collection_settings")
 browser = NodePath("Controllers/browser_settings")
+games = NodePath("Controllers/game_settings")
 quit_button = NodePath("HSplitContainer/InputArea/VBoxContainer/MarginContainer/QuitButton")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
@@ -237,6 +239,26 @@ virtual_keyboard_type = 2
 layout_mode = 2
 text = "Save"
 
+[node name="HSeparator4" type="HSeparator" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Game" type="VBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme = ExtResource("1_gjdk6")
+text = "Installed Games"
+autowrap_mode = 3
+
+[node name="hint_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game" instance=ExtResource("3_tm82m")]
+layout_mode = 2
+text = "Here you can manage installed games. To install games, set up everything in "
+
+[node name="games_info_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game" instance=ExtResource("2_olm1t")]
+layout_mode = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/InputArea/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
@@ -312,3 +334,8 @@ ok_button_text = "Open"
 file_mode = 0
 access = 2
 filters = PackedStringArray("*.exe")
+
+[node name="game_settings" type="Node" parent="Controllers" node_paths=PackedStringArray("info_box", "button_container")]
+script = ExtResource("12_ocg8h")
+info_box = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game/games_info_box")
+button_container = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game")
