@@ -52,17 +52,6 @@ static func initialize_cave(connection: butler_connection, game: Dictionary, cho
 
 	return cave_info.new(cave);
 
-static func perform_installs(connection: butler_connection):
-	var dl_rq = await connection.send_request("Downloads.List",{});
-	var downloads = dl_rq.result.downloads;
-	for download in downloads:
-		if download.error != null: 
-			printerr("Download error: "+str(download))
-			continue
-		#await connection.send_request("Install.Perform",{id = download.id, stagingFolder = download.stagingFolder })
-		await connection.send_request("Downloads.Discard",{downloadId = download.id}) #todo: seems stupid we have to discard all supposedly finished downloads here, but else updating a cave fails if the download list already has an entry for that cave
-	await connection.send_request("Downloads.ClearFinished",{})
-
 static func check_updates(connection: butler_connection, games : Array[game_data], choicer : choice_selector, profile_id : int) -> void:
 	var check_update_rq := await connection.send_request("CheckUpdate", {})
 	var updates = check_update_rq.result.updates;
