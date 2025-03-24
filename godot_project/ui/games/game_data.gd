@@ -15,9 +15,10 @@ func _init(cave : cave_info, col_game : Dictionary, images : image_loader):
 	var blurb : String= collection_game.blurb
 	blurb = blurb.replace("<p>","")
 	blurb = blurb.replace("</p>","")
+	blurb = blurb.replace("<br>","")
 	blurb = blurb.replace("<span>","")
 	blurb = blurb.replace("</span>","")
-	blurb = blurb.replace("&nbsp; ","")
+	blurb = blurb.replace("&nbsp;"," ")
 	blurb = blurb.replace("\n","")
 	collection_entry = JsonClassConverter.json_string_to_class(collection_game_info, blurb)
 	if collection_entry.details == null:
