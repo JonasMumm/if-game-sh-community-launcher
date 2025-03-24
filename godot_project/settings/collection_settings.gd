@@ -7,6 +7,7 @@ extends Node
 @export var check_updates_toggle : CheckButton
 @export var choicer : choice_selector
 @export var cover_image_loader : image_loader
+@export var menu_container : Control
 
 var connection : butler_connection
 var save : save_data
@@ -65,6 +66,10 @@ func install_all():
 	var profile_id := save.profile_id
 	var collection_games_rq := await connection.send_request_freshable("Fetch.Collection.Games",{profileId=profile_id,collectionId=save.collection_id })
 	
+	if !collection_games_rq.successful: return
+	
+	menu_container.visible = false;
+	
 	var all_gameData : Array[game_data]
 	for collection_game in collection_games_rq.result.items:
 		var cave_info := await cave_initializer.initialize_cave(connection, collection_game.game, choicer, profile_id)
@@ -72,4 +77,7 @@ func install_all():
 			var v := await game_data.new(cave_info, collection_game, cover_image_loader)
 			all_gameData.append(v)
 	await cave_initializer.check_updates(connection, all_gameData, choicer, profile_id)
+	
+	menu_container.visible = true;
+	
 	LogManager.add_log("All games for collection installed. It is recommended to launch all games once to install any prereqs. See the Games section below.")

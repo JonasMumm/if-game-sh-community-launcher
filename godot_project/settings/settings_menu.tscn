@@ -36,6 +36,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -312,7 +316,7 @@ api_token_submit = NodePath("../../HSplitContainer/InputArea/VBoxContainer/Scrol
 profile_select = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile/ProfileSelect")
 choicer = NodePath("../../HSplitContainer/InputArea/ChoiceSelector")
 
-[node name="collection_settings" type="Node" parent="Controllers" node_paths=PackedStringArray("info_box", "choose_collection_button", "install_all_button", "check_updates_toggle", "choicer", "cover_image_loader")]
+[node name="collection_settings" type="Node" parent="Controllers" node_paths=PackedStringArray("info_box", "choose_collection_button", "install_all_button", "check_updates_toggle", "choicer", "cover_image_loader", "menu_container")]
 script = ExtResource("8_lakpe")
 info_box = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection/collection_info_box")
 choose_collection_button = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection/CollectionSelect")
@@ -320,6 +324,7 @@ install_all_button = NodePath("../../HSplitContainer/InputArea/VBoxContainer/Scr
 check_updates_toggle = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection/CheckUpdates")
 choicer = NodePath("../../HSplitContainer/InputArea/ChoiceSelector")
 cover_image_loader = NodePath("image_loader")
+menu_container = NodePath("../../HSplitContainer/InputArea/VBoxContainer")
 
 [node name="image_loader" type="Node" parent="Controllers/collection_settings"]
 script = ExtResource("10_yxcxb")
@@ -353,13 +358,13 @@ file_mode = 0
 access = 2
 filters = PackedStringArray("*.exe")
 
-[node name="game_settings" type="Node" parent="Controllers" node_paths=PackedStringArray("info_box", "launch_all_button", "cave_launcher", "button_container", "visual_root")]
+[node name="game_settings" type="Node" parent="Controllers" node_paths=PackedStringArray("info_box", "launch_all_button", "cave_launcher", "button_container", "menu_container")]
 script = ExtResource("12_ocg8h")
 info_box = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game/games_info_box")
 launch_all_button = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game/launch_all")
 cave_launcher = NodePath("cave_launcher")
 button_container = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game")
-visual_root = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game")
+menu_container = NodePath("../../HSplitContainer/InputArea/VBoxContainer")
 
 [node name="cave_launcher" type="Node" parent="Controllers/game_settings" node_paths=PackedStringArray("quit_input_handler", "browser_launcher")]
 script = ExtResource("13_fhdcv")

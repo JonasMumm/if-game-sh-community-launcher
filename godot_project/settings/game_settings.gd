@@ -9,7 +9,7 @@ signal launch_continue;
 @export var launch_all_button : Button
 @export var cave_launcher : cave_launcher
 @export var button_container : Control
-@export var visual_root : Control
+@export var menu_container : Control
 
 var connection : butler_connection
 var save : save_data
@@ -47,7 +47,7 @@ func on_uninstall_pressed(cave):
 	init_ui(save, connection)
 	
 func launch_all_installed_caves():
-	visual_root.visible = false
+	menu_container.visible = false
 	var rq_caves := await connection.send_request("Fetch.Caves",{limit = 100});
 	var caves = rq_caves.result.items;
 	
@@ -59,7 +59,7 @@ func launch_all_installed_caves():
 		await get_tree().create_timer(post_launch_backoff_seconds).timeout
 		cave_launcher.quit_hard()
 		await get_tree().create_timer(post_launch_backoff_seconds).timeout
-	visual_root.visible = true
+	menu_container.visible = true
 
 func on_cave_running_changed(running : bool):
 	launch_continue.emit()
