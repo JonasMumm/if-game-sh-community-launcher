@@ -228,7 +228,7 @@ text = "Test Browser Launch"
 
 [node name="hint_box2" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser" instance=ExtResource("3_tm82m")]
 layout_mode = 2
-text = "Launching a browser-based game requires a server on localhost to supply game files. Here you can choose the port used for the local server."
+text = "Launching a browser-based game requires a server on localhost to supply game files. Here you can choose the port to be used for the local server."
 
 [node name="Port" type="HBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser"]
 layout_mode = 2
