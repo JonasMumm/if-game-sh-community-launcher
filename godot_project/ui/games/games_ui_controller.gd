@@ -9,6 +9,7 @@ extends Control
 @export var cover_texture_rect : TextureRect
 @export var author_label : Label
 @export var shortText_label : Label
+@export var pre_launch_hints : Array[pre_launch_hint]
 
 var connection : butler_connection
 var games : Array[game_data]
@@ -58,5 +59,12 @@ func set_focused_button(b : game_button):
 		author_label.visible = false
 	
 func on_launch_button_pressed():
+	var hints := focused_button._game.collection_entry.pre_launch_hints
+	
+	for hint_type in hints:
+		var hint_node_index := pre_launch_hints.find_custom(func (plh : pre_launch_hint): return plh.pre_launch_hint_type == hint_type)
+		if hint_node_index >=0:
+			await pre_launch_hints[hint_node_index].display()
+	launch_button.grab_focus()
 	launcher.launch_cave(focused_button._game.cave_info, connection)
 	
