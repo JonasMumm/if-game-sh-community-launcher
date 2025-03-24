@@ -2,8 +2,11 @@ class_name cave_launcher
 extends Node
 
 const internal_data_route = "IFgameSHCommunityLauncherData";
+const notification_launch_running := "LaunchRunning"
+const request_prereqs := "PrereqsFailed"
 
 signal cave_launched_changed (is_launched : bool, cave : cave_info)
+signal cave_running_changed (is_running : bool)
 
 @export var quit_input_handler : input_quit_game_controller
 @export var browser_launcher : browser_launcher
@@ -13,9 +16,6 @@ var _pre_launch_processes : PackedInt32Array
 var _connection : butler_connection
 var _server : HttpServer
 var _router : file_router
-
-func _ready() -> void:
-	quit_input_handler.quit.connect(quit_cave.bind(true))
 
 func launch_cave(v: cave_info, connection : butler_connection):
 	if _cave_running:
@@ -35,6 +35,8 @@ func launch_cave(v: cave_info, connection : butler_connection):
 	var prereqsPath := base_path.path_join("prereqs").path_join(str(cave.id))
 	_pre_launch_processes = get_all_process_ids()
 	connection.add_request_handler("HTMLLaunch", handler_html_launch);
+	connection.add_request_handler(request_prereqs, handler_prereqs_failed);
+	connection.subscribe_notification(notification_launch_running, on_notification_launch)
 	await connection.send_request("Launch",{caveId = cave.id, prereqsDir = prereqsPath})
 	quit_cave(false)
 
@@ -74,11 +76,14 @@ func handler_html_launch(id: int, method:String, params:Dictionary):
 	url+="&closePanelLocation="+"topLeft"
 	LogManager.add_log("Preparing to launch url "+url)
 	browser_launcher.launch(save, url)
+	cave_running_changed.emit(true)
 
 func quit_cave(kill_spawned_processes : bool):
 	if !_cave_running: return;
 	_cave_running = false
 	_connection.remove_request_handler("HTMLLaunch", handler_html_launch);
+	_connection.remove_request_handler(request_prereqs, handler_prereqs_failed);
+	quit_input_handler.quit.disconnect(quit_hard)
 	if kill_spawned_processes:
 		var after_launch_processes := get_all_process_ids()
 		for pid in after_launch_processes:
@@ -96,6 +101,7 @@ func quit_cave(kill_spawned_processes : bool):
 	
 	get_window().grab_focus()
 	cave_launched_changed.emit(false, null)
+	cave_running_changed.emit(false)
 	_connection.initialize_connection() #don't know why, but not resetting the connection after exiting a cave causes errors when launching another cave
 
 func on_router_quit_received():
@@ -110,3 +116,14 @@ func force_clean_up_run_lock(v:cave_info):
 		var result := DirAccess.remove_absolute(lock_file_path)
 		if(result!=OK):
 			printerr(result)
+
+func on_notification_launch(params : Dictionary):
+	quit_input_handler.quit.connect(quit_hard)
+	cave_running_changed.emit(true)
+
+func quit_hard():
+	quit_cave(true)
+
+func handler_prereqs_failed(id: int, method:String, params:Dictionary):
+	LogManager.add_log("Launching without Prereqs!",log_manager.log_type.error)
+	_connection.send_response(id,{"continue" = true})

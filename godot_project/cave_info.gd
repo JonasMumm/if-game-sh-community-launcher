@@ -3,5 +3,5 @@ extends RefCounted
 
 var cave : Dictionary
 	
-func _init(v : Dictionary) -> void:
-	cave = v
+func _init(butler_cave : Dictionary) -> void:
+	cave = butler_cave

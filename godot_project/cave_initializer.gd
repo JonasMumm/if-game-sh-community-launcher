@@ -33,10 +33,12 @@ static func initialize_cave(connection: butler_connection, game: Dictionary, cho
 			var upload_index := await choicer.async_get_choice_index("Select Upload for "+str(game), uploads.map(func(v): return str(v)), true)
 			if upload_index<0:return null
 			best_upload = uploads[upload_index]
+		connection.send_request("Downloads.Drive",{})
 		var install_queue_rq = await connection.send_request("Install.Queue",{installLocationId = install_location_id, game = game, upload = best_upload, queueDownload = true})		
 
 		if !install_queue_rq.successful:
 			return
+		connection.send_request("Downloads.Drive",{})
 		
 		var install_perform_rq = await  connection.send_request("Install.Perform",{id = install_queue_rq.result.id, stagingFolder = install_queue_rq.result.stagingFolder})
 		

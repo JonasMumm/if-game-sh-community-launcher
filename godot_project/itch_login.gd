@@ -51,8 +51,6 @@ func _ready() -> void:
  
 	if save_data.check_for_updates_on_startup:
 		await cave_initializer.check_updates(connection, all_gameData, choicer, profile.id)
-	
-	await do_download_finish_clusterfuck(connection)
 
 	games_ui.set_data(connection, all_gameData)
 	main_ui_manager.set_active_content(games_ui_state)
@@ -60,23 +58,3 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_DELETE):
 		get_tree().quit()
-
-func downloads_drive_w_timeout(connection : butler_connection):
-	connection.send_request("Downloads.Drive",{})
-	await get_tree().create_timer(5, true);
-
-func do_download_finish_clusterfuck(connection : butler_connection):
-	await connection.send_request("Downloads.ClearFinished",{})
-	var rq_downloads := await connection.send_request("Downloads.List",{});
-	var downloads = rq_downloads.result.downloads;
-
-	if(downloads.size()>0):
-		await downloads_drive_w_timeout(connection)
-
-	await connection.send_request("Downloads.ClearFinished",{})
-	for v in downloads:
-		var rq_perform := await connection.send_request("Install.Perform",{id = v.id, stagingFolder = v.stagingFolder});
-		var rq_cancel := await connection.send_request("Install.Cancel",{id = v.id})
-		#var rq_discard := await connection.send_request("Downloads.Discard",{downloadId = v.id})
-
-	await connection.send_request("Downloads.ClearFinished",{})

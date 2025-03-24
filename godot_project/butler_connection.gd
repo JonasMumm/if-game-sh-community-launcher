@@ -163,6 +163,10 @@ func send_request_freshable(method: String, params: Variant) -> in_flight_reques
 			return rq2
 	return rq1
 	
+func send_response(id : int, params : Dictionary):
+	var rpc := _jsonrpc.make_response(params, id)
+	send_rpc(rpc)
+	
 func send_rpc(jsonrpc:Dictionary):
 	sanitize_numbers_dict(jsonrpc)
 	var json = _json.stringify(jsonrpc)
