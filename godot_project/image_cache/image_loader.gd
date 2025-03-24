@@ -1,10 +1,7 @@
 class_name image_loader
 extends Node
 
-const default_cache_directory := "user://image_cache"
-const default_cache_file_name := "index.json"
-
-@export var path:= default_cache_directory.path_join(default_cache_file_name)
+@export var path:= "user://image_cache/index.json"
 @export var fallback_image : Texture2D
 
 var cache : image_cache;

@@ -46,7 +46,6 @@ launcher = NodePath("../cave_launcher")
 
 [node name="image_loader" type="Node" parent="."]
 script = ExtResource("6_f0yp7")
-path = "user://image_cache/index.json"
 fallback_image = ExtResource("7_kruq0")
 metadata/_custom_type_script = "uid://vcqtsco552dp"
 

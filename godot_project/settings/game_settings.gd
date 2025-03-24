@@ -6,9 +6,9 @@ const post_launch_backoff_seconds := 1
 signal launch_continue;
 
 @export var info_box : settings_info_box
-@export var button_container : Control
 @export var launch_all_button : Button
 @export var cave_launcher : cave_launcher
+@export var button_container : Control
 @export var visual_root : Control
 
 var connection : butler_connection
