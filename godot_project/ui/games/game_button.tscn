@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cm610sgk56qp0"]
 
-[ext_resource type="Script" uid="uid://dlrrp22auy1s3" path="res://game_button.gd" id="1_m5nst"]
+[ext_resource type="Script" uid="uid://dlrrp22auy1s3" path="res://ui/games/game_button.gd" id="1_m5nst"]
 [ext_resource type="Texture2D" uid="uid://8kaysca263sh" path="res://icons/joystick_60dp_1F1F1F_FILL0_wght400_GRAD0_opsz48.svg" id="2_gkttu"]
 [ext_resource type="StyleBox" uid="uid://bh6llqyqvkk22" path="res://ui/games/game_button_focus.tres" id="2_guirf"]
 [ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icon.svg" id="2_mtdcu"]

@@ -31,6 +31,7 @@ func set_data(connection : butler_connection, games : Array[game_data]):
 		var cave := game.cave_info
 		button.button.pressed.connect(set_focused_button.bind(button))
 		button.button.focus_entered.connect(set_focused_button.bind(button))
+		button.launch_pressed.connect(on_launch_button_pressed)
 		games_ui_list_layout_data.button_container.add_child(button)
 		buttons.append(button)
 	
