@@ -35,6 +35,7 @@ pre_launch_hints = [NodePath("PreLaunchHints/PreLaunchHintQuitButton")]
 metadata/_custom_type_script = "uid://2qioqorem5i1"
 
 [node name="BG" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

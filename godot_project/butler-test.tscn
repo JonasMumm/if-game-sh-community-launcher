@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://donnvmvbqack2"]
+[gd_scene load_steps=17 format=3 uid="uid://donnvmvbqack2"]
 
 [ext_resource type="Script" uid="uid://bes2y6x8kph2i" path="res://itch_login.gd" id="1_63mqi"]
 [ext_resource type="Script" uid="uid://bsa6o5ox4ok1a" path="res://input_quit_game_controller.gd" id="3_147q3"]
@@ -13,9 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://bxltecj7uxmp3" path="res://ui/choice_selector/choice_selector.tscn" id="7_hqorg"]
 [ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icon.svg" id="7_kruq0"]
 [ext_resource type="Script" uid="uid://bybbytduq32gx" path="res://ui/ui_state_entry.gd" id="8_oxlym"]
+[ext_resource type="Texture2D" uid="uid://bow1b6jqokd1j" path="res://icons/keyvisual_rot.png" id="10_e0flb"]
 [ext_resource type="Script" uid="uid://bqxwdwj6mso0a" path="res://games_ui_focus_controller.gd" id="10_yw4le"]
+[ext_resource type="Script" uid="uid://dig5yux8t4imh" path="res://launch_state_ui_controller.gd" id="15_kmtyy"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("cave_launcher", "games_ui", "games_ui_state", "choicer", "main_ui_manager", "game_ui_state_controller", "cover_image_loader")]
+[node name="Main" type="Node" node_paths=PackedStringArray("cave_launcher", "games_ui", "games_ui_state", "choicer", "main_ui_manager", "game_ui_state_controller", "cover_image_loader", "logs", "launch_state_ui_controllers")]
 script = ExtResource("1_63mqi")
 cave_launcher = NodePath("cave_launcher")
 games_ui = NodePath("CanvasLayer/MainUiStateManager/state_games_ui_controller/games_ui_controller")
@@ -24,6 +26,8 @@ choicer = NodePath("CanvasLayer/ChoiceSelector")
 main_ui_manager = NodePath("CanvasLayer/MainUiStateManager")
 game_ui_state_controller = NodePath("game_ui_state_controller")
 cover_image_loader = NodePath("image_loader")
+logs = NodePath("CanvasLayer/log_display")
+launch_state_ui_controllers = [NodePath("CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching_controller"), NodePath("CanvasLayer/MainUiStateManager/state_ui_running/ui_running_controller")]
 metadata/_custom_type_script = "uid://bes2y6x8kph2i"
 
 [node name="input_quit_game_controller" type="Node" parent="."]
@@ -59,6 +63,40 @@ running_ui = NodePath("../CanvasLayer/MainUiStateManager/state_ui_running")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="BG" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Expander" type="Control" parent="CanvasLayer/BG/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/BG/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_e0flb")
+expand_mode = 5
+stretch_mode = 4
+
 [node name="log_display" parent="CanvasLayer" instance=ExtResource("7_0oqte")]
 
 [node name="MainUiStateManager" parent="CanvasLayer" instance=ExtResource("6_k6ji6")]
@@ -83,6 +121,7 @@ games_ui = NodePath("../games_ui_controller")
 games_ui_state = NodePath("..")
 
 [node name="state_ui_launching" type="Control" parent="CanvasLayer/MainUiStateManager"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,19 +139,66 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -420.0
+offset_top = 10.0
+offset_right = 420.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Expander" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GameImage" type="TextureRect" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer"]
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 2
+texture = ExtResource("10_e0flb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LilSpace" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="LabelDE" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Launching, hold on to ya seat"
+text = "&&gamename&& wird gestartet, gleich geht's los!"
 horizontal_alignment = 1
-vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelEN" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Starting &&gamename&&, it's gonna happen every second now!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Expander2" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ui_launching_controller" type="Node" parent="CanvasLayer/MainUiStateManager/state_ui_launching" node_paths=PackedStringArray("launcher", "tex_rect", "labels")]
+script = ExtResource("15_kmtyy")
+launcher = NodePath("../../../../cave_launcher")
+tex_rect = NodePath("../ui_launching/VBoxContainer/GameImage")
+labels = [NodePath("../ui_launching/VBoxContainer/LabelDE"), NodePath("../ui_launching/VBoxContainer/LabelEN")]
 
 [node name="state_ui_running" type="Control" parent="CanvasLayer/MainUiStateManager"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -130,17 +216,63 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -420.0
+offset_top = 10.0
+offset_right = 420.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Expander" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GameImage" type="TextureRect" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer"]
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 2
+texture = ExtResource("10_e0flb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LilSpace" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="LabelDE" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Running"
+text = "&&gamename&& läuft! Falls das nicht stimmt, halte die Escape-Taste gedrückt, um zur Spielauswahl zurückzukehren."
 horizontal_alignment = 1
-vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelEN" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "&&gamename&& is running! If it isn't, hold the Escape key to return to the game selection screen."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Expander2" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ui_running_controller" type="Node" parent="CanvasLayer/MainUiStateManager/state_ui_running" node_paths=PackedStringArray("launcher", "tex_rect", "labels")]
+script = ExtResource("15_kmtyy")
+launcher = NodePath("../../../../cave_launcher")
+tex_rect = NodePath("../ui_running/VBoxContainer/GameImage")
+labels = [NodePath("../ui_running/VBoxContainer/LabelDE"), NodePath("../ui_running/VBoxContainer/LabelEN")]
 
 [node name="ChoiceSelector" parent="CanvasLayer" instance=ExtResource("7_hqorg")]
 visible = false

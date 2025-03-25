@@ -8,6 +8,8 @@ extends Node
 @export var main_ui_manager : main_state_manager
 @export var game_ui_state_controller : game_ui_state_controller
 @export var cover_image_loader : image_loader
+@export var logs : Control
+@export var launch_state_ui_controllers : Array[launch_state_ui_controller]
 
 var connection : butler_connection
 
@@ -51,6 +53,11 @@ func _ready() -> void:
  
 	if save_data.check_for_updates_on_startup:
 		await cave_initializer.check_updates(connection, all_gameData, choicer, profile.id)
+
+	logs.visible = false
+
+	for v in launch_state_ui_controllers:
+		v.set_data(all_gameData)
 
 	games_ui.set_data(connection, all_gameData)
 	main_ui_manager.set_active_content(games_ui_state)

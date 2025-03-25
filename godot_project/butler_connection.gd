@@ -222,5 +222,5 @@ func subscribe_notification(method : String, subscriber : Callable):
 func unsubscribe_notification(method : String, subscriber : Callable):
 	var index := _notification_subscribers.find_custom(func(v:Dictionary): return v.method == method && v.callback == subscriber)
 	
-	assert(index >0)
+	assert(index >= 0)
 	_notification_subscribers.remove_at(index);
