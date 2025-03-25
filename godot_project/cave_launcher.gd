@@ -4,6 +4,8 @@ extends Node
 const internal_data_route = "IFgameSHCommunityLauncherData";
 const notification_launch_running := "LaunchRunning"
 const request_prereqs := "PrereqsFailed"
+const notification_launch_exited = "LaunchExited"
+const launch_exited_backoff_seconds := 0.6
 
 signal cave_launched_changed (is_launched : bool, cave : cave_info)
 signal cave_running_changed (is_running : bool)
@@ -37,6 +39,7 @@ func launch_cave(v: cave_info, connection : butler_connection):
 	connection.add_request_handler("HTMLLaunch", handler_html_launch);
 	connection.add_request_handler(request_prereqs, handler_prereqs_failed);
 	connection.subscribe_notification(notification_launch_running, on_notification_launch)
+	connection.subscribe_notification(notification_launch_exited, on_notification_launch_exited)
 	await connection.send_request("Launch",{caveId = cave.id, prereqsDir = prereqsPath})
 	quit_cave(false)
 
@@ -83,6 +86,8 @@ func quit_cave(kill_spawned_processes : bool):
 	_cave_running = false
 	_connection.remove_request_handler("HTMLLaunch", handler_html_launch);
 	_connection.remove_request_handler(request_prereqs, handler_prereqs_failed);
+	_connection.unsubscribe_notification (notification_launch_running, on_notification_launch)
+	_connection.unsubscribe_notification (notification_launch_exited, on_notification_launch_exited)
 	quit_input_handler.quit.disconnect(quit_hard)
 	if kill_spawned_processes:
 		var after_launch_processes := get_all_process_ids()
@@ -120,6 +125,10 @@ func force_clean_up_run_lock(v:cave_info):
 func on_notification_launch(params : Dictionary):
 	quit_input_handler.quit.connect(quit_hard)
 	cave_running_changed.emit(true)
+	
+func on_notification_launch_exited(params : Dictionary):
+	await get_tree().create_timer(launch_exited_backoff_seconds).timeout
+	quit_cave(false)
 
 func quit_hard():
 	quit_cave(true)

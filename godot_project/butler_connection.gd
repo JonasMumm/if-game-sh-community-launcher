@@ -218,3 +218,9 @@ func remove_request_handler(method: String, handler : Callable):
 
 func subscribe_notification(method : String, subscriber : Callable):
 	_notification_subscribers.append({"method" : method, "callback" : subscriber})
+	
+func unsubscribe_notification(method : String, subscriber : Callable):
+	var index := _notification_subscribers.find_custom(func(v:Dictionary): return v.method == method && v.callback == subscriber)
+	
+	assert(index >0)
+	_notification_subscribers.remove_at(index);
