@@ -1,6 +1,8 @@
 class_name collection_settings
 extends Node
 
+signal games_changed;
+
 @export var info_box : settings_info_box
 @export var choose_collection_button : Button
 @export var install_all_button : Button
@@ -79,5 +81,6 @@ func install_all():
 	await cave_initializer.check_updates(connection, all_gameData, choicer, profile_id)
 	
 	menu_container.visible = true;
-	
+	games_changed.emit()
 	LogManager.add_log("All games for collection installed. It is recommended to launch all games once to install any prereqs. See the Games section below.")
+	

@@ -11,6 +11,7 @@ var connection : butler_connection
 var save : save_data
 
 func _ready():
+	collection.games_changed.connect(_refresh_all_ui)
 	_refresh_all_ui()
 	quit_button.pressed.connect(quit)
 
