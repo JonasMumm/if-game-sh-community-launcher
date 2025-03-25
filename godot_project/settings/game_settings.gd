@@ -54,7 +54,7 @@ func launch_all_installed_caves():
 	for v in caves:
 		var ci := cave_info.new(v)
 		cave_launcher.cave_running_changed.connect(on_cave_running_changed)
-		cave_launcher.launch_cave(ci,connection);
+		cave_launcher.launch_cave(ci, connection, "");
 		await launch_continue
 		await get_tree().create_timer(post_launch_backoff_seconds).timeout
 		cave_launcher.quit_hard()

@@ -18,18 +18,20 @@ var _pre_launch_processes : PackedInt32Array
 var _connection : butler_connection
 var _server : HttpServer
 var _router : file_router
+var browser_quit_panel_position : String
 
-func launch_cave(v: cave_info, connection : butler_connection):
+func launch_cave(ci: cave_info, connection : butler_connection, browser_quit_panel_position : String):
 	if _cave_running:
 		quit_cave(true)
-		
-	force_clean_up_run_lock(v)
+	
+	self.browser_quit_panel_position = browser_quit_panel_position
+	force_clean_up_run_lock(ci)
 	
 	_connection = connection
 	_cave_running = true
-	cave_launched_changed.emit(_cave_running, v)
+	cave_launched_changed.emit(_cave_running, ci)
 	await _connection.wait_for_connection()
-	var cave := v.cave;
+	var cave := ci.cave;
 	var install_location_id = cave.installInfo.installLocation
 	
 	var install_locations_rq := await connection.send_request("Install.Locations.GetByID",{id = install_location_id});
@@ -76,7 +78,9 @@ func handler_html_launch(id: int, method:String, params:Dictionary):
 	var frameFile := internal_data_route.path_join("index.html")
 	var url := "http://localhost:"+str(_server.port).path_join(frameFile)
 	url+="?iframeTarget="+("/"+file).uri_encode()
-	url+="&closePanelLocation="+"topLeft"
+	var quit_panel_position := browser_quit_panel_position;
+	if quit_panel_position.is_empty(): quit_panel_position = "topLeft";
+	url+="&closePanelLocation="+(quit_panel_position.uri_encode())
 	LogManager.add_log("Preparing to launch url "+url)
 	browser_launcher.launch(save, url)
 	cave_running_changed.emit(true)
