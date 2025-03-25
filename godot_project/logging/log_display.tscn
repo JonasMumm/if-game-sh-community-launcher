@@ -28,5 +28,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.440979, 0.440979, 0.440979, 1)
-text = "nsdjmfnsmfnsjfm"
+text = "Text"
+scroll_following = true
 vertical_alignment = 2
