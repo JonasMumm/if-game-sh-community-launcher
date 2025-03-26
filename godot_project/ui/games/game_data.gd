@@ -7,25 +7,12 @@ var collection_game : Dictionary
 var collection_entry : collection_game_info
 var image_loader : image_loader
 
-func _init(cave : cave_info, col_game : Dictionary, images : image_loader):
+func _init(cave : cave_info, collect_game : Dictionary, images : image_loader):
 	cave_info = cave
-	collection_game = col_game
+	collection_game = collect_game
+	collection_entry = collection_game_info.from_json(collection_game.blurb)
+	collection_entry.apply_overrides_to_game(collection_game.game)
 	image_loader = images
-	
-	var blurb : String= collection_game.blurb
-	blurb = blurb.replace("<p>","")
-	blurb = blurb.replace("</p>","")
-	blurb = blurb.replace("<br>","")
-	blurb = blurb.replace("<span>","")
-	blurb = blurb.replace("</span>","")
-	blurb = blurb.replace("&nbsp;"," ")
-	blurb = blurb.replace("\n","")
-	collection_entry = JsonClassConverter.json_string_to_class(collection_game_info, blurb)
-	if collection_entry.details == null:
-		collection_entry.details = collection_game_details.new()
-		
-	for key in collection_entry.game_overrides:
-		collection_game.game[key] = collection_entry.game_overrides[key]
 
 	await images.preload_url(get_image_url())
 	

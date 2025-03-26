@@ -74,7 +74,8 @@ func install_all():
 	
 	var all_gameData : Array[game_data]
 	for collection_game in collection_games_rq.result.items:
-		var cave_info := await cave_initializer.initialize_cave(connection, collection_game.game, choicer, profile_id)
+		var upload_filter := collection_game_info.from_json(collection_game.blurb).upload_filter
+		var cave_info := await cave_initializer.initialize_cave(connection, collection_game.game, upload_filter, choicer, profile_id)
 		if cave_info != null: 
 			var v := await game_data.new(cave_info, collection_game, cover_image_loader)
 			all_gameData.append(v)
