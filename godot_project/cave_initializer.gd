@@ -89,7 +89,7 @@ static func filter_uploads(uploads : Array, upload_filter : Dictionary) -> Array
 		
 	for filter_key in upload_filter:
 		var filter_value :String = upload_filter[filter_key]
-		filter_value = trim_whitespace(filter_value)
+		filter_value = trim_whitespace(filter_value).uri_decode().replace("&lt;","<").replace("&gt;",">")
 		var comparison_operation : Callable
 		if filter_value.begins_with("=="):
 			comparison_operation = comparison_equal
