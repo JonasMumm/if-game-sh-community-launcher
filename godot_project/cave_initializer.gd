@@ -63,6 +63,7 @@ static func check_updates(connection: butler_connection, games : Array[game_data
 		var uploads = update.choices.map(func(v): return v.upload);
 		var best_upload = await select_upload(game.collection_game.game.title, uploads, game.collection_entry.upload_filter,choicer);
 
+		connection.send_request("Downloads.Drive",{})
 		var update_queue_rq = await connection.send_request("Install.Queue",{caveId = cave.id, reason = "update", upload = best_upload, queueDownload = true})		
 
 		if !update_queue_rq.successful:
@@ -76,6 +77,7 @@ static func check_updates(connection: butler_connection, games : Array[game_data
 				game.cave_info = await initialize_cave(connection, game.collection_game.game, game.collection_entry.upload_filter, choicer, profile_id)
 				continue
 		
+		connection.send_request("Downloads.Drive",{})
 		var update_perform_rq = await connection.send_request("Install.Perform",{id = update_queue_rq.result.id, stagingFolder = update_queue_rq.result.stagingFolder})
 		
 		if update_perform_rq.successful:
@@ -139,8 +141,8 @@ static func select_upload(game_name : String, uploads : Array, upload_filter : D
 	if filtered_uploads.size() == 0:
 		return {}
 	elif filtered_uploads.size() > 1:
-		var choice_index := await choicer.async_get_choice_index("Select Upload for "+str(game_name), uploads.map(func(v): return str(v)), true)
+		var choice_index := await choicer.async_get_choice_index("Select Upload for "+str(game_name), filtered_uploads.map(func(v): return str(v)), true)
 		if choice_index == -1: return {}
-		return uploads[choice_index]
+		return filtered_uploads[choice_index]
 	else:
 		return filtered_uploads[0]
