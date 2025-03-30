@@ -12,6 +12,10 @@ signal launch_pressed
 @export var session_duration_label : Label
 @export var cover : TextureRect
 
+@export var info_visivility_container : Control
+@export var genre_visivility_container : Control
+@export var stats_visivility_container : Control
+
 var _game : game_data
 var focus_usec := 0
 var down_usec := 0
@@ -48,6 +52,10 @@ func _set_data(game : game_data):
 		session_duration_label.text = ""
 	
 	cover.texture = game.get_image()
+	
+	genre_visivility_container.visible = !genre_label.text.is_empty()
+	stats_visivility_container.visible = !player_count_label.text.is_empty() || !session_duration_label.text.is_empty()
+	info_visivility_container.visible = genre_visivility_container.visible || stats_visivility_container.visible
 
 func on_button_down():
 	down_usec = Time.get_ticks_usec();

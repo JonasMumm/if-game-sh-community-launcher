@@ -16,16 +16,19 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[node name="game_button" type="MarginContainer" node_paths=PackedStringArray("button", "game_name_label", "genre_label", "player_count_label", "session_duration_label", "cover")]
+[node name="game_button" type="MarginContainer" node_paths=PackedStringArray("button", "game_name_label", "genre_label", "player_count_label", "session_duration_label", "cover", "info_visivility_container", "genre_visivility_container", "stats_visivility_container")]
 offset_right = 260.0
 offset_bottom = 349.0
 script = ExtResource("1_m5nst")
 button = NodePath("Button")
 game_name_label = NodePath("ContentInset/VBoxContainer/Game Name")
-genre_label = NodePath("ContentInset/VBoxContainer/Genre")
-player_count_label = NodePath("ContentInset/VBoxContainer/Stats/MarginContainer2/HBoxContainer/Label")
-session_duration_label = NodePath("ContentInset/VBoxContainer/Stats/MarginContainer3/HBoxContainer/Label")
+genre_label = NodePath("ContentInset/VBoxContainer/InfoContainer/GenreContainer/Genre")
+player_count_label = NodePath("ContentInset/VBoxContainer/InfoContainer/StatsContainer/Stats/MarginContainer2/HBoxContainer/Label")
+session_duration_label = NodePath("ContentInset/VBoxContainer/InfoContainer/StatsContainer/Stats/MarginContainer3/HBoxContainer/Label")
 cover = NodePath("ContentInset/VBoxContainer/PanelContainer/Cover")
+info_visivility_container = NodePath("ContentInset/VBoxContainer/InfoContainer")
+genre_visivility_container = NodePath("ContentInset/VBoxContainer/InfoContainer/GenreContainer")
+stats_visivility_container = NodePath("ContentInset/VBoxContainer/InfoContainer/StatsContainer")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
@@ -79,60 +82,70 @@ custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Control" type="Control" parent="ContentInset/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="HSeparator" type="HSeparator" parent="ContentInset/VBoxContainer"]
+[node name="InfoContainer" type="VBoxContainer" parent="ContentInset/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
+theme_override_constants/separation = 0
 
-[node name="Spacer4" type="Control" parent="ContentInset/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="ContentInset/VBoxContainer/InfoContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="GenreContainer" type="VBoxContainer" parent="ContentInset/VBoxContainer/InfoContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="Spacer4" type="Control" parent="ContentInset/VBoxContainer/InfoContainer/GenreContainer"]
 custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Genre" type="Label" parent="ContentInset/VBoxContainer"]
+[node name="Genre" type="Label" parent="ContentInset/VBoxContainer/InfoContainer/GenreContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.25, 0.25, 0.25, 1)
 text = "Genre"
 
-[node name="Spacer3" type="Control" parent="ContentInset/VBoxContainer"]
+[node name="StatsContainer" type="VBoxContainer" parent="ContentInset/VBoxContainer/InfoContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="Spacer3" type="Control" parent="ContentInset/VBoxContainer/InfoContainer/StatsContainer"]
 custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Stats" type="HBoxContainer" parent="ContentInset/VBoxContainer"]
+[node name="Stats" type="HBoxContainer" parent="ContentInset/VBoxContainer/InfoContainer/StatsContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="ContentInset/VBoxContainer/Stats"]
+[node name="MarginContainer" type="MarginContainer" parent="ContentInset/VBoxContainer/InfoContainer/StatsContainer/Stats"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ContentInset/VBoxContainer/Stats/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ContentInset/VBoxContainer/InfoContainer/StatsContainer/Stats/MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="ContentInset/VBoxContainer/Stats/MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="ContentInset/VBoxContainer/InfoContainer/StatsContainer/Stats/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("2_gkttu")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="MarginContainer2" type="MarginContainer" parent="ContentInset/VBoxContainer/Stats"]
+[node name="MarginContainer2" type="MarginContainer" parent="ContentInset/VBoxContainer/InfoContainer/StatsContainer/Stats"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ContentInset/VBoxContainer/Stats/MarginContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ContentInset/VBoxContainer/InfoContainer/StatsContainer/Stats/MarginContainer2"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="ContentInset/VBoxContainer/Stats/MarginContainer2/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="ContentInset/VBoxContainer/InfoContainer/StatsContainer/Stats/MarginContainer2/HBoxContainer"]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
 clip_contents = true
 custom_minimum_size = Vector2(28, 28)
@@ -142,21 +155,21 @@ texture = ExtResource("4_mtdcu")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="ContentInset/VBoxContainer/Stats/MarginContainer2/HBoxContainer"]
+[node name="Label" type="Label" parent="ContentInset/VBoxContainer/InfoContainer/StatsContainer/Stats/MarginContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.270588, 0.270588, 0.270588, 1)
 text = "1-2"
 
-[node name="MarginContainer3" type="MarginContainer" parent="ContentInset/VBoxContainer/Stats"]
+[node name="MarginContainer3" type="MarginContainer" parent="ContentInset/VBoxContainer/InfoContainer/StatsContainer/Stats"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ContentInset/VBoxContainer/Stats/MarginContainer3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ContentInset/VBoxContainer/InfoContainer/StatsContainer/Stats/MarginContainer3"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="ContentInset/VBoxContainer/Stats/MarginContainer3/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="ContentInset/VBoxContainer/InfoContainer/StatsContainer/Stats/MarginContainer3/HBoxContainer"]
 self_modulate = Color(0.270588, 0.270588, 0.270588, 1)
 custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
@@ -165,7 +178,7 @@ texture = ExtResource("5_cbgq5")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="ContentInset/VBoxContainer/Stats/MarginContainer3/HBoxContainer"]
+[node name="Label" type="Label" parent="ContentInset/VBoxContainer/InfoContainer/StatsContainer/Stats/MarginContainer3/HBoxContainer"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.27, 0.27, 0.27, 1)
