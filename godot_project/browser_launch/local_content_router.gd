@@ -1,4 +1,4 @@
-class_name file_router
+class_name local_content_router
 extends HttpRouter
 
 signal quit_received
@@ -47,5 +47,5 @@ func request_path_to_file_path(req_path : String) -> String:
 	var req_path_decoded := req_path.uri_decode()
 	var internal_data_route = "/"+cave_launcher.internal_data_route
 	if(req_path_decoded.begins_with(internal_data_route)):
-		return "res://BrowserFrontend".path_join(req_path_decoded.substr(internal_data_route.length()))
+		return "res://browser_launch/browser_frontend".path_join(req_path_decoded.substr(internal_data_route.length()))
 	return _root_folder.path_join(req_path.uri_decode())

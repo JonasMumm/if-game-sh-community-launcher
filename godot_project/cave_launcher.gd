@@ -17,7 +17,7 @@ var _cave_running : bool
 var _pre_launch_processes : PackedInt32Array
 var _connection : butler_connection
 var _server : HttpServer
-var _router : file_router
+var _router : local_content_router
 var browser_quit_panel_position : String
 
 func launch_cave(ci: cave_info, connection : butler_connection, browser_quit_panel_position : String):
@@ -68,7 +68,7 @@ static func wait_then_kill(prev_processes : PackedInt32Array, tree : SceneTree):
 func handler_html_launch(id: int, method:String, params:Dictionary):
 	var save := save_data.load_from_file()
 	_server = HttpServer.new()
-	_router = file_router.new(params.rootFolder)
+	_router = local_content_router.new(params.rootFolder)
 	_router.quit_received.connect(on_router_quit_received)
 	_server.register_router("^.*", _router)
 	_server.port = save.local_server_port
