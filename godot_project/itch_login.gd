@@ -49,8 +49,9 @@ func _ready() -> void:
 		var upload_filter = collection_game_info.from_json(collection_game.blurb).upload_filter
 		var cave_info := await cave_initializer.initialize_cave(connection, collection_game.game, upload_filter, choicer, profile.id)
 		if cave_info != null: 
-			var v := await game_data.new(cave_info, collection_game, cover_image_loader)
+			var v := game_data.new(cave_info, collection_game, cover_image_loader)
 			all_gameData.append(v)
+			await v.preload_image()
  
 	if save_data.check_for_updates_on_startup:
 		await cave_initializer.check_updates(connection, all_gameData, choicer, profile.id)
