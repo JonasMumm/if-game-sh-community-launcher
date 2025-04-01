@@ -1,4 +1,4 @@
-class_name itch_login
+class_name launcher_bootstrap
 extends Node
 
 @export var cave_launcher : cave_launcher

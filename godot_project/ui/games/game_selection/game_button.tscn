@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://cm610sgk56qp0"]
 
-[ext_resource type="Script" uid="uid://dlrrp22auy1s3" path="res://ui/games/game_button.gd" id="1_m5nst"]
+[ext_resource type="Script" uid="uid://dlrrp22auy1s3" path="res://ui/games/game_selection/game_button.gd" id="1_m5nst"]
 [ext_resource type="Texture2D" uid="uid://8kaysca263sh" path="res://icons/joystick_60dp_1F1F1F_FILL0_wght400_GRAD0_opsz48.svg" id="2_gkttu"]
-[ext_resource type="StyleBox" uid="uid://bh6llqyqvkk22" path="res://ui/games/game_button_focus.tres" id="2_guirf"]
-[ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icon.svg" id="2_mtdcu"]
-[ext_resource type="StyleBox" uid="uid://ch3xf8gqf063x" path="res://ui/games/game_button_hover.tres" id="3_jwhsw"]
-[ext_resource type="StyleBox" uid="uid://c427ck1338fw5" path="res://ui/games/game_button_normal.tres" id="3_rqwey"]
+[ext_resource type="StyleBox" uid="uid://bh6llqyqvkk22" path="res://ui/games/theming/game_button_focus.tres" id="2_guirf"]
+[ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icons/icon.svg" id="2_mtdcu"]
+[ext_resource type="StyleBox" uid="uid://ch3xf8gqf063x" path="res://ui/games/theming/game_button_hover.tres" id="3_jwhsw"]
+[ext_resource type="StyleBox" uid="uid://c427ck1338fw5" path="res://ui/games/theming/game_button_normal.tres" id="3_rqwey"]
 [ext_resource type="Texture2D" uid="uid://chr631hcddo4r" path="res://icons/group_60dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.svg" id="4_mtdcu"]
 [ext_resource type="Texture2D" uid="uid://dm62gfpdynqir" path="res://icons/schedule_60dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.svg" id="5_cbgq5"]
 

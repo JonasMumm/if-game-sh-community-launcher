@@ -1,24 +1,24 @@
 [gd_scene load_steps=17 format=3 uid="uid://donnvmvbqack2"]
 
-[ext_resource type="Script" uid="uid://bes2y6x8kph2i" path="res://itch_login.gd" id="1_63mqi"]
-[ext_resource type="Script" uid="uid://bsa6o5ox4ok1a" path="res://input_quit_game_controller.gd" id="3_147q3"]
-[ext_resource type="Script" uid="uid://p3d4p8j8pknk" path="res://browser_launcher.gd" id="4_0oqte"]
-[ext_resource type="Script" uid="uid://cg27bp0xwfy4t" path="res://cave_launcher.gd" id="4_rm38c"]
-[ext_resource type="PackedScene" uid="uid://bi4mxp4w8msr" path="res://ui/games/games_ui_controller.tscn" id="5_ipikq"]
-[ext_resource type="Script" uid="uid://vcqtsco552dp" path="res://image_cache/image_loader.gd" id="6_f0yp7"]
-[ext_resource type="Script" uid="uid://dl47qghvx374s" path="res://input_editor_quit.gd" id="6_ipikq"]
-[ext_resource type="PackedScene" uid="uid://3xjflh5pkjeb" path="res://ui/main_ui_state_manager.tscn" id="6_k6ji6"]
-[ext_resource type="Script" uid="uid://wqchuqxpjksy" path="res://game_ui_state_controller.gd" id="6_lm0l2"]
-[ext_resource type="PackedScene" uid="uid://tqukidx1wx50" path="res://logging/log_display.tscn" id="7_0oqte"]
-[ext_resource type="PackedScene" uid="uid://bxltecj7uxmp3" path="res://ui/choice_selector/choice_selector.tscn" id="7_hqorg"]
-[ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icon.svg" id="7_kruq0"]
-[ext_resource type="Script" uid="uid://bybbytduq32gx" path="res://ui/ui_state_entry.gd" id="8_oxlym"]
-[ext_resource type="Texture2D" uid="uid://bow1b6jqokd1j" path="res://icons/keyvisual_rot.png" id="10_e0flb"]
-[ext_resource type="Script" uid="uid://bqxwdwj6mso0a" path="res://games_ui_focus_controller.gd" id="10_yw4le"]
-[ext_resource type="Script" uid="uid://dig5yux8t4imh" path="res://launch_state_ui_controller.gd" id="15_kmtyy"]
+[ext_resource type="Script" uid="uid://bes2y6x8kph2i" path="res://ui/games/launcher_bootstrap.gd" id="1_jksf5"]
+[ext_resource type="Script" uid="uid://bsa6o5ox4ok1a" path="res://ui/games/input_quit_game_controller.gd" id="2_0qv6n"]
+[ext_resource type="Script" uid="uid://cg27bp0xwfy4t" path="res://butler/cave_launcher.gd" id="3_r740p"]
+[ext_resource type="Script" uid="uid://p3d4p8j8pknk" path="res://browser_launch/browser_launcher.gd" id="4_6bt5x"]
+[ext_resource type="Script" uid="uid://dl47qghvx374s" path="res://ui/editor/input_editor_quit.gd" id="5_r1mep"]
+[ext_resource type="Script" uid="uid://vcqtsco552dp" path="res://image_cache/image_loader.gd" id="6_uq8g4"]
+[ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icons/icon.svg" id="7_3f87s"]
+[ext_resource type="Script" uid="uid://wqchuqxpjksy" path="res://ui/games/game_ui_state_controller.gd" id="8_4qyh1"]
+[ext_resource type="Texture2D" uid="uid://bow1b6jqokd1j" path="res://icons/keyvisual_rot.png" id="9_wqsvu"]
+[ext_resource type="PackedScene" uid="uid://tqukidx1wx50" path="res://logging/log_display.tscn" id="10_cqct8"]
+[ext_resource type="PackedScene" uid="uid://3xjflh5pkjeb" path="res://ui/games/main_ui_state_manager.tscn" id="11_ua77n"]
+[ext_resource type="Script" uid="uid://bybbytduq32gx" path="res://ui/games/ui_state_entry.gd" id="12_0cewe"]
+[ext_resource type="PackedScene" uid="uid://bi4mxp4w8msr" path="res://ui/games/game_selection/games_ui_controller.tscn" id="13_ucocn"]
+[ext_resource type="Script" uid="uid://bqxwdwj6mso0a" path="res://ui/games/game_selection/games_ui_focus_controller.gd" id="14_q1h15"]
+[ext_resource type="Script" uid="uid://dig5yux8t4imh" path="res://ui/games/launch_state_ui_controller.gd" id="15_i5bye"]
+[ext_resource type="PackedScene" uid="uid://bxltecj7uxmp3" path="res://ui/choice_selector/choice_selector.tscn" id="16_2jh5i"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("cave_launcher", "games_ui", "games_ui_state", "choicer", "main_ui_manager", "game_ui_state_controller", "cover_image_loader", "logs", "launch_state_ui_controllers")]
-script = ExtResource("1_63mqi")
+script = ExtResource("1_jksf5")
 cave_launcher = NodePath("cave_launcher")
 games_ui = NodePath("CanvasLayer/MainUiStateManager/state_games_ui_controller/games_ui_controller")
 games_ui_state = NodePath("CanvasLayer/MainUiStateManager/state_games_ui_controller")
@@ -31,30 +31,30 @@ launch_state_ui_controllers = [NodePath("CanvasLayer/MainUiStateManager/state_ui
 metadata/_custom_type_script = "uid://bes2y6x8kph2i"
 
 [node name="input_quit_game_controller" type="Node" parent="."]
-script = ExtResource("3_147q3")
+script = ExtResource("2_0qv6n")
 metadata/_custom_type_script = "uid://bsa6o5ox4ok1a"
 
 [node name="cave_launcher" type="Node" parent="." node_paths=PackedStringArray("quit_input_handler", "browser_launcher")]
-script = ExtResource("4_rm38c")
+script = ExtResource("3_r740p")
 quit_input_handler = NodePath("../input_quit_game_controller")
 browser_launcher = NodePath("browser_launcher")
 metadata/_custom_type_script = "uid://cg27bp0xwfy4t"
 
 [node name="browser_launcher" type="Node" parent="cave_launcher"]
-script = ExtResource("4_0oqte")
+script = ExtResource("4_6bt5x")
 metadata/_custom_type_script = "uid://p3d4p8j8pknk"
 
 [node name="input_editor_quit" type="Node" parent="." node_paths=PackedStringArray("launcher")]
-script = ExtResource("6_ipikq")
+script = ExtResource("5_r1mep")
 launcher = NodePath("../cave_launcher")
 
 [node name="image_loader" type="Node" parent="."]
-script = ExtResource("6_f0yp7")
-fallback_image = ExtResource("7_kruq0")
+script = ExtResource("6_uq8g4")
+fallback_image = ExtResource("7_3f87s")
 metadata/_custom_type_script = "uid://vcqtsco552dp"
 
 [node name="game_ui_state_controller" type="Node" parent="." node_paths=PackedStringArray("main_ui", "launcher", "games_ui", "launching_ui", "running_ui")]
-script = ExtResource("6_lm0l2")
+script = ExtResource("8_4qyh1")
 main_ui = NodePath("../CanvasLayer/MainUiStateManager")
 launcher = NodePath("../cave_launcher")
 games_ui = NodePath("../CanvasLayer/MainUiStateManager/state_games_ui_controller")
@@ -93,13 +93,13 @@ size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/BG/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("10_e0flb")
+texture = ExtResource("9_wqsvu")
 expand_mode = 5
 stretch_mode = 4
 
-[node name="log_display" parent="CanvasLayer" instance=ExtResource("7_0oqte")]
+[node name="log_display" parent="CanvasLayer" instance=ExtResource("10_cqct8")]
 
-[node name="MainUiStateManager" parent="CanvasLayer" instance=ExtResource("6_k6ji6")]
+[node name="MainUiStateManager" parent="CanvasLayer" instance=ExtResource("11_ua77n")]
 
 [node name="state_games_ui_controller" type="Control" parent="CanvasLayer/MainUiStateManager"]
 layout_mode = 1
@@ -108,15 +108,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("8_oxlym")
+script = ExtResource("12_0cewe")
 metadata/_custom_type_script = "uid://bybbytduq32gx"
 
-[node name="games_ui_controller" parent="CanvasLayer/MainUiStateManager/state_games_ui_controller" node_paths=PackedStringArray("launcher") instance=ExtResource("5_ipikq")]
+[node name="games_ui_controller" parent="CanvasLayer/MainUiStateManager/state_games_ui_controller" node_paths=PackedStringArray("launcher") instance=ExtResource("13_ucocn")]
 layout_mode = 1
 launcher = NodePath("../../../../cave_launcher")
 
 [node name="games_ui_focus_controller" type="Node" parent="CanvasLayer/MainUiStateManager/state_games_ui_controller" node_paths=PackedStringArray("games_ui", "games_ui_state")]
-script = ExtResource("10_yw4le")
+script = ExtResource("14_q1h15")
 games_ui = NodePath("../games_ui_controller")
 games_ui_state = NodePath("..")
 
@@ -128,7 +128,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("8_oxlym")
+script = ExtResource("12_0cewe")
 metadata/_custom_type_script = "uid://bybbytduq32gx"
 
 [node name="ui_launching" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_launching"]
@@ -160,7 +160,7 @@ size_flags_vertical = 3
 [node name="GameImage" type="TextureRect" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer"]
 custom_minimum_size = Vector2(0, 170)
 layout_mode = 2
-texture = ExtResource("10_e0flb")
+texture = ExtResource("9_wqsvu")
 expand_mode = 1
 stretch_mode = 5
 
@@ -192,7 +192,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="ui_launching_controller" type="Node" parent="CanvasLayer/MainUiStateManager/state_ui_launching" node_paths=PackedStringArray("launcher", "tex_rect", "labels")]
-script = ExtResource("15_kmtyy")
+script = ExtResource("15_i5bye")
 launcher = NodePath("../../../../cave_launcher")
 tex_rect = NodePath("../ui_launching/VBoxContainer/GameImage")
 labels = [NodePath("../ui_launching/VBoxContainer/LabelDE"), NodePath("../ui_launching/VBoxContainer/LabelEN")]
@@ -205,7 +205,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("8_oxlym")
+script = ExtResource("12_0cewe")
 metadata/_custom_type_script = "uid://bybbytduq32gx"
 
 [node name="ui_running" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_running"]
@@ -237,7 +237,7 @@ size_flags_vertical = 3
 [node name="GameImage" type="TextureRect" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer"]
 custom_minimum_size = Vector2(0, 170)
 layout_mode = 2
-texture = ExtResource("10_e0flb")
+texture = ExtResource("9_wqsvu")
 expand_mode = 1
 stretch_mode = 5
 
@@ -269,10 +269,10 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="ui_running_controller" type="Node" parent="CanvasLayer/MainUiStateManager/state_ui_running" node_paths=PackedStringArray("launcher", "tex_rect", "labels")]
-script = ExtResource("15_kmtyy")
+script = ExtResource("15_i5bye")
 launcher = NodePath("../../../../cave_launcher")
 tex_rect = NodePath("../ui_running/VBoxContainer/GameImage")
 labels = [NodePath("../ui_running/VBoxContainer/LabelDE"), NodePath("../ui_running/VBoxContainer/LabelEN")]
 
-[node name="ChoiceSelector" parent="CanvasLayer" instance=ExtResource("7_hqorg")]
+[node name="ChoiceSelector" parent="CanvasLayer" instance=ExtResource("16_2jh5i")]
 visible = false

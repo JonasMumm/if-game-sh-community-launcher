@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://lrog8iu7spdd"]
 
 [ext_resource type="Script" uid="uid://27vk5j3doa5c" path="res://bootstrap/bootstrap.gd" id="1_5r44b"]
-[ext_resource type="PackedScene" uid="uid://donnvmvbqack2" path="res://butler-test.tscn" id="2_d2wfg"]
+[ext_resource type="PackedScene" uid="uid://donnvmvbqack2" path="res://ui/games/launcher_main.tscn" id="2_d2wfg"]
 [ext_resource type="PackedScene" uid="uid://gurl8mgrosm5" path="res://settings/settings_menu.tscn" id="3_oqs5c"]
 
 [node name="Bootstrap" type="Node"]

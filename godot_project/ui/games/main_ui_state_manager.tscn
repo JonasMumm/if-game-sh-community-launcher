@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://3xjflh5pkjeb"]
 
-[ext_resource type="Script" uid="uid://canyimqt6e5ct" path="res://ui/main_state_manager.gd" id="1_ys20v"]
+[ext_resource type="Script" uid="uid://canyimqt6e5ct" path="res://ui/games/main_state_manager.gd" id="1_ys20v"]
 
 [node name="MainUiStateManager" type="Control"]
 layout_mode = 3
