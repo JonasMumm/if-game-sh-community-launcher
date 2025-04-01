@@ -14,8 +14,10 @@ func _init(cave : cave_info, collect_game : Dictionary, images : image_loader):
 	collection_entry.apply_overrides_to_game(collection_game.game)
 	image_loader = images
 
-	await images.preload_url(get_image_url())
-	
+#should be done in _init(), but the outside world does not seem to actually await any await calls, therefor let's put it in a separate method.
+func preload_image():
+	await image_loader.preload_url(get_image_url())
+
 func get_image_url() -> String:
 	var url : String;
 	
@@ -23,7 +25,13 @@ func get_image_url() -> String:
 	
 	if url.is_empty() && collection_game.game.has("coverUrl"):
 		url = collection_game.game.coverUrl;
-		
+	
+	#fixup protocol in url: because the itch collection blurb html-form replaces any valid http / https urls with an html-embedded image, its impractical to submit full urls to itch. instead the http:// or https:// protocol definition can be ommited when pasting image links into the blurb form.
+	if !url.begins_with("https://") && !url.begins_with("http://"):
+		if url.begins_with("s://") || url.begins_with("://"):
+			url = "http"+url
+		else:
+			url = "http://"+url
 	return url
 
 func get_image() -> ImageTexture:

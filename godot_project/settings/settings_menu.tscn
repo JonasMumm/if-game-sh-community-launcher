@@ -10,11 +10,11 @@
 [ext_resource type="Script" uid="uid://cg5xjsa1nl6vd" path="res://settings/profile_settings.gd" id="7_oy4mk"]
 [ext_resource type="Script" uid="uid://cnevngq6h3yk3" path="res://settings/collection_settings.gd" id="8_lakpe"]
 [ext_resource type="Script" uid="uid://1kbw3i836l7p" path="res://settings/browser_settings.gd" id="9_r82a5"]
-[ext_resource type="Script" uid="uid://p3d4p8j8pknk" path="res://browser_launcher.gd" id="10_a5d6h"]
+[ext_resource type="Script" uid="uid://p3d4p8j8pknk" path="res://browser_launch/browser_launcher.gd" id="10_a5d6h"]
 [ext_resource type="Script" uid="uid://vcqtsco552dp" path="res://image_cache/image_loader.gd" id="10_yxcxb"]
 [ext_resource type="Script" uid="uid://b6psrvtbicqic" path="res://settings/game_settings.gd" id="12_ocg8h"]
-[ext_resource type="Script" uid="uid://cg27bp0xwfy4t" path="res://cave_launcher.gd" id="13_fhdcv"]
-[ext_resource type="Script" uid="uid://bsa6o5ox4ok1a" path="res://input_quit_game_controller.gd" id="14_dt0go"]
+[ext_resource type="Script" uid="uid://cg27bp0xwfy4t" path="res://butler/cave_launcher.gd" id="13_fhdcv"]
+[ext_resource type="Script" uid="uid://bsa6o5ox4ok1a" path="res://ui/games/input_quit_game_controller.gd" id="14_dt0go"]
 
 [node name="SettingsMenu" type="Control" node_paths=PackedStringArray("butler", "profile", "collection", "browser", "games", "quit_button")]
 layout_mode = 3

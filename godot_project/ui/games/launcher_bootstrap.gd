@@ -1,4 +1,4 @@
-class_name itch_login
+class_name launcher_bootstrap
 extends Node
 
 @export var cave_launcher : cave_launcher
@@ -6,7 +6,6 @@ extends Node
 @export var games_ui_state : ui_state_entry
 @export var choicer : choice_selector
 @export var main_ui_manager : main_state_manager
-@export var game_ui_state_controller : game_ui_state_controller
 @export var cover_image_loader : image_loader
 @export var logs : Control
 @export var launch_state_ui_controllers : Array[launch_state_ui_controller]
@@ -17,7 +16,6 @@ func _ready() -> void:
 	var save_data := save_data.load_from_file()
 	connection = butler_connection.new(save_data.butler_path)
 	add_child(connection)
-	game_ui_state_controller.set_connection(connection)
 	LogManager.add_log("Waiting for butler connection. If you don't see any progress, you may need to launch the configuration tool.")
 	await connection.wait_for_connection()
 	
@@ -49,8 +47,9 @@ func _ready() -> void:
 		var upload_filter = collection_game_info.from_json(collection_game.blurb).upload_filter
 		var cave_info := await cave_initializer.initialize_cave(connection, collection_game.game, upload_filter, choicer, profile.id)
 		if cave_info != null: 
-			var v := await game_data.new(cave_info, collection_game, cover_image_loader)
+			var v := game_data.new(cave_info, collection_game, cover_image_loader)
 			all_gameData.append(v)
+			await v.preload_image()
  
 	if save_data.check_for_updates_on_startup:
 		await cave_initializer.check_updates(connection, all_gameData, choicer, profile.id)

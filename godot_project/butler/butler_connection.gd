@@ -25,7 +25,7 @@ class request_error extends RefCounted:
 	var message : String
 
 var _tcpPeer : StreamPeerTCP
-var _jsonrpc : jsonrpc_butler
+var _jsonrpc : JSONRPC
 var _json : JSON
 var _authenticated : auth_state
 var _butler_daemon_process : butler_daemon_process
@@ -38,7 +38,7 @@ var butler_path : String
 
 func _init(butler_path : String) -> void:
 	self.butler_path = butler_path
-	_jsonrpc = jsonrpc_butler.new()
+	_jsonrpc = JSONRPC.new()
 	_json = JSON.new()
 	
 func _enter_tree():

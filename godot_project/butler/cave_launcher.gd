@@ -13,23 +13,23 @@ signal cave_running_changed (is_running : bool)
 @export var quit_input_handler : input_quit_game_controller
 @export var browser_launcher : browser_launcher
 
-var _cave_running : bool
+var _cave_launched : bool
 var _pre_launch_processes : PackedInt32Array
 var _connection : butler_connection
 var _server : HttpServer
-var _router : file_router
+var _router : local_content_router
 var browser_quit_panel_position : String
 
 func launch_cave(ci: cave_info, connection : butler_connection, browser_quit_panel_position : String):
-	if _cave_running:
+	if _cave_launched:
 		quit_cave(true)
 	
 	self.browser_quit_panel_position = browser_quit_panel_position
 	force_clean_up_run_lock(ci)
 	
 	_connection = connection
-	_cave_running = true
-	cave_launched_changed.emit(_cave_running, ci)
+	_cave_launched = true
+	cave_launched_changed.emit(_cave_launched, ci)
 	await _connection.wait_for_connection()
 	var cave := ci.cave;
 	var install_location_id = cave.installInfo.installLocation
@@ -68,7 +68,7 @@ static func wait_then_kill(prev_processes : PackedInt32Array, tree : SceneTree):
 func handler_html_launch(id: int, method:String, params:Dictionary):
 	var save := save_data.load_from_file()
 	_server = HttpServer.new()
-	_router = file_router.new(params.rootFolder)
+	_router = local_content_router.new(params.rootFolder)
 	_router.quit_received.connect(on_router_quit_received)
 	_server.register_router("^.*", _router)
 	_server.port = save.local_server_port
@@ -86,8 +86,8 @@ func handler_html_launch(id: int, method:String, params:Dictionary):
 	cave_running_changed.emit(true)
 
 func quit_cave(kill_spawned_processes : bool):
-	if !_cave_running: return;
-	_cave_running = false
+	if !_cave_launched: return;
+	_cave_launched = false
 	_connection.remove_request_handler("HTMLLaunch", handler_html_launch);
 	_connection.remove_request_handler(request_prereqs, handler_prereqs_failed);
 	_connection.unsubscribe_notification (notification_launch_running, on_notification_launch)

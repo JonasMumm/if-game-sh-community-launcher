@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxltecj7uxmp3"]
 
-[ext_resource type="Script" uid="uid://cxt1yo6sajwxj" path="res://choice_selector.gd" id="1_v1jt6"]
+[ext_resource type="Script" uid="uid://cxt1yo6sajwxj" path="res://ui/choice_selector/choice_selector.gd" id="1_v1jt6"]
 [ext_resource type="PackedScene" uid="uid://gcnmi5tgas1q" path="res://ui/choice_selector/choice_selector_button.tscn" id="2_y8vwb"]
 
 [node name="ChoiceSelector" type="Control" node_paths=PackedStringArray("choice_text", "choice_button_container")]

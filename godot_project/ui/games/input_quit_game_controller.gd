@@ -4,7 +4,7 @@ extends Node
 signal quit;
 
 const hold_duration_millis:= 1500;
-const poll_interval_seconds := 0.35
+const poll_interval_seconds := 0.3
 const executable_dir := "user://EscapeKeyDownTracker/"
 
 var _stdio : FileAccess
@@ -35,7 +35,7 @@ func _enter_tree() -> void:
 	
 	_stdio_timer = Timer.new();
 	_stdio_timer.autostart = true;
-	_stdio_timer.wait_time = 0.3
+	_stdio_timer.wait_time = poll_interval_seconds
 	_stdio_timer.timeout.connect(on_stdio_timer_timeout)
 	add_child(_stdio_timer)
 	
@@ -69,7 +69,7 @@ func on_stdio_timer_timeout():
 				quit.emit()
 		else:
 			_key_down_unix_millis = key_down_unix_millis;
-			if _key_down_unix_millis==0:
+			if _key_down_unix_millis == 0:
 				_was_signal_emitted = false
 
 func extract_all_from_zip():
