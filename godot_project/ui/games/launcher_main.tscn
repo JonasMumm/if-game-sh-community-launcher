@@ -17,14 +17,13 @@
 [ext_resource type="Script" uid="uid://dig5yux8t4imh" path="res://ui/games/launch_state_ui_controller.gd" id="15_i5bye"]
 [ext_resource type="PackedScene" uid="uid://bxltecj7uxmp3" path="res://ui/choice_selector/choice_selector.tscn" id="16_2jh5i"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("cave_launcher", "games_ui", "games_ui_state", "choicer", "main_ui_manager", "game_ui_state_controller", "cover_image_loader", "logs", "launch_state_ui_controllers")]
+[node name="Main" type="Node" node_paths=PackedStringArray("cave_launcher", "games_ui", "games_ui_state", "choicer", "main_ui_manager", "cover_image_loader", "logs", "launch_state_ui_controllers")]
 script = ExtResource("1_jksf5")
 cave_launcher = NodePath("cave_launcher")
 games_ui = NodePath("CanvasLayer/MainUiStateManager/state_games_ui_controller/games_ui_controller")
 games_ui_state = NodePath("CanvasLayer/MainUiStateManager/state_games_ui_controller")
 choicer = NodePath("CanvasLayer/ChoiceSelector")
 main_ui_manager = NodePath("CanvasLayer/MainUiStateManager")
-game_ui_state_controller = NodePath("game_ui_state_controller")
 cover_image_loader = NodePath("image_loader")
 logs = NodePath("CanvasLayer/log_display")
 launch_state_ui_controllers = [NodePath("CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching_controller"), NodePath("CanvasLayer/MainUiStateManager/state_ui_running/ui_running_controller")]
