@@ -5,6 +5,7 @@ extends Control
 @export var collection : collection_settings
 @export var browser : browser_settings
 @export var games : game_settings
+@export var escape_key_down : escape_key_down_tracker_settings
 @export var quit_button : Button
 
 var connection : butler_connection
@@ -34,6 +35,7 @@ func _refresh_all_ui():
 	collection.init_ui(save, connection)
 	browser.init_ui(save)
 	games.init_ui(save, connection)
+	escape_key_down.init_ui(save)
 
 func quit():
 	get_tree().quit()

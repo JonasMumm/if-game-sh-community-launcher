@@ -5,7 +5,10 @@ signal quit;
 
 const hold_duration_millis:= 1500;
 const poll_interval_seconds := 0.3
-const executable_dir := "user://EscapeKeyDownTracker/"
+const executable_dir_template := "user://cache/EscapeKeyDownTracker/"
+const internal_dir := "res://EscapeKeyDownTracker/bin/"
+
+var save : save_data
 
 var _stdio : FileAccess
 var _stderr : FileAccess
@@ -17,12 +20,21 @@ var _was_signal_emitted: bool
 var _key_down_unix_millis : int
 
 func _init():
-	extract_all_from_zip()
+	self.save = save_data.load_from_file()
+	var exe_dir := get_executable_dir(save.get_escape_key_down_tracker_type_safe())
+	
+	if DirAccess.dir_exists_absolute(exe_dir): return
+	
+	var source_dir := internal_dir.path_join(save.get_escape_key_down_tracker_type_safe())
+	
+	var err := directory_copy.copy(source_dir, exe_dir)
+	var errSTr := error_string(err)
+	var i:= 0
 
 func _enter_tree() -> void:
 	_key_down_unix_millis = 0
 	
-	var executable_path := executable_dir.path_join("EscapeKeyDownTracker.exe");
+	var executable_path := get_executable_dir(save.get_escape_key_down_tracker_type_safe()).path_join("EscapeKeyDownTracker.exe");
 	
 	if(!FileAccess.file_exists(executable_path)):
 		printerr("EscapeKeyDownTracker.exe file does not exist")
@@ -72,34 +84,5 @@ func on_stdio_timer_timeout():
 			if _key_down_unix_millis == 0:
 				_was_signal_emitted = false
 
-func extract_all_from_zip():
-	var zip_reader = ZIPReader.new()
-	var err = zip_reader.open("res://EscapeKeyDownTracker/bin/EscapeKeyDownTracker.zip")
-	
-	if(err!=OK):
-		printerr("open zip failed w/ "+error_string(err))
-		return
-	
-	# Destination directory for the extracted files (this folder must exist before extraction).
-	# Not all ZIP archives put everything in a single root folder,
-	# which means several files/folders may be created in `root_dir` after extraction.
-	DirAccess.make_dir_absolute(executable_dir)
-	var root_dir = DirAccess.open(executable_dir)
-
-	var files = zip_reader.get_files()
-	for file_path in files:
-		# If the current entry is a directory.
-		if file_path.ends_with("/"):
-			root_dir.make_dir_recursive(file_path)
-			continue
-
-		# Write file contents, creating folders automatically when needed.
-		# Not all ZIP archives are strictly ordered, so we need to do this in case
-		# the file entry comes before the folder entry.
-		root_dir.make_dir_recursive(root_dir.get_current_dir().path_join(file_path).get_base_dir())
-		var result_file_path := root_dir.get_current_dir().path_join(file_path)
-		var file = FileAccess.open(result_file_path, FileAccess.WRITE)
-		if file != null: #todo: the file may not have opened correctly, because it is still used by previous sessions process if it didnt exit cleanly. deal with that.
-			var buffer = zip_reader.read_file(file_path)
-			file.store_buffer(buffer)
-	zip_reader.close()
+func get_executable_dir(mode : String) -> String:
+	return executable_dir_template.path_join("v"+str(ProjectSettings.get_setting_with_override("application/config/version"))).path_join(mode)

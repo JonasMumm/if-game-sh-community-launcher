@@ -1,7 +1,6 @@
 class_name launcher_bootstrap
 extends Node
 
-@export var cave_launcher : cave_launcher
 @export var games_ui : games_ui_controller
 @export var games_ui_state : ui_state_entry
 @export var choicer : choice_selector

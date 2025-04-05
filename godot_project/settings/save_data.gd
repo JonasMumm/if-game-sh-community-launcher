@@ -13,6 +13,7 @@ signal saved;
 @export var browser_chrome_executable_path : String
 @export var browser_edge_executable_path : String
 @export var browser_custom_command : String
+@export var escape_key_down_tracker_type : String
 @export var local_server_port := 39902
 
 static func load_from_file() -> save_data:
@@ -59,3 +60,14 @@ func set_browser_executable_path(path : String):
 			browser_chrome_executable_path = path
 		browser_launcher.mode.MicrosoftEdge:
 			browser_edge_executable_path = path
+
+func get_escape_key_down_tracker_type_safe()->String:
+	if !escape_key_down_tracker_type.is_empty() && escape_key_down_tracker_settings.types.has(escape_key_down_tracker_type):
+		return escape_key_down_tracker_type
+	
+	#standalone application for common windows x86 64bit architecture
+	if OS.has_feature("x86") && OS.has_feature("64"):
+		return escape_key_down_tracker_settings.type_win_x64_standalone;
+	
+	#fallback: portable .net application, requires .net >= 8.0 to be installed
+	return escape_key_down_tracker_settings.type_net_portable
