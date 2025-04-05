@@ -26,14 +26,6 @@ func _ready() -> void:
 		return
 	LogManager.add_log("Logged into profile "+str(profile.id)+" ("+str(profile.user.displayName+")"))
 	
-	#init one location
-	var install_locations_rq := await connection.send_request("Install.Locations.List",{});
-	if(install_locations_rq.result.installLocations.size() == 0):
-		var location_path := ProjectSettings.globalize_path("user://game_installs")
-		DirAccess.make_dir_absolute(location_path)
-		await connection.send_request("Install.Locations.Add", { path = location_path})
-	
-	
 	var profile_id :int= profile.id;
 	var collection_rq := await connection.send_request_freshable("Fetch.Collection",{profileId=profile_id, collectionId=save_data.collection_id})
 	
