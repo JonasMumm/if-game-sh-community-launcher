@@ -1,7 +1,7 @@
 class_name image_loader
 extends Node
 
-@export var path:= "user://image_cache/index.json"
+@export var path:= "user://cache/image_cache/index.json"
 @export var fallback_image : Texture2D
 
 var cache : image_cache;

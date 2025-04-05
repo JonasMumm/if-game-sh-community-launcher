@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://gurl8mgrosm5"]
+[gd_scene load_steps=17 format=3 uid="uid://gurl8mgrosm5"]
 
 [ext_resource type="PackedScene" uid="uid://tqukidx1wx50" path="res://logging/log_display.tscn" id="1_1np8e"]
 [ext_resource type="Theme" uid="uid://d3afgootd7erb" path="res://settings/settings_header.tres" id="1_gjdk6"]
@@ -15,8 +15,9 @@
 [ext_resource type="Script" uid="uid://b6psrvtbicqic" path="res://settings/game_settings.gd" id="12_ocg8h"]
 [ext_resource type="Script" uid="uid://cg27bp0xwfy4t" path="res://butler/cave_launcher.gd" id="13_fhdcv"]
 [ext_resource type="Script" uid="uid://bsa6o5ox4ok1a" path="res://ui/games/input_quit_game_controller.gd" id="14_dt0go"]
+[ext_resource type="Script" uid="uid://bwc4pq3dgxesp" path="res://settings/escape_key_down_tracker_settings.gd" id="16_bu604"]
 
-[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("butler", "profile", "collection", "browser", "games", "quit_button")]
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("butler", "profile", "collection", "browser", "games", "escape_key_down", "quit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,6 +30,7 @@ profile = NodePath("Controllers/profile_Settings")
 collection = NodePath("Controllers/collection_settings")
 browser = NodePath("Controllers/browser_settings")
 games = NodePath("Controllers/game_settings")
+escape_key_down = NodePath("Controllers/escape_key_down_tracker_settings")
 quit_button = NodePath("HSplitContainer/InputArea/VBoxContainer/MarginContainer/QuitButton")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
@@ -254,6 +256,27 @@ text = "Save"
 [node name="HSeparator4" type="HSeparator" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="EKDT" type="VBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EKDT"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme = ExtResource("1_gjdk6")
+text = "Escape Key Down Tracker"
+autowrap_mode = 3
+
+[node name="hint_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EKDT" instance=ExtResource("3_tm82m")]
+layout_mode = 2
+text = "Escape Key Down Tracker is used to force quit a game by holding down the Esc-Key at any point. Choose the mode to use. Choosing the standalone windows version requires a x86 64 bit architecture. The .net version is portable, but requires .net>=8.0 to be installed locally. You'd have to take care of that manually."
+
+[node name="EKDT info" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EKDT" instance=ExtResource("2_olm1t")]
+layout_mode = 2
+
+[node name="EKDT select" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EKDT"]
+layout_mode = 2
+text = "Select architecture/mode"
+
 [node name="Game" type="VBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -389,3 +412,10 @@ metadata/_custom_type_script = "uid://cg27bp0xwfy4t"
 [node name="input_quit_game_controller" type="Node" parent="Controllers/game_settings"]
 script = ExtResource("14_dt0go")
 metadata/_custom_type_script = "uid://bsa6o5ox4ok1a"
+
+[node name="escape_key_down_tracker_settings" type="Node" parent="Controllers" node_paths=PackedStringArray("choose_type_button", "choicer", "info_box")]
+script = ExtResource("16_bu604")
+choose_type_button = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EKDT/EKDT select")
+choicer = NodePath("../../HSplitContainer/InputArea/ChoiceSelector")
+info_box = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EKDT/EKDT info")
+metadata/_custom_type_script = "uid://bwc4pq3dgxesp"

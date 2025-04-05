@@ -10,7 +10,14 @@ static func initialize_cave(connection: butler_connection, game: Dictionary, upl
 	var has_cave : bool = caves.size() > 0
 	var cave : Dictionary;
 	if !has_cave:
+		#init atleast one location
 		var install_locations_rq := await connection.send_request("Install.Locations.List",{});
+		if(install_locations_rq.result.installLocations.size() == 0):
+			var location_path := ProjectSettings.globalize_path("user://game_installs")
+			DirAccess.make_dir_absolute(location_path)
+			await connection.send_request("Install.Locations.Add", { path = location_path})
+			install_locations_rq = await connection.send_request("Install.Locations.List",{});
+
 		install_location_id =install_locations_rq.result.installLocations[0].id #todo: Choose install location
 		
 		await connection.send_request_freshable("Fetch.DownloadKeys",{profileId = profileId, limit = 24, filters = {gameId = game_id}})

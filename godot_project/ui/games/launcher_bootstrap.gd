@@ -1,7 +1,6 @@
 class_name launcher_bootstrap
 extends Node
 
-@export var cave_launcher : cave_launcher
 @export var games_ui : games_ui_controller
 @export var games_ui_state : ui_state_entry
 @export var choicer : choice_selector
@@ -25,14 +24,6 @@ func _ready() -> void:
 		LogManager.add_log("Could'nt sign into profile "+str(save_data.profile_id), log_manager.log_type.error)
 		return
 	LogManager.add_log("Logged into profile "+str(profile.id)+" ("+str(profile.user.displayName+")"))
-	
-	#init one location
-	var install_locations_rq := await connection.send_request("Install.Locations.List",{});
-	if(install_locations_rq.result.installLocations.size() == 0):
-		var location_path := ProjectSettings.globalize_path("user://game_installs")
-		DirAccess.make_dir_absolute(location_path)
-		await connection.send_request("Install.Locations.Add", { path = location_path})
-	
 	
 	var profile_id :int= profile.id;
 	var collection_rq := await connection.send_request_freshable("Fetch.Collection",{profileId=profile_id, collectionId=save_data.collection_id})
