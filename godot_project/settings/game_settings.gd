@@ -1,7 +1,7 @@
 class_name game_settings
 extends Node
 
-const post_launch_backoff_seconds := 1
+const post_launch_backoff_seconds := 3
 
 signal launch_continue;
 
@@ -58,6 +58,7 @@ func launch_all_installed_caves():
 		await launch_continue
 		await get_tree().create_timer(post_launch_backoff_seconds).timeout
 		cave_launcher.quit_hard()
+		cave_launcher.cave_running_changed.disconnect(on_cave_running_changed)
 		await get_tree().create_timer(post_launch_backoff_seconds).timeout
 	menu_container.visible = true
 
