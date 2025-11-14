@@ -6,3 +6,4 @@ EscapeKeyDownTracker-NetFrameworkWindowsConsoleApp/obj/
 godot_project/build/**/*.exe
 godot_project/build/**/*.pck
 *.user
+godot_project/build/IFgameSH Community Kiosk Windows/data_if-game-communiy-launcher_windows_x86_64
