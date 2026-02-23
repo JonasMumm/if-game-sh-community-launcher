@@ -1,7 +1,7 @@
 class_name butler_settings
 extends Node
 
-const broth_url := "https://broth.itch.ovh/butler/$CHANNEL/LATEST/archive/default"
+const broth_url := "https://broth.itch.zone/butler/$CHANNEL/LATEST/archive/default"
 const zip_file_path := "user://butler-temp.zip"
 const butler_install_path := "user://butler"
 
