@@ -39,14 +39,14 @@ static func initialize_cave(connection: butler_connection, game: Dictionary, upl
 		else:
 			best_upload = await select_upload(str(game.title), uploads, upload_filter, choicer)
 			if best_upload.is_empty(): return null
-		connection.send_request("Downloads.Drive",{})
+		#connection.send_request("Downloads.Drive",{}) #disabled for issue #13. if downloads/installs are stuck, we may need this after all
 		var install_queue_rq = await connection.send_request("Install.Queue",{installLocationId = install_location_id, game = game, upload = best_upload, queueDownload = true})		
 
 		if !install_queue_rq.successful:
 			return
-		connection.send_request("Downloads.Drive",{})
+		#connection.send_request("Downloads.Drive",{}) #disabled for issue #13. if downloads/installs are stuck, we may need this after all
 		
-		var install_perform_rq = await  connection.send_request("Install.Perform",{id = install_queue_rq.result.id, stagingFolder = install_queue_rq.result.stagingFolder})
+		var install_perform_rq = await connection.send_request("Install.Perform",{id = install_queue_rq.result.id, stagingFolder = install_queue_rq.result.stagingFolder})
 		
 		if install_perform_rq.successful:
 			return await initialize_cave(connection, game, upload_filter, choicer, profileId)
@@ -70,7 +70,7 @@ static func check_updates(connection: butler_connection, games : Array[game_data
 		var uploads = update.choices.map(func(v): return v.upload);
 		var best_upload = await select_upload(game.collection_game.game.title, uploads, game.collection_entry.upload_filter,choicer);
 
-		connection.send_request("Downloads.Drive",{})
+		#connection.send_request("Downloads.Drive",{}) #disabled for issue #13. if downloads/installs are stuck, we may need this after all
 		var update_queue_rq = await connection.send_request("Install.Queue",{caveId = cave.id, reason = "update", upload = best_upload, queueDownload = true})		
 
 		if !update_queue_rq.successful:
@@ -84,7 +84,7 @@ static func check_updates(connection: butler_connection, games : Array[game_data
 				game.cave_info = await initialize_cave(connection, game.collection_game.game, game.collection_entry.upload_filter, choicer, profile_id)
 				continue
 		
-		connection.send_request("Downloads.Drive",{})
+		#connection.send_request("Downloads.Drive",{}) #disabled for issue #13. if downloads/installs are stuck, we may need this after all
 		var update_perform_rq = await connection.send_request("Install.Perform",{id = update_queue_rq.result.id, stagingFolder = update_queue_rq.result.stagingFolder})
 		
 		if update_perform_rq.successful:

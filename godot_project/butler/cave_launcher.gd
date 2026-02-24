@@ -26,7 +26,7 @@ func launch_cave(ci: cave_info, connection : butler_connection, browser_quit_pan
 	
 	self.browser_quit_panel_position = browser_quit_panel_position
 	force_clean_up_run_lock(ci)
-	
+
 	_connection = connection
 	_cave_launched = true
 	cave_launched_changed.emit(_cave_launched, ci)

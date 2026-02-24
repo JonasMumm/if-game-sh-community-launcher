@@ -15,3 +15,20 @@ static func copy(dir_from : String, dir_to : String) -> Error:
 		if err != OK:
 			return err
 	return OK
+	
+static func remove_recursive(path : String) -> Error:
+	var dirs := DirAccess.get_directories_at(path)
+	for dir in dirs:
+		var err := remove_recursive(path.path_join(dir))
+		if err != OK:
+			return err
+	
+	var files := DirAccess.get_files_at(path)
+	for file in files:
+		var err := DirAccess.remove_absolute(path.path_join(file))
+		if err != OK:
+			return err
+	var errDir := DirAccess.remove_absolute(path)
+	if errDir != OK:
+		return errDir
+	return OK

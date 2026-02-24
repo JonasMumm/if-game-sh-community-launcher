@@ -68,5 +68,9 @@ func on_launch_button_pressed():
 			await pre_launch_hints[hint_node_index].display()
 	launch_button.grab_focus()
 	var game := focused_button._game;
+	var err := game.run_pre_launch_options();
+	if err != OK:
+		printerr(err);
+		return;
 	launcher.launch_cave(game.cave_info, connection, game.collection_entry.browser_quit_panel_position)
 	

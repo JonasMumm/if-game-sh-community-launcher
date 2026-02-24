@@ -155,7 +155,6 @@ func send_request(method: String, params: Variant) -> in_flight_request:
 	
 func send_request_freshable(method: String, params: Variant) -> in_flight_request:
 	var rq1 = await send_request(method, params)
-	rq1.result["stale"] = true
 	if rq1.result.get("stale",false) == true :
 		params.fresh = true
 		var rq2 := await send_request(method, params)
