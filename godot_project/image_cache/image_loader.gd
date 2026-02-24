@@ -20,9 +20,12 @@ func preload_url(url : String):
 	if url.is_empty(): return;
 
 	if(cache.has_cache_entry(url)): return;
-	await download_image(url)
+	await download_image(url, url)
 
-func download_image(url : String):
+func download_image(url : String, save_as_url : String):
+	#itch editor hates image links, we need to escape them to preventtrouple
+	if url.ends_with(".escaped_"):
+		url = url.substr(0,url.length() - (".escaped_".length()));
 	var time := Time.get_unix_time_from_system();
 	var extension := url.get_extension()
 	var index_dir := path.get_base_dir()
@@ -37,10 +40,20 @@ func download_image(url : String):
 	var error := request.request(url)
 	if error != OK:
 		LogManager.add_log("An error occurred in the HTTP request: "+error_string(error), log_manager.log_type.error)
-	await request.request_completed;
+	var request_result_array = await request.request_completed;
 	
-	if FileAccess.file_exists(file_path):
-		cache.add(url,file_path)
+	var result = request_result_array[0];
+	var responseCode = request_result_array[1];
+	
+	if responseCode<200 || responseCode>299:
+		#escape urls that can not be properly entered into itch collection blurb form
+		if (url.ends_with("png") && !url.ends_with(".png")) || (url.ends_with("jpg") && !url.ends_with(".jpg")):
+			var unescaped_url = url.substr(0,url.length()-3)+"."+url.substr(url.length()-3,3);
+			await download_image(unescaped_url, url)
+			return
+	
+	if result == HTTPRequest.Result.RESULT_SUCCESS && FileAccess.file_exists(file_path):
+		cache.add(save_as_url, file_path)
 		cache.save_to_file(path)
 		
 	request.queue_free()
