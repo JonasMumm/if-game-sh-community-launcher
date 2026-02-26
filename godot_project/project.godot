@@ -11,10 +11,12 @@ config_version=5
 [application]
 
 config/name="IFgameSH Community Kiosk"
-config/version="1.0.7"
+config/version="1.0.8"
 run/main_scene="uid://lrog8iu7spdd"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.5", "C#", "Mobile")
+run/max_fps=10
+run/low_processor_mode=true
 boot_splash/bg_color=Color(1, 1, 1, 1)
 boot_splash/show_image=false
 config/icon="uid://byt0e6hbckyx0"
