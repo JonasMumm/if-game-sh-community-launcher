@@ -36,7 +36,6 @@ func set_data(connection : butler_connection, games : Array[game_data]):
 		buttons.append(button)
 	
 	set_focused_button(buttons[0])
-	buttons[0].button.grab_focus()
 
 func grab_context_focus(shown : bool):
 	if shown: focused_button.button.grab_focus()
@@ -58,6 +57,7 @@ func set_focused_button(b : game_button):
 		author_label.visible = true
 	else:
 		author_label.visible = false
+	focused_button.button.grab_focus()
 	
 func on_launch_button_pressed():
 	var hints := focused_button._game.collection_entry.pre_launch_hints
