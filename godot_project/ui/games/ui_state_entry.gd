@@ -1,6 +1,9 @@
 class_name ui_state_entry
 extends Control
 
+@export var high_performance_mode : bool
+@export var cursor_fun : bool
+
 signal show_state_changed(shown:bool);
 
 func hide_state():
