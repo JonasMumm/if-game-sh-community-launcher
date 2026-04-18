@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bxltecj7uxmp3" path="res://ui/choice_selector/choice_selector.tscn" id="16_2jh5i"]
 [ext_resource type="Texture2D" uid="uid://da476374mcjok" path="res://icons/cursor.png" id="17_0qv6n"]
 [ext_resource type="Script" uid="uid://cfe4uxibhyn18" path="res://ui/fun_mouse_cursor.gd" id="17_r740p"]
+[ext_resource type="Texture2D" uid="uid://yvfontsbr21h" path="res://icons/cursor_solid.png" id="18_6bt5x"]
 
 [node name="Main" type="Node" unique_id=1034041569 node_paths=PackedStringArray("games_ui", "games_ui_state", "choicer", "main_ui_manager", "cover_image_loader", "logs", "launch_state_ui_controllers")]
 script = ExtResource("1_jksf5")
@@ -314,7 +315,7 @@ wobbler_lambda = 5.0
 wobbler_acceleration = 160000.0
 min_size = 50.0
 wind_scale = 55.0
-wind_variance = Vector3(24, 20, 0)
+wind_variance = Vector3(10, 8, 0)
 mouse_visual_size_level_2 = NodePath("mouse_visual_pos_level_2/mouse_visual_height")
 mouse_visual_pos_level_2 = NodePath("mouse_visual_pos_level_2")
 mouse_level_2_offset = Vector2(0, 5)
@@ -347,7 +348,7 @@ mouse_filter = 2
 modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(0, 208.535)
 layout_mode = 2
-texture = ExtResource("17_0qv6n")
+texture = ExtResource("18_6bt5x")
 expand_mode = 2
 stretch_mode = 5
 
@@ -365,7 +366,7 @@ mouse_filter = 2
 modulate = Color(0.49143595, 0.49143595, 0.49143595, 1)
 custom_minimum_size = Vector2(0, 208.535)
 layout_mode = 2
-texture = ExtResource("17_0qv6n")
+texture = ExtResource("18_6bt5x")
 expand_mode = 2
 stretch_mode = 5
 

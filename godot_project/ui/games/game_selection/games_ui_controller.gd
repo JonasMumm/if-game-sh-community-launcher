@@ -8,6 +8,7 @@ extends Control
 @export var title_label : Label
 @export var cover_texture_rect : TextureRect
 @export var author_label : Label
+@export var input_layout_manager : input_layout_ui
 @export var shortText_label : Label
 @export var pre_launch_hints : Array[pre_launch_hint]
 
@@ -57,6 +58,7 @@ func set_focused_button(b : game_button):
 		author_label.visible = true
 	else:
 		author_label.visible = false
+	input_layout_manager.set_data(focused_button._game.collection_entry.controls)
 	focused_button.button.grab_focus()
 	
 func on_launch_button_pressed():

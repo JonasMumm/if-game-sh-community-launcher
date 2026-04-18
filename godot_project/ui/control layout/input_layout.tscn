@@ -1,0 +1,922 @@
+[gd_scene format=3 uid="uid://f7holcw5kcpc"]
+
+[ext_resource type="PackedScene" uid="uid://d0tww01i4h43u" path="res://ui/control layout/control_key.tscn" id="1_qsc7m"]
+[ext_resource type="Script" uid="uid://b3mrw6mcq1a5s" path="res://ui/control layout/input_layout.gd" id="1_sj447"]
+[ext_resource type="Texture2D" uid="uid://iwconqp7skat" path="res://icons/KeyNeutral.png" id="2_44u6o"]
+[ext_resource type="Texture2D" uid="uid://ijjmbsu6bfl3" path="res://icons/arrow.png" id="2_wvurn"]
+[ext_resource type="Script" uid="uid://r2wbtk6u0prl" path="res://ui/control layout/input_layout_entry.gd" id="3_byx2t"]
+[ext_resource type="Texture2D" uid="uid://c5a5hu87aokyg" path="res://icons/mouse/L1,R1,C1,Mouse_BG,visible,Normal,255.png" id="6_id7b6"]
+[ext_resource type="Texture2D" uid="uid://bd33xhtt48frh" path="res://icons/mouse/L2,R1,C1,Mouse_LeftButton,visible,Normal,255.png" id="7_7j507"]
+[ext_resource type="Texture2D" uid="uid://bf2rmyi8nq53i" path="res://icons/mouse/L7,R1,C1,Mouse_Wheel_BG,hidden,Normal,255.png" id="7_7koq5"]
+[ext_resource type="Texture2D" uid="uid://bbkb43sti43m8" path="res://icons/mouse/L4,R1,C1,Mouse_Wheel,visible,Normal,255.png" id="8_5kov3"]
+[ext_resource type="Texture2D" uid="uid://c8kckykiajrot" path="res://icons/arrow_short.png" id="8_7j507"]
+[ext_resource type="Texture2D" uid="uid://dl460apjraojd" path="res://icons/mouse/L6,R1,C1,Mouse_Outline,visible,Normal,255.png" id="9_7koq5"]
+[ext_resource type="Texture2D" uid="uid://ilf0m1uxhdo0" path="res://icons/mouse/L5,R1,C1,Mouse_Wheel_Outline,visible,Normal,255.png" id="10_5kov3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qsc7m"]
+line_spacing = -46.245
+font_size = 130
+font_color = Color(0, 0, 0, 1)
+outline_size = 14
+outline_color = Color(0, 0, 0, 1)
+
+[node name="InputLayout" type="Control" unique_id=389702841]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_sj447")
+
+[node name="Key_Esc" parent="." unique_id=1971702534 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = -526.0
+offset_top = -702.0
+offset_right = -96.0
+offset_bottom = -278.0
+script = ExtResource("3_byx2t")
+
+[node name="TextLabel" parent="Key_Esc/LabelRect" parent_id_path=PackedInt32Array(1971702534, 1141195935) index="0" unique_id=1299492015]
+offset_left = 4.0
+offset_top = 13.0
+offset_right = 4.0
+offset_bottom = 13.0
+text = "Esc"
+label_settings = SubResource("LabelSettings_qsc7m")
+
+[node name="Key_^" parent="." unique_id=1673623909 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = -526.0
+offset_top = -351.0
+offset_right = -96.0
+offset_bottom = 73.0
+
+[node name="TextLabel" parent="Key_^/LabelRect" parent_id_path=PackedInt32Array(1673623909, 1141195935) index="0" unique_id=1299492015]
+text = "^"
+
+[node name="Key_1" parent="." unique_id=297588014 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = -120.0
+offset_top = -351.0
+offset_right = 310.0
+offset_bottom = 73.0
+
+[node name="TextLabel" parent="Key_1/LabelRect" parent_id_path=PackedInt32Array(297588014, 1141195935) index="0" unique_id=1299492015]
+text = "1"
+
+[node name="Key_2" parent="." unique_id=1749731044 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 287.0
+offset_top = -351.0
+offset_right = 717.0
+offset_bottom = 73.0
+
+[node name="TextLabel" parent="Key_2/LabelRect" parent_id_path=PackedInt32Array(1749731044, 1141195935) index="0" unique_id=1299492015]
+text = "2"
+
+[node name="Key_3" parent="." unique_id=806075759 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 693.0
+offset_top = -351.0
+offset_right = 1123.0
+offset_bottom = 73.0
+
+[node name="TextLabel" parent="Key_3/LabelRect" parent_id_path=PackedInt32Array(806075759, 1141195935) index="0" unique_id=1299492015]
+text = "3"
+
+[node name="Key_4" parent="." unique_id=227051868 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 1100.0
+offset_top = -351.0
+offset_right = 1530.0
+offset_bottom = 73.0
+
+[node name="TextLabel" parent="Key_4/LabelRect" parent_id_path=PackedInt32Array(227051868, 1141195935) index="0" unique_id=1299492015]
+text = "4"
+
+[node name="Key_5" parent="." unique_id=1580739545 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 1506.0
+offset_top = -351.0
+offset_right = 1936.0
+offset_bottom = 73.0
+
+[node name="TextLabel" parent="Key_5/LabelRect" parent_id_path=PackedInt32Array(1580739545, 1141195935) index="0" unique_id=1299492015]
+text = "5"
+
+[node name="Key_6" parent="." unique_id=604155210 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 1913.0
+offset_top = -351.0
+offset_right = 2343.0
+offset_bottom = 73.0
+
+[node name="TextLabel" parent="Key_6/LabelRect" parent_id_path=PackedInt32Array(604155210, 1141195935) index="0" unique_id=1299492015]
+text = "6"
+
+[node name="Key_7" parent="." unique_id=2126485726 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 2319.0
+offset_top = -351.0
+offset_right = 2749.0
+offset_bottom = 73.0
+
+[node name="TextLabel" parent="Key_7/LabelRect" parent_id_path=PackedInt32Array(2126485726, 1141195935) index="0" unique_id=1299492015]
+text = "7"
+
+[node name="Key_8" parent="." unique_id=670048836 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 2726.0
+offset_top = -351.0
+offset_right = 3156.0
+offset_bottom = 73.0
+
+[node name="TextLabel" parent="Key_8/LabelRect" parent_id_path=PackedInt32Array(670048836, 1141195935) index="0" unique_id=1299492015]
+text = "8"
+
+[node name="Key_9" parent="." unique_id=830003035 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 3132.0
+offset_top = -351.0
+offset_right = 3562.0
+offset_bottom = 73.0
+
+[node name="TextLabel" parent="Key_9/LabelRect" parent_id_path=PackedInt32Array(830003035, 1141195935) index="0" unique_id=1299492015]
+text = "9"
+
+[node name="Key_0" parent="." unique_id=1010081937 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 3539.0
+offset_top = -351.0
+offset_right = 3969.0
+offset_bottom = 73.0
+
+[node name="TextLabel" parent="Key_0/LabelRect" parent_id_path=PackedInt32Array(1010081937, 1141195935) index="0" unique_id=1299492015]
+text = "0"
+
+[node name="Key_Tab" parent="." unique_id=963340456 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = -527.0
+offset_right = 21.744995
+
+[node name="TextLabel" parent="Key_Tab/LabelRect" parent_id_path=PackedInt32Array(963340456, 1141195935) index="0" unique_id=1299492015]
+text = "Tab"
+
+[node name="Key_Q" parent="." unique_id=433846755 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+
+[node name="TextLabel" parent="Key_Q/LabelRect" parent_id_path=PackedInt32Array(433846755, 1141195935) index="0" unique_id=1299492015]
+text = "Q"
+
+[node name="Key_W" parent="." unique_id=1898002659 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 407.0
+offset_right = 837.0
+
+[node name="Key_E" parent="." unique_id=992776770 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 813.0
+offset_right = 1243.0
+
+[node name="TextLabel" parent="Key_E/LabelRect" parent_id_path=PackedInt32Array(992776770, 1141195935) index="0" unique_id=1299492015]
+text = "E"
+
+[node name="Key_R" parent="." unique_id=1660546065 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 1220.0
+offset_right = 1650.0
+
+[node name="TextLabel" parent="Key_R/LabelRect" parent_id_path=PackedInt32Array(1660546065, 1141195935) index="0" unique_id=1299492015]
+text = "R"
+
+[node name="Key_T" parent="." unique_id=618079391 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 1626.0
+offset_right = 2056.0
+
+[node name="TextLabel" parent="Key_T/LabelRect" parent_id_path=PackedInt32Array(618079391, 1141195935) index="0" unique_id=1299492015]
+text = "T"
+
+[node name="Key_Y" parent="." unique_id=807939257 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 2033.0
+offset_right = 2463.0
+
+[node name="TextLabel" parent="Key_Y/LabelRect" parent_id_path=PackedInt32Array(807939257, 1141195935) index="0" unique_id=1299492015]
+text = "Y"
+
+[node name="Key_U" parent="." unique_id=987266260 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 2439.0
+offset_right = 2869.0
+
+[node name="TextLabel" parent="Key_U/LabelRect" parent_id_path=PackedInt32Array(987266260, 1141195935) index="0" unique_id=1299492015]
+text = "U"
+
+[node name="Key_I" parent="." unique_id=365965462 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 2846.0
+offset_right = 3276.0
+
+[node name="TextLabel" parent="Key_I/LabelRect" parent_id_path=PackedInt32Array(365965462, 1141195935) index="0" unique_id=1299492015]
+text = "I"
+
+[node name="Key_O" parent="." unique_id=2096455330 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 3252.0
+offset_right = 3682.0
+
+[node name="TextLabel" parent="Key_O/LabelRect" parent_id_path=PackedInt32Array(2096455330, 1141195935) index="0" unique_id=1299492015]
+text = "O"
+
+[node name="Key_P" parent="." unique_id=951187704 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 3659.0
+offset_right = 4089.0
+
+[node name="TextLabel" parent="Key_P/LabelRect" parent_id_path=PackedInt32Array(951187704, 1141195935) index="0" unique_id=1299492015]
+text = "P"
+
+[node name="Key_CapsLock" parent="." unique_id=1333072901 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = -525.0
+offset_top = 351.0
+offset_right = 143.0
+offset_bottom = 775.0
+
+[node name="TextLabel" parent="Key_CapsLock/LabelRect" parent_id_path=PackedInt32Array(1333072901, 1141195935) index="0" unique_id=1299492015]
+text = "Caps Lock"
+label_settings = SubResource("LabelSettings_qsc7m")
+
+[node name="Key_A" parent="." unique_id=1106472324 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 351.0
+offset_right = 550.0
+offset_bottom = 775.0
+
+[node name="TextLabel" parent="Key_A/LabelRect" parent_id_path=PackedInt32Array(1106472324, 1141195935) index="0" unique_id=1299492015]
+text = "A"
+
+[node name="Key_S" parent="." unique_id=2037920418 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 527.0
+offset_top = 351.0
+offset_right = 957.0
+offset_bottom = 775.0
+
+[node name="TextLabel" parent="Key_S/LabelRect" parent_id_path=PackedInt32Array(2037920418, 1141195935) index="0" unique_id=1299492015]
+text = "S"
+
+[node name="Key_D" parent="." unique_id=1124049637 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 933.0
+offset_top = 351.0
+offset_right = 1363.0
+offset_bottom = 775.0
+
+[node name="TextLabel" parent="Key_D/LabelRect" parent_id_path=PackedInt32Array(1124049637, 1141195935) index="0" unique_id=1299492015]
+text = "D"
+
+[node name="Key_F" parent="." unique_id=1600994355 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 1340.0
+offset_top = 351.0
+offset_right = 1770.0
+offset_bottom = 775.0
+
+[node name="TextLabel" parent="Key_F/LabelRect" parent_id_path=PackedInt32Array(1600994355, 1141195935) index="0" unique_id=1299492015]
+text = "F"
+
+[node name="Key_G" parent="." unique_id=688093423 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 1746.0
+offset_top = 351.0
+offset_right = 2176.0
+offset_bottom = 775.0
+
+[node name="TextLabel" parent="Key_G/LabelRect" parent_id_path=PackedInt32Array(688093423, 1141195935) index="0" unique_id=1299492015]
+text = "G"
+
+[node name="Key_H" parent="." unique_id=79266449 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 2153.0
+offset_top = 351.0
+offset_right = 2583.0
+offset_bottom = 775.0
+
+[node name="TextLabel" parent="Key_H/LabelRect" parent_id_path=PackedInt32Array(79266449, 1141195935) index="0" unique_id=1299492015]
+text = "H"
+
+[node name="Key_J" parent="." unique_id=1772935541 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 2559.0
+offset_top = 351.0
+offset_right = 2989.0
+offset_bottom = 775.0
+
+[node name="TextLabel" parent="Key_J/LabelRect" parent_id_path=PackedInt32Array(1772935541, 1141195935) index="0" unique_id=1299492015]
+text = "J"
+
+[node name="Key_K" parent="." unique_id=440858491 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 2966.0
+offset_top = 351.0
+offset_right = 3396.0
+offset_bottom = 775.0
+
+[node name="TextLabel" parent="Key_K/LabelRect" parent_id_path=PackedInt32Array(440858491, 1141195935) index="0" unique_id=1299492015]
+text = "K"
+
+[node name="Key_L" parent="." unique_id=2055726952 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 3372.0
+offset_top = 351.0
+offset_right = 3802.0
+offset_bottom = 775.0
+
+[node name="TextLabel" parent="Key_L/LabelRect" parent_id_path=PackedInt32Array(2055726952, 1141195935) index="0" unique_id=1299492015]
+text = "L"
+
+[node name="Key_Enter" type="Control" parent="." unique_id=580018725]
+anchors_preset = 0
+offset_left = 4064.0
+offset_right = 4665.0
+offset_bottom = 775.0
+
+[node name="Key_EnterUpper" parent="Key_Enter" unique_id=943976890 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_right = 602.0
+offset_bottom = 488.0
+
+[node name="TextLabel" parent="Key_Enter/Key_EnterUpper/LabelRect" parent_id_path=PackedInt32Array(943976890, 1141195935) index="0" unique_id=1299492015]
+text = "Enter"
+label_settings = SubResource("LabelSettings_qsc7m")
+
+[node name="Key_EnterLower" parent="Key_Enter" unique_id=282089519 instance=ExtResource("1_qsc7m")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -430.0
+offset_top = -424.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TextLabel" parent="Key_Enter/Key_EnterLower/LabelRect" parent_id_path=PackedInt32Array(282089519, 1141195935) index="0" unique_id=1299492015]
+text = ""
+
+[node name="HackPatch" type="NinePatchRect" parent="Key_Enter" unique_id=1339485042]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 303.0
+offset_right = 601.0
+offset_bottom = 522.0
+texture = ExtResource("2_44u6o")
+region_rect = Rect2(92.65015, 88.147606, 285.34985, 125.940636)
+patch_margin_right = 124
+
+[node name="Key_Shift" parent="." unique_id=1033174445 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = -525.0
+offset_top = 702.0
+offset_right = -22.0
+offset_bottom = 1126.0
+
+[node name="TextLabel" parent="Key_Shift/LabelRect" parent_id_path=PackedInt32Array(1033174445, 1141195935) index="0" unique_id=1299492015]
+text = "Shift"
+label_settings = SubResource("LabelSettings_qsc7m")
+
+[node name="Key_Z" parent="." unique_id=760076292 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 702.0
+offset_right = 670.0
+offset_bottom = 1126.0
+
+[node name="TextLabel" parent="Key_Z/LabelRect" parent_id_path=PackedInt32Array(760076292, 1141195935) index="0" unique_id=1299492015]
+text = "Z"
+
+[node name="Key_X" parent="." unique_id=936485448 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 647.0
+offset_top = 702.0
+offset_right = 1077.0
+offset_bottom = 1126.0
+
+[node name="TextLabel" parent="Key_X/LabelRect" parent_id_path=PackedInt32Array(936485448, 1141195935) index="0" unique_id=1299492015]
+text = "X"
+
+[node name="Key_C" parent="." unique_id=1217734734 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 1053.0
+offset_top = 702.0
+offset_right = 1483.0
+offset_bottom = 1126.0
+
+[node name="TextLabel" parent="Key_C/LabelRect" parent_id_path=PackedInt32Array(1217734734, 1141195935) index="0" unique_id=1299492015]
+text = "C"
+
+[node name="Key_V" parent="." unique_id=1082101776 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 1460.0
+offset_top = 702.0
+offset_right = 1890.0
+offset_bottom = 1126.0
+
+[node name="TextLabel" parent="Key_V/LabelRect" parent_id_path=PackedInt32Array(1082101776, 1141195935) index="0" unique_id=1299492015]
+text = "V"
+
+[node name="Key_B" parent="." unique_id=522621853 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 1866.0
+offset_top = 702.0
+offset_right = 2296.0
+offset_bottom = 1126.0
+
+[node name="TextLabel" parent="Key_B/LabelRect" parent_id_path=PackedInt32Array(522621853, 1141195935) index="0" unique_id=1299492015]
+text = "B"
+
+[node name="Key_N" parent="." unique_id=1334846058 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 2273.0
+offset_top = 702.0
+offset_right = 2703.0
+offset_bottom = 1126.0
+
+[node name="TextLabel" parent="Key_N/LabelRect" parent_id_path=PackedInt32Array(1334846058, 1141195935) index="0" unique_id=1299492015]
+text = "N"
+
+[node name="Key_M" parent="." unique_id=1752993205 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 2679.0
+offset_top = 702.0
+offset_right = 3109.0
+offset_bottom = 1126.0
+
+[node name="TextLabel" parent="Key_M/LabelRect" parent_id_path=PackedInt32Array(1752993205, 1141195935) index="0" unique_id=1299492015]
+text = "M"
+
+[node name="Key_ArrowU" parent="." unique_id=108902764 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 4239.0
+offset_top = 706.0
+offset_right = 4669.0
+offset_bottom = 1130.0
+
+[node name="TextLabel" parent="Key_ArrowU/LabelRect" parent_id_path=PackedInt32Array(108902764, 1141195935) index="0" unique_id=1299492015]
+text = ""
+
+[node name="TextureRect" type="TextureRect" parent="Key_ArrowU/LabelRect" parent_id_path=PackedInt32Array(108902764, 1141195935) index="1" unique_id=71316438]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("2_wvurn")
+flip_h = true
+
+[node name="Key_ArrowL" parent="." unique_id=568276359 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 3832.0
+offset_top = 1057.0
+offset_right = 4262.0
+offset_bottom = 1481.0
+
+[node name="TextLabel" parent="Key_ArrowL/LabelRect" parent_id_path=PackedInt32Array(568276359, 1141195935) index="0" unique_id=1299492015]
+text = ""
+
+[node name="TextureRect" type="TextureRect" parent="Key_ArrowL/LabelRect" parent_id_path=PackedInt32Array(568276359, 1141195935) index="1" unique_id=1189484447]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wvurn")
+flip_h = true
+
+[node name="Key_ArrowD" parent="." unique_id=1796242248 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 4239.0
+offset_top = 1057.0
+offset_right = 4669.0
+offset_bottom = 1481.0
+
+[node name="TextLabel" parent="Key_ArrowD/LabelRect" parent_id_path=PackedInt32Array(1796242248, 1141195935) index="0" unique_id=1299492015]
+text = ""
+
+[node name="TextureRect" type="TextureRect" parent="Key_ArrowD/LabelRect" parent_id_path=PackedInt32Array(1796242248, 1141195935) index="1" unique_id=407051827]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("2_wvurn")
+
+[node name="Key_ArrowR" parent="." unique_id=1302586506 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 4645.0
+offset_top = 1057.0
+offset_right = 5075.0
+offset_bottom = 1481.0
+
+[node name="TextLabel" parent="Key_ArrowR/LabelRect" parent_id_path=PackedInt32Array(1302586506, 1141195935) index="0" unique_id=1299492015]
+text = ""
+
+[node name="TextureRect" type="TextureRect" parent="Key_ArrowR/LabelRect" parent_id_path=PackedInt32Array(1302586506, 1141195935) index="1" unique_id=1197441294]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wvurn")
+
+[node name="Key_Ctrl" parent="." unique_id=559348594 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = -525.0
+offset_top = 1053.0
+offset_right = -22.0
+offset_bottom = 1477.0
+
+[node name="TextLabel" parent="Key_Ctrl/LabelRect" parent_id_path=PackedInt32Array(559348594, 1141195935) index="0" unique_id=1299492015]
+text = "Ctrl"
+label_settings = SubResource("LabelSettings_qsc7m")
+
+[node name="Key_Alt" parent="." unique_id=410736864 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 647.0
+offset_top = 1053.0
+offset_right = 1077.0
+offset_bottom = 1477.0
+
+[node name="TextLabel" parent="Key_Alt/LabelRect" parent_id_path=PackedInt32Array(410736864, 1141195935) index="0" unique_id=1299492015]
+text = "Alt"
+label_settings = SubResource("LabelSettings_qsc7m")
+
+[node name="Key_Space" parent="." unique_id=217361094 instance=ExtResource("1_qsc7m")]
+layout_mode = 0
+offset_left = 647.0
+offset_top = 1053.0
+offset_right = 2297.0
+offset_bottom = 1477.0
+
+[node name="TextLabel" parent="Key_Space/LabelRect" parent_id_path=PackedInt32Array(217361094, 1141195935) index="0" unique_id=1299492015]
+text = "Space"
+
+[node name="Mouse_BaseBG" type="Control" parent="." unique_id=1876725099]
+anchors_preset = 0
+offset_left = 5172.0
+offset_top = 169.0
+offset_right = 5672.0
+offset_bottom = 679.0
+script = ExtResource("3_byx2t")
+active_for_tags = PackedStringArray("Mouse_LB", "Mouse_RB", "Mouse_MB", "Mouse_Move", "Mouse_Move_L", "Mouse_Move_R", "Mouse_Move_U", "Mouse_Move_D", "Mouse")
+metadata/_custom_type_script = "uid://r2wbtk6u0prl"
+
+[node name="TextureRect" type="TextureRect" parent="Mouse_BaseBG" unique_id=164247645]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_id7b6")
+stretch_mode = 4
+
+[node name="Mouse_WheelBG" type="Control" parent="." unique_id=1144851235]
+anchors_preset = 0
+offset_left = 5385.0
+offset_top = 256.0
+offset_right = 5459.0
+offset_bottom = 388.0
+script = ExtResource("3_byx2t")
+active_for_tags = PackedStringArray("Mouse_Scroll", "Mouse_Scroll_U", "Mouse_Scroll_D")
+metadata/_custom_type_script = "uid://r2wbtk6u0prl"
+
+[node name="TextureRect" type="TextureRect" parent="Mouse_WheelBG" unique_id=2118437899]
+layout_mode = 1
+offset_left = -213.0
+offset_top = -87.0
+offset_right = 287.0
+offset_bottom = 621.0
+texture = ExtResource("7_7koq5")
+stretch_mode = 4
+
+[node name="Mouse_LB" type="Control" parent="." unique_id=524247443]
+anchors_preset = 0
+offset_left = 5172.0
+offset_top = 169.0
+offset_right = 5672.0
+offset_bottom = 679.0
+script = ExtResource("3_byx2t")
+metadata/_custom_type_script = "uid://r2wbtk6u0prl"
+
+[node name="TextureRect" type="TextureRect" parent="Mouse_LB" unique_id=1338961064]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_7j507")
+stretch_mode = 4
+
+[node name="Mouse_RB" type="Control" parent="." unique_id=372985708]
+anchors_preset = 0
+offset_left = 5172.0
+offset_top = 169.0
+offset_right = 5672.0
+offset_bottom = 679.0
+script = ExtResource("3_byx2t")
+metadata/_custom_type_script = "uid://r2wbtk6u0prl"
+
+[node name="TextureRect" type="TextureRect" parent="Mouse_RB" unique_id=1466494639]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_7j507")
+stretch_mode = 4
+flip_h = true
+
+[node name="Mouse_MB" type="Control" parent="." unique_id=27704753]
+anchors_preset = 0
+offset_left = 5172.0
+offset_top = 169.0
+offset_right = 5672.0
+offset_bottom = 679.0
+script = ExtResource("3_byx2t")
+metadata/_custom_type_script = "uid://r2wbtk6u0prl"
+
+[node name="TextureRect" type="TextureRect" parent="Mouse_MB" unique_id=106816215]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_5kov3")
+stretch_mode = 4
+flip_h = true
+
+[node name="Mouse_BaseOutline" type="Control" parent="." unique_id=1497750909]
+anchors_preset = 0
+offset_left = 5172.0
+offset_top = 169.0
+offset_right = 5672.0
+offset_bottom = 679.0
+script = ExtResource("3_byx2t")
+active_for_tags = PackedStringArray("Mouse_LB", "Mouse_RB", "Mouse_MB", "Mouse_Move", "Mouse_Move_L", "Mouse_Move_R", "Mouse_Move_U", "Mouse_Move_D", "Mouse")
+metadata/_custom_type_script = "uid://r2wbtk6u0prl"
+
+[node name="TextureRect" type="TextureRect" parent="Mouse_BaseOutline" unique_id=1484281784]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_7koq5")
+stretch_mode = 4
+
+[node name="Mouse_WheelOutline" type="Control" parent="." unique_id=74025700]
+anchors_preset = 0
+offset_left = 5385.0
+offset_top = 256.0
+offset_right = 5459.0
+offset_bottom = 388.0
+script = ExtResource("3_byx2t")
+active_for_tags = PackedStringArray("Mouse_LB", "Mouse_RB", "Mouse_MB", "Mouse_Move", "Mouse_Move_L", "Mouse_Move_R", "Mouse_Move_U", "Mouse_Move_D", "Mouse", "Mouse_Scroll", "Mouse_Scroll_U", "Mouse_Scroll_D")
+metadata/_custom_type_script = "uid://r2wbtk6u0prl"
+
+[node name="TextureRect" type="TextureRect" parent="Mouse_WheelOutline" unique_id=500903434]
+layout_mode = 1
+offset_left = -213.0
+offset_top = -87.0
+offset_right = 287.0
+offset_bottom = 621.0
+texture = ExtResource("10_5kov3")
+stretch_mode = 4
+
+[node name="Mouse_Move_U" type="Control" parent="." unique_id=513235730]
+anchors_preset = 0
+offset_left = 5306.0
+offset_top = 22.0
+offset_right = 5536.0
+offset_bottom = 158.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("3_byx2t")
+active_for_tags = PackedStringArray("Mouse_Move")
+metadata/_custom_type_script = "uid://r2wbtk6u0prl"
+
+[node name="TextureRect" type="TextureRect" parent="Mouse_Move_U" unique_id=30934930]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("8_7j507")
+stretch_mode = 5
+
+[node name="Mouse_Scroll_U" type="Control" parent="." unique_id=1280086564]
+anchors_preset = 0
+offset_left = 5389.0
+offset_top = 226.0
+offset_right = 5453.0
+offset_bottom = 256.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("3_byx2t")
+active_for_tags = PackedStringArray("Mouse_Scroll")
+metadata/_custom_type_script = "uid://r2wbtk6u0prl"
+
+[node name="TextureRect" type="TextureRect" parent="Mouse_Scroll_U" unique_id=258640232]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("8_7j507")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Mouse_Scroll_D" type="Control" parent="." unique_id=852350105]
+anchors_preset = 0
+offset_left = 5389.0
+offset_top = 387.0
+offset_right = 5453.0
+offset_bottom = 417.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("3_byx2t")
+active_for_tags = PackedStringArray("Mouse_Scroll")
+metadata/_custom_type_script = "uid://r2wbtk6u0prl"
+
+[node name="TextureRect" type="TextureRect" parent="Mouse_Scroll_D" unique_id=221769579]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("8_7j507")
+expand_mode = 3
+stretch_mode = 5
+flip_v = true
+
+[node name="Mouse_Move_R" type="Control" parent="." unique_id=640356017]
+anchors_preset = 0
+offset_left = 5671.0
+offset_top = 335.0
+offset_right = 5814.0
+offset_bottom = 561.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("3_byx2t")
+active_for_tags = PackedStringArray("Mouse_Move")
+metadata/_custom_type_script = "uid://r2wbtk6u0prl"
+
+[node name="TextureRect" type="TextureRect" parent="Mouse_Move_R" unique_id=738047262]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -68.0
+offset_right = 114.99991
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("8_7j507")
+stretch_mode = 5
+
+[node name="Mouse_Move_L" type="Control" parent="." unique_id=1478899936]
+anchors_preset = 0
+offset_left = 5033.0
+offset_top = 335.0
+offset_right = 5176.0
+offset_bottom = 561.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("3_byx2t")
+active_for_tags = PackedStringArray("Mouse_Move")
+metadata/_custom_type_script = "uid://r2wbtk6u0prl"
+
+[node name="TextureRect" type="TextureRect" parent="Mouse_Move_L" unique_id=162834851]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -68.0
+offset_right = 114.99991
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("8_7j507")
+stretch_mode = 5
+flip_v = true
+
+[node name="Mouse_Move_D" type="Control" parent="." unique_id=749865888]
+anchors_preset = 0
+offset_left = 5306.0
+offset_top = 692.0
+offset_right = 5536.0
+offset_bottom = 828.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("3_byx2t")
+active_for_tags = PackedStringArray("Mouse_Move")
+metadata/_custom_type_script = "uid://r2wbtk6u0prl"
+
+[node name="TextureRect" type="TextureRect" parent="Mouse_Move_D" unique_id=893839287]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("8_7j507")
+stretch_mode = 5
+flip_v = true
+
+[editable path="Key_Esc"]
+[editable path="Key_^"]
+[editable path="Key_1"]
+[editable path="Key_2"]
+[editable path="Key_3"]
+[editable path="Key_4"]
+[editable path="Key_5"]
+[editable path="Key_6"]
+[editable path="Key_7"]
+[editable path="Key_8"]
+[editable path="Key_9"]
+[editable path="Key_0"]
+[editable path="Key_Tab"]
+[editable path="Key_Q"]
+[editable path="Key_W"]
+[editable path="Key_E"]
+[editable path="Key_R"]
+[editable path="Key_T"]
+[editable path="Key_Y"]
+[editable path="Key_U"]
+[editable path="Key_I"]
+[editable path="Key_O"]
+[editable path="Key_P"]
+[editable path="Key_CapsLock"]
+[editable path="Key_A"]
+[editable path="Key_S"]
+[editable path="Key_D"]
+[editable path="Key_F"]
+[editable path="Key_G"]
+[editable path="Key_H"]
+[editable path="Key_J"]
+[editable path="Key_K"]
+[editable path="Key_L"]
+[editable path="Key_Enter/Key_EnterUpper"]
+[editable path="Key_Enter/Key_EnterLower"]
+[editable path="Key_Shift"]
+[editable path="Key_Z"]
+[editable path="Key_X"]
+[editable path="Key_C"]
+[editable path="Key_V"]
+[editable path="Key_B"]
+[editable path="Key_N"]
+[editable path="Key_M"]
+[editable path="Key_ArrowU"]
+[editable path="Key_ArrowL"]
+[editable path="Key_ArrowD"]
+[editable path="Key_ArrowR"]
+[editable path="Key_Ctrl"]
+[editable path="Key_Alt"]
+[editable path="Key_Space"]
