@@ -7,5 +7,8 @@ func _ready():
 	var args := OS.get_cmdline_args()
 	
 	var ps := settings if args.find("--setup") != -1 else games_launcher_frontend
+	
+	if ps == settings:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	var instance := ps.instantiate()
 	add_child(instance)
