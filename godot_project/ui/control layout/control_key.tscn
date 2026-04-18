@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://d0tww01i4h43u"]
+
+[ext_resource type="Texture2D" uid="uid://iwconqp7skat" path="res://icons/KeyNeutral.png" id="1_b1li7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_537si"]
+font_size = 219
+font_color = Color(0, 0, 0, 1)
+outline_size = 24
+outline_color = Color(0, 0, 0, 1)
+
+[node name="ControlKey" type="Control" unique_id=1971702534]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 430.0
+offset_bottom = 424.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=805146632]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_b1li7")
+patch_margin_left = 107
+patch_margin_top = 84
+patch_margin_right = 107
+patch_margin_bottom = 155
+
+[node name="LabelRect" type="Control" parent="." unique_id=1141195935]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 106.0
+offset_top = 38.0
+offset_right = -104.0
+offset_bottom = -148.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextLabel" type="Label" parent="LabelRect" unique_id=1299492015]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "W"
+label_settings = SubResource("LabelSettings_537si")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

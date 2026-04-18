@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://gurl8mgrosm5"]
+[gd_scene format=3 uid="uid://gurl8mgrosm5"]
 
 [ext_resource type="PackedScene" uid="uid://tqukidx1wx50" path="res://logging/log_display.tscn" id="1_1np8e"]
 [ext_resource type="Theme" uid="uid://d3afgootd7erb" path="res://settings/settings_header.tres" id="1_gjdk6"]
@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://bsa6o5ox4ok1a" path="res://ui/games/input_quit_game_controller.gd" id="14_dt0go"]
 [ext_resource type="Script" uid="uid://bwc4pq3dgxesp" path="res://settings/escape_key_down_tracker_settings.gd" id="16_bu604"]
 
-[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("butler", "profile", "collection", "browser", "games", "escape_key_down", "quit_button")]
+[node name="SettingsMenu" type="Control" unique_id=2097117457 node_paths=PackedStringArray("butler", "profile", "collection", "browser", "games", "escape_key_down", "quit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,7 +33,7 @@ games = NodePath("Controllers/game_settings")
 escape_key_down = NodePath("Controllers/escape_key_down_tracker_settings")
 quit_button = NodePath("HSplitContainer/InputArea/VBoxContainer/MarginContainer/QuitButton")
 
-[node name="HSplitContainer" type="HSplitContainer" parent="."]
+[node name="HSplitContainer" type="HSplitContainer" parent="." unique_id=1511627256]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,13 +45,13 @@ offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InputArea" type="Control" parent="HSplitContainer"]
+[node name="InputArea" type="Control" parent="HSplitContainer" unique_id=1673992623]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/InputArea"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/InputArea" unique_id=1310684961]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,14 +59,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/InputArea/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/InputArea/VBoxContainer" unique_id=1181410772]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer" unique_id=1959304982]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -75,250 +75,250 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer" unique_id=1128966856]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HSeparator0" type="HSeparator" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator0" type="HSeparator" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2054591492]
 layout_mode = 2
 
-[node name="ButlerSection" type="VBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="ButlerSection" type="VBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1703101365]
 layout_mode = 2
 
-[node name="ButlerLabel" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection"]
+[node name="ButlerLabel" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection" unique_id=1322932754]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme = ExtResource("1_gjdk6")
 text = "Butler"
 autowrap_mode = 3
 
-[node name="hint_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection" instance=ExtResource("3_tm82m")]
+[node name="hint_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection" unique_id=757405876 instance=ExtResource("3_tm82m")]
 layout_mode = 2
 text = "Butler is itch.io's command line tool and required to fetch collections of games and to install and launch them. Installing Butler requires an active internet connection. By default the latest stable build of Butler is used. Please be patient during installation, you can keep up with the state of things in the right-hand log window.
 Uninstalling Butler does not remove local user data associated with Butler. To Update Butler, uninstall the installed version before reinstalling from the internet."
 
-[node name="butler_info_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection" instance=ExtResource("2_olm1t")]
+[node name="butler_info_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection" unique_id=1340252240 instance=ExtResource("2_olm1t")]
 layout_mode = 2
 
-[node name="InstallButlerButton" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection"]
+[node name="InstallButlerButton" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection" unique_id=2019267290]
 layout_mode = 2
 text = "Install Butler"
 
-[node name="UninstallButlerButton" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection"]
+[node name="UninstallButlerButton" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection" unique_id=1395155868]
 layout_mode = 2
 text = "Uninstall Butler"
 
-[node name="HSeparator1" type="HSeparator" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator1" type="HSeparator" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=710608525]
 layout_mode = 2
 
-[node name="Profile" type="VBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Profile" type="VBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1242294169]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile"]
+[node name="Label" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile" unique_id=2114263459]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme = ExtResource("1_gjdk6")
 text = "Profile"
 autowrap_mode = 3
 
-[node name="hint_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile" instance=ExtResource("3_tm82m")]
+[node name="hint_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile" unique_id=1828462089 instance=ExtResource("3_tm82m")]
 layout_mode = 2
 text = "You need to log into an itch.io account to fetch and install games. Logging in happens via an API Key you can obtain from your Account Settings page on the itch.io web interface. The initial login requires an internet connection. Once logged in, the account is stored locally and can be used without an internet connection."
 
-[node name="profile_info_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile" instance=ExtResource("2_olm1t")]
+[node name="profile_info_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile" unique_id=285202071 instance=ExtResource("2_olm1t")]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile" unique_id=1004942549]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile/HBoxContainer"]
+[node name="Label" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile/HBoxContainer" unique_id=232350998]
 layout_mode = 2
 text = "Add Profile via API Key:"
 
-[node name="LineEdit" type="LineEdit" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile/HBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile/HBoxContainer" unique_id=1338092133]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile/HBoxContainer"]
+[node name="Button" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile/HBoxContainer" unique_id=67492286]
 layout_mode = 2
 text = "Submit"
 
-[node name="ProfileSelect" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile"]
+[node name="ProfileSelect" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile" unique_id=876714338]
 layout_mode = 2
 text = "Select Profile"
 
-[node name="HSeparator2" type="HSeparator" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1114435540]
 layout_mode = 2
 
-[node name="Collection" type="VBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Collection" type="VBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1059666016]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection"]
+[node name="Label" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection" unique_id=743771981]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme = ExtResource("1_gjdk6")
 text = "Collection (Games)"
 autowrap_mode = 3
 
-[node name="hint_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection" instance=ExtResource("3_tm82m")]
+[node name="hint_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection" unique_id=1733672971 instance=ExtResource("3_tm82m")]
 layout_mode = 2
 text = "Choose a collection containing the games that should be installed. Games will be downloaded and installed upon launching the main launcher. Once downloaded, games can be launched without an internet connection."
 
-[node name="collection_info_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection" instance=ExtResource("2_olm1t")]
+[node name="collection_info_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection" unique_id=394100510 instance=ExtResource("2_olm1t")]
 layout_mode = 2
 
-[node name="CollectionSelect" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection"]
+[node name="CollectionSelect" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection" unique_id=582920823]
 layout_mode = 2
 text = "Select Collection"
 
-[node name="InstallGames" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection"]
+[node name="InstallGames" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection" unique_id=145066794]
 layout_mode = 2
 text = "Install/Update all games for collection"
 autowrap_mode = 3
 
-[node name="CheckUpdates" type="CheckButton" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection"]
+[node name="CheckUpdates" type="CheckButton" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection" unique_id=261109432]
 layout_mode = 2
 text = "Check for Game Updates on Startup"
 autowrap_mode = 3
 
-[node name="HSeparator3" type="HSeparator" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=932182136]
 layout_mode = 2
 
-[node name="Browser" type="VBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Browser" type="VBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=918222806]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser"]
+[node name="Label" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser" unique_id=145589856]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme = ExtResource("1_gjdk6")
 text = "Web Browser Launch"
 autowrap_mode = 3
 
-[node name="hint_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser" instance=ExtResource("3_tm82m")]
+[node name="hint_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser" unique_id=1125724417 instance=ExtResource("3_tm82m")]
 layout_mode = 2
 text = "A Browser is required to launch web-based games. There two kinds of browser configurations: To launch with predefined launch options, you can select an installed executable of Google Chrome or Microsoft Edge. If you choose to use a different browser, you can supply a custom command to launch whatever browser you like. $URL and $USER_DATA_DIR template strings will be filled in during launch. $URL is the pre-escaped url to be opened. $USER_DATA_DIR points to a pre-escaped directory that can be used to store browser data, as to not pollute existing browser users' data. Chrome and Edge use an internal user directory by default.
 Note that Chrome and Edge may pop up overlay dialogs on the very first launch. They should not reappear a second time.
 Despite browser-based games not featuring a quit button, it is possible to quit them by keeping the ESC key pressed for 2 seconds."
 
-[node name="browser_info_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser" instance=ExtResource("2_olm1t")]
+[node name="browser_info_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser" unique_id=238658769 instance=ExtResource("2_olm1t")]
 layout_mode = 2
 
-[node name="BrowserModeSelect" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser"]
+[node name="BrowserModeSelect" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser" unique_id=1720123369]
 layout_mode = 2
 text = "Select Browser Mode"
 
-[node name="BrowserSelectExecutable" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser"]
+[node name="BrowserSelectExecutable" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser" unique_id=1886709297]
 layout_mode = 2
 text = "Select Browser Executable"
 
-[node name="Custom Command" type="HBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser"]
+[node name="Custom Command" type="HBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser" unique_id=1722492734]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser/Custom Command"]
+[node name="Label" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser/Custom Command" unique_id=258470793]
 layout_mode = 2
 text = "Custom Launch Command"
 
-[node name="LineEdit" type="LineEdit" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser/Custom Command"]
+[node name="LineEdit" type="LineEdit" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser/Custom Command" unique_id=1195219774]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser/Custom Command"]
+[node name="Button" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser/Custom Command" unique_id=1143134818]
 layout_mode = 2
 text = "Save"
 
-[node name="BrowserCheckExecutable2" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser"]
+[node name="BrowserCheckExecutable2" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser" unique_id=85872562]
 layout_mode = 2
 text = "Test Browser Launch"
 
-[node name="hint_box2" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser" instance=ExtResource("3_tm82m")]
+[node name="hint_box2" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser" unique_id=225221308 instance=ExtResource("3_tm82m")]
 layout_mode = 2
 text = "Launching a browser-based game requires a server on localhost to supply game files. Here you can choose the port to be used for the local server."
 
-[node name="Port" type="HBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser"]
+[node name="Port" type="HBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser" unique_id=1007622441]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser/Port"]
+[node name="Label" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser/Port" unique_id=885788550]
 layout_mode = 2
 text = "Local Server Port"
 
-[node name="LineEdit" type="LineEdit" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser/Port"]
+[node name="LineEdit" type="LineEdit" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser/Port" unique_id=841306272]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 virtual_keyboard_type = 2
 
-[node name="Button" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser/Port"]
+[node name="Button" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser/Port" unique_id=1501695907]
 layout_mode = 2
 text = "Save"
 
-[node name="HSeparator4" type="HSeparator" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator4" type="HSeparator" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1882051419]
 layout_mode = 2
 
-[node name="EKDT" type="VBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="EKDT" type="VBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=531398235]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EKDT"]
+[node name="Label" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EKDT" unique_id=1739091915]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme = ExtResource("1_gjdk6")
 text = "Escape Key Down Tracker"
 autowrap_mode = 3
 
-[node name="hint_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EKDT" instance=ExtResource("3_tm82m")]
+[node name="hint_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EKDT" unique_id=956287663 instance=ExtResource("3_tm82m")]
 layout_mode = 2
 text = "Escape Key Down Tracker is used to force quit a game by holding down the Esc-Key at any point. Choose the mode to use. Choosing the standalone windows version requires a x86 64 bit architecture. The .net version is portable, but requires .net>=8.0 to be installed locally. You'd have to take care of that manually."
 
-[node name="EKDT info" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EKDT" instance=ExtResource("2_olm1t")]
+[node name="EKDT info" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EKDT" unique_id=645873577 instance=ExtResource("2_olm1t")]
 layout_mode = 2
 
-[node name="EKDT select" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EKDT"]
+[node name="EKDT select" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EKDT" unique_id=687978754]
 layout_mode = 2
 text = "Select architecture/mode"
 
-[node name="Game" type="VBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Game" type="VBoxContainer" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1252831534]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game"]
+[node name="Label" type="Label" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game" unique_id=884625349]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme = ExtResource("1_gjdk6")
 text = "Installed Games"
 autowrap_mode = 3
 
-[node name="hint_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game" instance=ExtResource("3_tm82m")]
+[node name="hint_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game" unique_id=213059945 instance=ExtResource("3_tm82m")]
 layout_mode = 2
 text = "Here you can manage installed games. To install games, set up everything in "
 
-[node name="games_info_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game" instance=ExtResource("2_olm1t")]
+[node name="games_info_box" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game" unique_id=775522977 instance=ExtResource("2_olm1t")]
 layout_mode = 2
 
-[node name="launch_all" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game"]
+[node name="launch_all" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game" unique_id=2102697279]
 layout_mode = 2
 text = "Assure all prereqs are installed (launches all games, this may take a few minutes)"
 
-[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/InputArea/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/InputArea/VBoxContainer" unique_id=1150764329]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="QuitButton" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/MarginContainer"]
+[node name="QuitButton" type="Button" parent="HSplitContainer/InputArea/VBoxContainer/MarginContainer" unique_id=182169884]
 layout_mode = 2
 text = "Quit"
 
-[node name="ChoiceSelector" parent="HSplitContainer/InputArea" instance=ExtResource("4_76kmu")]
+[node name="ChoiceSelector" parent="HSplitContainer/InputArea" unique_id=562103051 instance=ExtResource("4_76kmu")]
 visible = false
 layout_mode = 1
 
-[node name="logs" type="Control" parent="HSplitContainer"]
+[node name="logs" type="Control" parent="HSplitContainer" unique_id=1847373286]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ColorRect" type="ColorRect" parent="HSplitContainer/logs"]
+[node name="ColorRect" type="ColorRect" parent="HSplitContainer/logs" unique_id=1502042852]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -327,14 +327,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.802616, 0.802616, 0.802616, 1)
 
-[node name="log_display" parent="HSplitContainer/logs" instance=ExtResource("1_1np8e")]
+[node name="log_display" parent="HSplitContainer/logs" unique_id=786548211 instance=ExtResource("1_1np8e")]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 1
 size_flags_horizontal = 3
 
-[node name="Controllers" type="Node" parent="."]
+[node name="Controllers" type="Node" parent="." unique_id=1646535115]
 
-[node name="butler_settings" type="Node" parent="Controllers" node_paths=PackedStringArray("info", "choicer", "request", "install_button", "uninstall_button")]
+[node name="butler_settings" type="Node" parent="Controllers" unique_id=208909568 node_paths=PackedStringArray("info", "choicer", "request", "install_button", "uninstall_button")]
 script = ExtResource("5_7fpik")
 info = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection/butler_info_box")
 choicer = NodePath("../../HSplitContainer/InputArea/ChoiceSelector")
@@ -342,10 +342,10 @@ request = NodePath("HTTPRequest")
 install_button = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection/InstallButlerButton")
 uninstall_button = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ButlerSection/UninstallButlerButton")
 
-[node name="HTTPRequest" type="HTTPRequest" parent="Controllers/butler_settings"]
+[node name="HTTPRequest" type="HTTPRequest" parent="Controllers/butler_settings" unique_id=1034712576]
 max_redirects = 18
 
-[node name="profile_Settings" type="Node" parent="Controllers" node_paths=PackedStringArray("info_box", "api_token_edit", "api_token_submit", "profile_select", "choicer")]
+[node name="profile_Settings" type="Node" parent="Controllers" unique_id=1189101489 node_paths=PackedStringArray("info_box", "api_token_edit", "api_token_submit", "profile_select", "choicer")]
 script = ExtResource("7_oy4mk")
 info_box = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile/profile_info_box")
 api_token_edit = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile/HBoxContainer/LineEdit")
@@ -353,7 +353,7 @@ api_token_submit = NodePath("../../HSplitContainer/InputArea/VBoxContainer/Scrol
 profile_select = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Profile/ProfileSelect")
 choicer = NodePath("../../HSplitContainer/InputArea/ChoiceSelector")
 
-[node name="collection_settings" type="Node" parent="Controllers" node_paths=PackedStringArray("info_box", "choose_collection_button", "install_all_button", "check_updates_toggle", "choicer", "cover_image_loader", "menu_container")]
+[node name="collection_settings" type="Node" parent="Controllers" unique_id=210992077 node_paths=PackedStringArray("info_box", "choose_collection_button", "install_all_button", "check_updates_toggle", "choicer", "cover_image_loader", "menu_container")]
 script = ExtResource("8_lakpe")
 info_box = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection/collection_info_box")
 choose_collection_button = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Collection/CollectionSelect")
@@ -363,11 +363,11 @@ choicer = NodePath("../../HSplitContainer/InputArea/ChoiceSelector")
 cover_image_loader = NodePath("image_loader")
 menu_container = NodePath("../../HSplitContainer/InputArea/VBoxContainer")
 
-[node name="image_loader" type="Node" parent="Controllers/collection_settings"]
+[node name="image_loader" type="Node" parent="Controllers/collection_settings" unique_id=410047153]
 script = ExtResource("10_yxcxb")
 metadata/_custom_type_script = "uid://vcqtsco552dp"
 
-[node name="browser_settings" type="Node" parent="Controllers" node_paths=PackedStringArray("root_control", "info_box", "select_mode_button", "select_executable_button", "select_executable_file_dialog", "launch_command_container", "launch_command_line_edit", "launch_command_accept_button", "test_launch_button", "launcher", "server_port_line_edit", "server_port_accept_button", "choicer")]
+[node name="browser_settings" type="Node" parent="Controllers" unique_id=1332211735 node_paths=PackedStringArray("root_control", "info_box", "select_mode_button", "select_executable_button", "select_executable_file_dialog", "launch_command_container", "launch_command_line_edit", "launch_command_accept_button", "test_launch_button", "launcher", "server_port_line_edit", "server_port_accept_button", "choicer")]
 script = ExtResource("9_r82a5")
 root_control = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser")
 info_box = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser/browser_info_box")
@@ -383,11 +383,11 @@ server_port_line_edit = NodePath("../../HSplitContainer/InputArea/VBoxContainer/
 server_port_accept_button = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Browser/Port/Button")
 choicer = NodePath("../../HSplitContainer/InputArea/ChoiceSelector")
 
-[node name="browser_launcher" type="Node" parent="Controllers/browser_settings"]
+[node name="browser_launcher" type="Node" parent="Controllers/browser_settings" unique_id=1346235829]
 script = ExtResource("10_a5d6h")
 metadata/_custom_type_script = "uid://p3d4p8j8pknk"
 
-[node name="FileDialog" type="FileDialog" parent="Controllers/browser_settings"]
+[node name="FileDialog" type="FileDialog" parent="Controllers/browser_settings" unique_id=563034262]
 title = "Open a File"
 size = Vector2i(800, 600)
 ok_button_text = "Open"
@@ -395,7 +395,7 @@ file_mode = 0
 access = 2
 filters = PackedStringArray("*.exe")
 
-[node name="game_settings" type="Node" parent="Controllers" node_paths=PackedStringArray("info_box", "launch_all_button", "cave_launcher", "button_container", "menu_container")]
+[node name="game_settings" type="Node" parent="Controllers" unique_id=1575035175 node_paths=PackedStringArray("info_box", "launch_all_button", "cave_launcher", "button_container", "menu_container")]
 script = ExtResource("12_ocg8h")
 info_box = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game/games_info_box")
 launch_all_button = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game/launch_all")
@@ -403,17 +403,17 @@ cave_launcher = NodePath("cave_launcher")
 button_container = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Game")
 menu_container = NodePath("../../HSplitContainer/InputArea/VBoxContainer")
 
-[node name="cave_launcher" type="Node" parent="Controllers/game_settings" node_paths=PackedStringArray("quit_input_handler", "browser_launcher")]
+[node name="cave_launcher" type="Node" parent="Controllers/game_settings" unique_id=1524268508 node_paths=PackedStringArray("quit_input_handler", "browser_launcher")]
 script = ExtResource("13_fhdcv")
 quit_input_handler = NodePath("../input_quit_game_controller")
 browser_launcher = NodePath("../../browser_settings/browser_launcher")
 metadata/_custom_type_script = "uid://cg27bp0xwfy4t"
 
-[node name="input_quit_game_controller" type="Node" parent="Controllers/game_settings"]
+[node name="input_quit_game_controller" type="Node" parent="Controllers/game_settings" unique_id=1540792395]
 script = ExtResource("14_dt0go")
 metadata/_custom_type_script = "uid://bsa6o5ox4ok1a"
 
-[node name="escape_key_down_tracker_settings" type="Node" parent="Controllers" node_paths=PackedStringArray("choose_type_button", "choicer", "info_box")]
+[node name="escape_key_down_tracker_settings" type="Node" parent="Controllers" unique_id=133722575 node_paths=PackedStringArray("choose_type_button", "choicer", "info_box")]
 script = ExtResource("16_bu604")
 choose_type_button = NodePath("../../HSplitContainer/InputArea/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/EKDT/EKDT select")
 choicer = NodePath("../../HSplitContainer/InputArea/ChoiceSelector")

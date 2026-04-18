@@ -8,14 +8,18 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="IFgameSH Community Kiosk"
-config/version="1.0.8"
+config/version="1.1.0"
 run/main_scene="uid://lrog8iu7spdd"
 config/use_custom_user_dir=true
-config/features=PackedStringArray("4.5", "C#", "Mobile")
-run/max_fps=10
+config/features=PackedStringArray("4.6", "Mobile")
+run/max_fps=30
 run/low_processor_mode=true
 boot_splash/bg_color=Color(1, 1, 1, 1)
 boot_splash/show_image=false

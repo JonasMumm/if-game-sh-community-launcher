@@ -1,13 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://bi4mxp4w8msr"]
+[gd_scene format=3 uid="uid://bi4mxp4w8msr"]
 
 [ext_resource type="Script" uid="uid://2qioqorem5i1" path="res://ui/games/game_selection/games_ui_controller.gd" id="1_bafub"]
 [ext_resource type="PackedScene" uid="uid://cm610sgk56qp0" path="res://ui/games/game_selection/game_button.tscn" id="2_e7u60"]
 [ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icons/icon.svg" id="3_3d77s"]
 [ext_resource type="Script" uid="uid://blvc838s4o80v" path="res://ui/games/game_selection/games_ui_list_layout_data.gd" id="4_e7u60"]
 [ext_resource type="StyleBox" uid="uid://bh6llqyqvkk22" path="res://ui/games/theming/game_button_focus.tres" id="4_qod8e"]
+[ext_resource type="Script" uid="uid://dsyx465gqtsdv" path="res://ui/control layout/input_layout_ui.gd" id="6_0kdpb"]
 [ext_resource type="StyleBox" uid="uid://coi68i1w00ibf" path="res://ui/games/theming/launch_button_press.tres" id="6_63xg4"]
 [ext_resource type="Texture2D" uid="uid://c54sfad57xnlu" path="res://icons/joystick_60dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.svg" id="6_kkyur"]
 [ext_resource type="StyleBox" uid="uid://bqjst1on3dc28" path="res://ui/games/theming/launch_button_hover.tres" id="7_dx8p0"]
+[ext_resource type="PackedScene" uid="uid://c14e5oxfs7rx3" path="res://ui/control layout/input_layout_ui_entry.tscn" id="7_tqnv8"]
 [ext_resource type="StyleBox" uid="uid://csbx6exl4r4b0" path="res://ui/games/theming/launch_button_normal.tres" id="8_o7dic"]
 [ext_resource type="Texture2D" uid="uid://e8sp3acb5a1t" path="res://icons/KeyEscape.png" id="10_dx8p0"]
 [ext_resource type="Script" uid="uid://db4ljrhuvexou" path="res://ui/games/pre_launch_hint.gd" id="10_o7dic"]
@@ -17,7 +19,7 @@
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 
-[node name="games_ui_controller" type="Control" node_paths=PackedStringArray("games_ui_list_layout_data", "launch_button", "title_label", "cover_texture_rect", "author_label", "shortText_label", "pre_launch_hints")]
+[node name="games_ui_controller" type="Control" unique_id=1738699861 node_paths=PackedStringArray("games_ui_list_layout_data", "launch_button", "title_label", "cover_texture_rect", "author_label", "input_layout_manager", "shortText_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,11 +32,11 @@ launch_button = NodePath("SelectionContainer/HBoxContainer/PanelContainer/GameCo
 title_label = NodePath("SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer/Label")
 cover_texture_rect = NodePath("SelectionContainer/HBoxContainer/PanelContainer/GameContainer/PanelContainer/TextureRect")
 author_label = NodePath("SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Author")
+input_layout_manager = NodePath("SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/input_layout_ui")
 shortText_label = NodePath("SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/About")
-pre_launch_hints = [NodePath("PreLaunchHints/PreLaunchHintQuitButton")]
 metadata/_custom_type_script = "uid://2qioqorem5i1"
 
-[node name="BG" type="ColorRect" parent="."]
+[node name="BG" type="ColorRect" parent="." unique_id=1508591457]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -43,7 +45,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SelectionContainer" type="MarginContainer" parent="."]
+[node name="SelectionContainer" type="MarginContainer" parent="." unique_id=1929296520]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,90 +57,90 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SelectionContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SelectionContainer" unique_id=1419381798]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SelectionContainer/HBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="SelectionContainer/HBoxContainer" unique_id=897811545]
 layout_mode = 2
 size_flags_stretch_ratio = 20.0
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="SelectionContainer/HBoxContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="SelectionContainer/HBoxContainer/ScrollContainer" unique_id=418918750]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
-[node name="TilesButtonContainer" type="GridContainer" parent="SelectionContainer/HBoxContainer/ScrollContainer/MarginContainer"]
+[node name="TilesButtonContainer" type="GridContainer" parent="SelectionContainer/HBoxContainer/ScrollContainer/MarginContainer" unique_id=1382854141]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 3
 
-[node name="game_button" parent="SelectionContainer/HBoxContainer/ScrollContainer/MarginContainer/TilesButtonContainer" instance=ExtResource("2_e7u60")]
+[node name="game_button" parent="SelectionContainer/HBoxContainer/ScrollContainer/MarginContainer/TilesButtonContainer" unique_id=1136365208 instance=ExtResource("2_e7u60")]
 visible = false
 layout_mode = 2
 
-[node name="game_button2" parent="SelectionContainer/HBoxContainer/ScrollContainer/MarginContainer/TilesButtonContainer" instance=ExtResource("2_e7u60")]
+[node name="game_button2" parent="SelectionContainer/HBoxContainer/ScrollContainer/MarginContainer/TilesButtonContainer" unique_id=967553857 instance=ExtResource("2_e7u60")]
 visible = false
 layout_mode = 2
 
-[node name="game_button3" parent="SelectionContainer/HBoxContainer/ScrollContainer/MarginContainer/TilesButtonContainer" instance=ExtResource("2_e7u60")]
+[node name="game_button3" parent="SelectionContainer/HBoxContainer/ScrollContainer/MarginContainer/TilesButtonContainer" unique_id=405727691 instance=ExtResource("2_e7u60")]
 visible = false
 layout_mode = 2
 
-[node name="game_button4" parent="SelectionContainer/HBoxContainer/ScrollContainer/MarginContainer/TilesButtonContainer" instance=ExtResource("2_e7u60")]
+[node name="game_button4" parent="SelectionContainer/HBoxContainer/ScrollContainer/MarginContainer/TilesButtonContainer" unique_id=161770787 instance=ExtResource("2_e7u60")]
 visible = false
 layout_mode = 2
 
-[node name="game_button5" parent="SelectionContainer/HBoxContainer/ScrollContainer/MarginContainer/TilesButtonContainer" instance=ExtResource("2_e7u60")]
+[node name="game_button5" parent="SelectionContainer/HBoxContainer/ScrollContainer/MarginContainer/TilesButtonContainer" unique_id=1293034237 instance=ExtResource("2_e7u60")]
 visible = false
 layout_mode = 2
 
-[node name="TileLayout" type="Node" parent="SelectionContainer/HBoxContainer/ScrollContainer" node_paths=PackedStringArray("button_container")]
+[node name="TileLayout" type="Node" parent="SelectionContainer/HBoxContainer/ScrollContainer" unique_id=1283799679 node_paths=PackedStringArray("button_container")]
 script = ExtResource("4_e7u60")
 button_container = NodePath("../MarginContainer/TilesButtonContainer")
 button_packed_scene = ExtResource("2_e7u60")
 
-[node name="GamesListContainer" type="Control" parent="SelectionContainer/HBoxContainer"]
+[node name="GamesListContainer" type="Control" parent="SelectionContainer/HBoxContainer" unique_id=1452626145]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="SelectionContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="SelectionContainer/HBoxContainer" unique_id=856827890]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("4_qod8e")
 
-[node name="GameContainer" type="VBoxContainer" parent="SelectionContainer/HBoxContainer/PanelContainer"]
+[node name="GameContainer" type="VBoxContainer" parent="SelectionContainer/HBoxContainer/PanelContainer" unique_id=902932151]
 custom_minimum_size = Vector2(390, 0)
 layout_mode = 2
 size_flags_stretch_ratio = 0.23
 
-[node name="PanelContainer" type="PanelContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer" unique_id=1925878221]
 clip_children = 2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qod8e")
 
-[node name="TextureRect" type="TextureRect" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/PanelContainer"]
+[node name="TextureRect" type="TextureRect" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/PanelContainer" unique_id=274673335]
 layout_mode = 2
 texture = ExtResource("3_3d77s")
 expand_mode = 5
 stretch_mode = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer" unique_id=1244775646]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer" unique_id=816252176]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Label" type="Label" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer" unique_id=1805338153]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -146,15 +148,15 @@ theme_override_font_sizes/font_size = 34
 text = "Game Name"
 autowrap_mode = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer" unique_id=108543625]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=938143984]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="About" type="Label" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="About" type="Label" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=764467082]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -163,7 +165,7 @@ theme_override_font_sizes/font_size = 21
 text = "About the game About the game About the game About the gameAbout the game "
 autowrap_mode = 3
 
-[node name="Author" type="Label" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Author" type="Label" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1548982984]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 1
@@ -171,21 +173,36 @@ theme_override_colors/font_color = Color(0.353438, 0.353438, 0.353438, 1)
 text = "Who done it"
 autowrap_mode = 3
 
-[node name="ButtonLaunch" type="Button" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer"]
+[node name="input_layout_ui" type="VBoxContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=304175461]
+layout_mode = 2
+script = ExtResource("6_0kdpb")
+input_layout_ui_entry_packed_scene = ExtResource("7_tqnv8")
+
+[node name="ControlsLabel" type="Label" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/input_layout_ui" unique_id=1049946258]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 21
+text = "Controls"
+autowrap_mode = 3
+
+[node name="ButtonLaunch" type="Button" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer" unique_id=1617528873]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 34
-theme_override_styles/hover_pressed = ExtResource("6_63xg4")
-theme_override_styles/hover = ExtResource("7_dx8p0")
-theme_override_styles/pressed = ExtResource("6_63xg4")
 theme_override_styles/normal = ExtResource("8_o7dic")
+theme_override_styles/pressed = ExtResource("6_63xg4")
+theme_override_styles/hover = ExtResource("7_dx8p0")
+theme_override_styles/hover_pressed = ExtResource("6_63xg4")
 text = "
 "
 icon_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/ButtonLaunch"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/ButtonLaunch" unique_id=1592895414]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -196,12 +213,12 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="PlayButtonLabel" type="Label" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/ButtonLaunch/HBoxContainer"]
+[node name="PlayButtonLabel" type="Label" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/ButtonLaunch/HBoxContainer" unique_id=830231805]
 layout_mode = 2
 theme_override_font_sizes/font_size = 34
 text = "Play"
 
-[node name="TextureRect" type="TextureRect" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/ButtonLaunch/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="SelectionContainer/HBoxContainer/PanelContainer/GameContainer/ButtonLaunch/HBoxContainer" unique_id=1675037616]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_vertical = 4
@@ -210,13 +227,13 @@ texture = ExtResource("6_kkyur")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="GameContainerFlex" type="HBoxContainer" parent="SelectionContainer/HBoxContainer"]
+[node name="GameContainerFlex" type="HBoxContainer" parent="SelectionContainer/HBoxContainer" unique_id=1140084403]
 visible = false
 custom_minimum_size = Vector2(390, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PreLaunchHints" type="Control" parent="."]
+[node name="PreLaunchHints" type="Control" parent="." unique_id=1282065737]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -225,7 +242,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PreLaunchHintQuitButton" type="Control" parent="PreLaunchHints" node_paths=PackedStringArray("start_button")]
+[node name="PreLaunchHintQuitButton" type="Control" parent="PreLaunchHints" unique_id=31444947 node_paths=PackedStringArray("start_button")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -237,7 +254,7 @@ script = ExtResource("10_o7dic")
 pre_launch_hint_type = "no_quit_button"
 start_button = NodePath("VBoxContainer/ButtonLaunch")
 
-[node name="ColorRect" type="ColorRect" parent="PreLaunchHints/PreLaunchHintQuitButton"]
+[node name="ColorRect" type="ColorRect" parent="PreLaunchHints/PreLaunchHintQuitButton" unique_id=532568515]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -246,7 +263,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.901961)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PreLaunchHints/PreLaunchHintQuitButton"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PreLaunchHints/PreLaunchHintQuitButton" unique_id=1659298062]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -260,11 +277,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12
 
-[node name="Expander" type="Control" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer"]
+[node name="Expander" type="Control" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer" unique_id=495008559]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="EscapeIcon" type="TextureRect" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer"]
+[node name="EscapeIcon" type="TextureRect" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer" unique_id=1565909627]
 self_modulate = Color(0.0196078, 0.568627, 0.909804, 1)
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
@@ -273,11 +290,11 @@ texture = ExtResource("10_dx8p0")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="LilSpace" type="Control" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer"]
+[node name="LilSpace" type="Control" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer" unique_id=47443346]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="LabelDE" type="Label" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer"]
+[node name="LabelDE" type="Label" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer" unique_id=794592534]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -285,10 +302,10 @@ text = "Dieses Spiel hat keinen eigenen Knopf zum Beenden. Wenn du das Spiel ver
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HSeparator" type="HSeparator" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer" unique_id=1793942489]
 layout_mode = 2
 
-[node name="LabelEN" type="Label" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer"]
+[node name="LabelEN" type="Label" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer" unique_id=903422692]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -296,11 +313,11 @@ text = "This game doesn't have a quit button. To exit the game, please press and
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="LilSpace2" type="Control" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer"]
+[node name="LilSpace2" type="Control" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer" unique_id=605215552]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="ButtonLaunch" type="Button" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer"]
+[node name="ButtonLaunch" type="Button" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer" unique_id=278835307]
 custom_minimum_size = Vector2(400, 55)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -312,16 +329,16 @@ focus_next = NodePath(".")
 focus_previous = NodePath(".")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 34
-theme_override_styles/hover_pressed = ExtResource("6_63xg4")
-theme_override_styles/hover = ExtResource("7_dx8p0")
-theme_override_styles/pressed = ExtResource("6_63xg4")
 theme_override_styles/normal = ExtResource("12_leg2y")
+theme_override_styles/pressed = ExtResource("6_63xg4")
+theme_override_styles/hover = ExtResource("7_dx8p0")
+theme_override_styles/hover_pressed = ExtResource("6_63xg4")
 text = "
 "
 icon_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer/ButtonLaunch"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer/ButtonLaunch" unique_id=1239016906]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -332,12 +349,12 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="PlayButtonLabel" type="Label" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer/ButtonLaunch/HBoxContainer"]
+[node name="PlayButtonLabel" type="Label" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer/ButtonLaunch/HBoxContainer" unique_id=1687429143]
 layout_mode = 2
 theme_override_font_sizes/font_size = 34
 text = "Play"
 
-[node name="TextureRect" type="TextureRect" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer/ButtonLaunch/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer/ButtonLaunch/HBoxContainer" unique_id=1769760619]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_vertical = 4
@@ -346,6 +363,6 @@ texture = ExtResource("6_kkyur")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="Expander2" type="Control" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer"]
+[node name="Expander2" type="Control" parent="PreLaunchHints/PreLaunchHintQuitButton/VBoxContainer" unique_id=2112559128]
 layout_mode = 2
 size_flags_vertical = 3

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://donnvmvbqack2"]
+[gd_scene format=3 uid="uid://donnvmvbqack2"]
 
 [ext_resource type="Script" uid="uid://bes2y6x8kph2i" path="res://ui/games/launcher_bootstrap.gd" id="1_jksf5"]
 [ext_resource type="Script" uid="uid://bsa6o5ox4ok1a" path="res://ui/games/input_quit_game_controller.gd" id="2_0qv6n"]
@@ -16,8 +16,11 @@
 [ext_resource type="Script" uid="uid://bqxwdwj6mso0a" path="res://ui/games/game_selection/games_ui_focus_controller.gd" id="14_q1h15"]
 [ext_resource type="Script" uid="uid://dig5yux8t4imh" path="res://ui/games/launch_state_ui_controller.gd" id="15_i5bye"]
 [ext_resource type="PackedScene" uid="uid://bxltecj7uxmp3" path="res://ui/choice_selector/choice_selector.tscn" id="16_2jh5i"]
+[ext_resource type="Texture2D" uid="uid://da476374mcjok" path="res://icons/cursor.png" id="17_0qv6n"]
+[ext_resource type="Script" uid="uid://cfe4uxibhyn18" path="res://ui/fun_mouse_cursor.gd" id="17_r740p"]
+[ext_resource type="Texture2D" uid="uid://yvfontsbr21h" path="res://icons/cursor_solid.png" id="18_6bt5x"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("games_ui", "games_ui_state", "choicer", "main_ui_manager", "cover_image_loader", "logs", "launch_state_ui_controllers")]
+[node name="Main" type="Node" unique_id=1034041569 node_paths=PackedStringArray("games_ui", "games_ui_state", "choicer", "main_ui_manager", "cover_image_loader", "logs", "launch_state_ui_controllers")]
 script = ExtResource("1_jksf5")
 games_ui = NodePath("CanvasLayer/MainUiStateManager/state_games_ui_controller/games_ui_controller")
 games_ui_state = NodePath("CanvasLayer/MainUiStateManager/state_games_ui_controller")
@@ -28,30 +31,30 @@ logs = NodePath("CanvasLayer/log_display")
 launch_state_ui_controllers = [NodePath("CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching_controller"), NodePath("CanvasLayer/MainUiStateManager/state_ui_running/ui_running_controller")]
 metadata/_custom_type_script = "uid://bes2y6x8kph2i"
 
-[node name="input_quit_game_controller" type="Node" parent="."]
+[node name="input_quit_game_controller" type="Node" parent="." unique_id=443134386]
 script = ExtResource("2_0qv6n")
 metadata/_custom_type_script = "uid://bsa6o5ox4ok1a"
 
-[node name="cave_launcher" type="Node" parent="." node_paths=PackedStringArray("quit_input_handler", "browser_launcher")]
+[node name="cave_launcher" type="Node" parent="." unique_id=721090629 node_paths=PackedStringArray("quit_input_handler", "browser_launcher")]
 script = ExtResource("3_r740p")
 quit_input_handler = NodePath("../input_quit_game_controller")
 browser_launcher = NodePath("browser_launcher")
 metadata/_custom_type_script = "uid://cg27bp0xwfy4t"
 
-[node name="browser_launcher" type="Node" parent="cave_launcher"]
+[node name="browser_launcher" type="Node" parent="cave_launcher" unique_id=1149716922]
 script = ExtResource("4_6bt5x")
 metadata/_custom_type_script = "uid://p3d4p8j8pknk"
 
-[node name="input_editor_quit" type="Node" parent="." node_paths=PackedStringArray("launcher")]
+[node name="input_editor_quit" type="Node" parent="." unique_id=1575047780 node_paths=PackedStringArray("launcher")]
 script = ExtResource("5_r1mep")
 launcher = NodePath("../cave_launcher")
 
-[node name="image_loader" type="Node" parent="."]
+[node name="image_loader" type="Node" parent="." unique_id=1163816479]
 script = ExtResource("6_uq8g4")
 fallback_image = ExtResource("7_3f87s")
 metadata/_custom_type_script = "uid://vcqtsco552dp"
 
-[node name="game_ui_state_controller" type="Node" parent="." node_paths=PackedStringArray("main_ui", "launcher", "games_ui", "launching_ui", "running_ui")]
+[node name="game_ui_state_controller" type="Node" parent="." unique_id=1643225754 node_paths=PackedStringArray("main_ui", "launcher", "games_ui", "launching_ui", "running_ui")]
 script = ExtResource("8_4qyh1")
 main_ui = NodePath("../CanvasLayer/MainUiStateManager")
 launcher = NodePath("../cave_launcher")
@@ -59,9 +62,9 @@ games_ui = NodePath("../CanvasLayer/MainUiStateManager/state_games_ui_controller
 launching_ui = NodePath("../CanvasLayer/MainUiStateManager/state_ui_launching")
 running_ui = NodePath("../CanvasLayer/MainUiStateManager/state_ui_running")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=112918177]
 
-[node name="BG" type="Control" parent="CanvasLayer"]
+[node name="BG" type="Control" parent="CanvasLayer" unique_id=653199875]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,7 +72,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/BG"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/BG" unique_id=1606482828]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -77,7 +80,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/BG"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/BG" unique_id=286199431]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,21 +88,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Expander" type="Control" parent="CanvasLayer/BG/VBoxContainer"]
+[node name="Expander" type="Control" parent="CanvasLayer/BG/VBoxContainer" unique_id=1963911274]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/BG/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/BG/VBoxContainer" unique_id=342056000]
 layout_mode = 2
 texture = ExtResource("9_wqsvu")
 expand_mode = 5
 stretch_mode = 4
 
-[node name="log_display" parent="CanvasLayer" instance=ExtResource("10_cqct8")]
+[node name="log_display" parent="CanvasLayer" unique_id=1137401026 instance=ExtResource("10_cqct8")]
 
-[node name="MainUiStateManager" parent="CanvasLayer" instance=ExtResource("11_ua77n")]
+[node name="MainUiStateManager" parent="CanvasLayer" unique_id=172195998 node_paths=PackedStringArray("mouse_fun_controller") instance=ExtResource("11_ua77n")]
+mouse_fun_controller = NodePath("../Mouse Cursor Layer/MouseCursor")
 
-[node name="state_games_ui_controller" type="Control" parent="CanvasLayer/MainUiStateManager"]
+[node name="state_games_ui_controller" type="Control" parent="CanvasLayer/MainUiStateManager" unique_id=139098008]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -107,18 +111,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("12_0cewe")
+high_performance_mode = true
+cursor_fun = true
 metadata/_custom_type_script = "uid://bybbytduq32gx"
+metadata/_edit_use_anchors_ = true
 
-[node name="games_ui_controller" parent="CanvasLayer/MainUiStateManager/state_games_ui_controller" node_paths=PackedStringArray("launcher") instance=ExtResource("13_ucocn")]
+[node name="games_ui_controller" parent="CanvasLayer/MainUiStateManager/state_games_ui_controller" unique_id=339280394 node_paths=PackedStringArray("launcher") instance=ExtResource("13_ucocn")]
 layout_mode = 1
 launcher = NodePath("../../../../cave_launcher")
 
-[node name="games_ui_focus_controller" type="Node" parent="CanvasLayer/MainUiStateManager/state_games_ui_controller" node_paths=PackedStringArray("games_ui", "games_ui_state")]
+[node name="games_ui_focus_controller" type="Node" parent="CanvasLayer/MainUiStateManager/state_games_ui_controller" unique_id=1279678658 node_paths=PackedStringArray("games_ui", "games_ui_state")]
 script = ExtResource("14_q1h15")
 games_ui = NodePath("../games_ui_controller")
 games_ui_state = NodePath("..")
 
-[node name="state_ui_launching" type="Control" parent="CanvasLayer/MainUiStateManager"]
+[node name="state_ui_launching" type="Control" parent="CanvasLayer/MainUiStateManager" unique_id=1938235191]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -127,9 +134,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("12_0cewe")
+high_performance_mode = true
+cursor_fun = true
 metadata/_custom_type_script = "uid://bybbytduq32gx"
 
-[node name="ui_launching" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_launching"]
+[node name="ui_launching" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_launching" unique_id=262834780]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -137,7 +146,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching" unique_id=899735548]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -151,22 +160,22 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12
 
-[node name="Expander" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer"]
+[node name="Expander" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer" unique_id=1050503885]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GameImage" type="TextureRect" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer"]
+[node name="GameImage" type="TextureRect" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer" unique_id=1341899742]
 custom_minimum_size = Vector2(0, 170)
 layout_mode = 2
 texture = ExtResource("9_wqsvu")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="LilSpace" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer"]
+[node name="LilSpace" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer" unique_id=1537358092]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="LabelDE" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer"]
+[node name="LabelDE" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer" unique_id=879967054]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -174,10 +183,10 @@ text = "&&gamename&& wird gestartet, gleich geht's los!"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer" unique_id=1673609609]
 layout_mode = 2
 
-[node name="LabelEN" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer"]
+[node name="LabelEN" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer" unique_id=1142528617]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -185,17 +194,17 @@ text = "Starting &&gamename&&, it's gonna happen every second now!"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Expander2" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer"]
+[node name="Expander2" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer" unique_id=456502822]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ui_launching_controller" type="Node" parent="CanvasLayer/MainUiStateManager/state_ui_launching" node_paths=PackedStringArray("launcher", "tex_rect", "labels")]
+[node name="ui_launching_controller" type="Node" parent="CanvasLayer/MainUiStateManager/state_ui_launching" unique_id=1065334992 node_paths=PackedStringArray("launcher", "tex_rect", "labels")]
 script = ExtResource("15_i5bye")
 launcher = NodePath("../../../../cave_launcher")
 tex_rect = NodePath("../ui_launching/VBoxContainer/GameImage")
 labels = [NodePath("../ui_launching/VBoxContainer/LabelDE"), NodePath("../ui_launching/VBoxContainer/LabelEN")]
 
-[node name="state_ui_running" type="Control" parent="CanvasLayer/MainUiStateManager"]
+[node name="state_ui_running" type="Control" parent="CanvasLayer/MainUiStateManager" unique_id=1699254959]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -206,7 +215,7 @@ grow_vertical = 2
 script = ExtResource("12_0cewe")
 metadata/_custom_type_script = "uid://bybbytduq32gx"
 
-[node name="ui_running" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_running"]
+[node name="ui_running" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_running" unique_id=634675166]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -214,7 +223,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running" unique_id=1311665330]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -228,22 +237,22 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12
 
-[node name="Expander" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer"]
+[node name="Expander" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer" unique_id=1670263681]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GameImage" type="TextureRect" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer"]
+[node name="GameImage" type="TextureRect" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer" unique_id=1163347634]
 custom_minimum_size = Vector2(0, 170)
 layout_mode = 2
 texture = ExtResource("9_wqsvu")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="LilSpace" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer"]
+[node name="LilSpace" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer" unique_id=1959299817]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="LabelDE" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer"]
+[node name="LabelDE" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer" unique_id=1694171492]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -251,10 +260,10 @@ text = "&&gamename&& läuft! Falls das nicht stimmt, halte die Escape-Taste gedr
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer" unique_id=1086150705]
 layout_mode = 2
 
-[node name="LabelEN" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer"]
+[node name="LabelEN" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer" unique_id=1439599541]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -262,15 +271,118 @@ text = "&&gamename&& is running! If it isn't, hold the Escape key to return to t
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Expander2" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer"]
+[node name="Expander2" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer" unique_id=762144685]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ui_running_controller" type="Node" parent="CanvasLayer/MainUiStateManager/state_ui_running" node_paths=PackedStringArray("launcher", "tex_rect", "labels")]
+[node name="ui_running_controller" type="Node" parent="CanvasLayer/MainUiStateManager/state_ui_running" unique_id=919117565 node_paths=PackedStringArray("launcher", "tex_rect", "labels")]
 script = ExtResource("15_i5bye")
 launcher = NodePath("../../../../cave_launcher")
 tex_rect = NodePath("../ui_running/VBoxContainer/GameImage")
 labels = [NodePath("../ui_running/VBoxContainer/LabelDE"), NodePath("../ui_running/VBoxContainer/LabelEN")]
 
-[node name="ChoiceSelector" parent="CanvasLayer" instance=ExtResource("16_2jh5i")]
+[node name="ChoiceSelector" parent="CanvasLayer" unique_id=1023773625 instance=ExtResource("16_2jh5i")]
 visible = false
+
+[node name="Mouse Cursor Layer" type="Control" parent="CanvasLayer" unique_id=190622969]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="MouseCursor" type="Control" parent="CanvasLayer/Mouse Cursor Layer" unique_id=1935458491 node_paths=PackedStringArray("mouse_anchor_top", "mouse_anchor_bottom", "mouse_visual_size", "mouse_visual_pos", "mouse_visual_size_level_2", "mouse_visual_pos_level_2", "mouse_visual_size_level_3", "mouse_visual_pos_level_3")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
+script = ExtResource("17_r740p")
+mouse_anchor_top = NodePath("mouse_anchor_top")
+mouse_anchor_bottom = NodePath("mouse_anchor_bottom")
+mouse_visual_size = NodePath("mouse_visual_pos/mouse_visual_height")
+mouse_visual_pos = NodePath("mouse_visual_pos")
+bottom_offset = Vector2(60, 60)
+over_scale = 1.1
+wobbler_lambda = 5.0
+wobbler_acceleration = 160000.0
+min_size = 50.0
+wind_scale = 55.0
+wind_variance = Vector3(10, 8, 0)
+mouse_visual_size_level_2 = NodePath("mouse_visual_pos_level_2/mouse_visual_height")
+mouse_visual_pos_level_2 = NodePath("mouse_visual_pos_level_2")
+mouse_level_2_offset = Vector2(0, 5)
+mouse_visual_size_level_3 = NodePath("mouse_visual_pos_level_3/mouse_visual_height")
+mouse_visual_pos_level_3 = NodePath("mouse_visual_pos_level_3")
+mouse_level_3_offset = Vector2(0, 10)
+metadata/_custom_type_script = "uid://cfe4uxibhyn18"
+
+[node name="mouse_anchor_top" type="Control" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor" unique_id=517673723]
+anchors_preset = 0
+
+[node name="mouse_anchor_bottom" type="Control" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor" unique_id=366409131]
+anchors_preset = 0
+offset_left = 76.0
+offset_top = 98.0
+offset_right = 76.0
+offset_bottom = 98.0
+
+[node name="mouse_visual_pos_level_3" type="CenterContainer" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor" unique_id=1744929298]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+
+[node name="mouse_visual_height" type="TextureRect" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor/mouse_visual_pos_level_3" unique_id=1951129341]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 208.535)
+layout_mode = 2
+texture = ExtResource("18_6bt5x")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="mouse_visual_pos_level_2" type="CenterContainer" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor" unique_id=116623417]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+
+[node name="mouse_visual_height" type="TextureRect" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor/mouse_visual_pos_level_2" unique_id=326398485]
+modulate = Color(0.49143595, 0.49143595, 0.49143595, 1)
+custom_minimum_size = Vector2(0, 208.535)
+layout_mode = 2
+texture = ExtResource("18_6bt5x")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="mouse_visual_pos" type="CenterContainer" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor" unique_id=1177493086]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+
+[node name="mouse_visual_height" type="TextureRect" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor/mouse_visual_pos" unique_id=1087144909]
+custom_minimum_size = Vector2(0, 208.535)
+layout_mode = 2
+texture = ExtResource("17_0qv6n")
+expand_mode = 2
+stretch_mode = 5
