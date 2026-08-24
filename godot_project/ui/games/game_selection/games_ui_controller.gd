@@ -17,6 +17,9 @@ var games : Array[game_data]
 var buttons : Array[game_button]
 var focused_button : game_button
 
+signal focused_button_changed(button : game_button)
+
+
 func _ready():
 	launch_button.pressed.connect(on_launch_button_pressed)
 
@@ -26,7 +29,11 @@ func set_data(connection : butler_connection, games : Array[game_data]):
 	
 	var buttons : Array[game_button]
 	
-	for game in games:
+	var games_to_show := games;
+	while games_to_show.size() < 5:
+		games_to_show.append_array(games_to_show);
+	
+	for game in games_to_show:
 		var button := games_ui_list_layout_data.button_packed_scene.instantiate() as game_button
 		button._set_data(game)
 		var cave := game.cave_info
@@ -43,6 +50,7 @@ func grab_context_focus(shown : bool):
 	
 func set_focused_button(b : game_button):
 	focused_button = b
+	focused_button_changed.emit(b)
 	title_label.text = focused_button._game.collection_game.game.title
 	cover_texture_rect.texture = focused_button._game.get_image()
 	

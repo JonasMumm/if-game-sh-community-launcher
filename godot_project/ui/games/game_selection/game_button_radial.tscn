@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://cgf8irmbvbufi"]
+
+[ext_resource type="Script" uid="uid://dlrrp22auy1s3" path="res://ui/games/game_selection/game_button.gd" id="1_w66rm"]
+[ext_resource type="StyleBox" uid="uid://bh6llqyqvkk22" path="res://ui/games/theming/game_button_focus.tres" id="2_w8ltc"]
+[ext_resource type="StyleBox" uid="uid://ch3xf8gqf063x" path="res://ui/games/theming/game_button_hover.tres" id="3_eitd1"]
+[ext_resource type="StyleBox" uid="uid://c427ck1338fw5" path="res://ui/games/theming/game_button_normal.tres" id="4_gafx4"]
+[ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icons/icon.svg" id="5_k3fia"]
+
+[node name="game_button_radial" type="AspectRatioContainer" unique_id=1678668106 node_paths=PackedStringArray("button", "cover")]
+clip_contents = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = -262.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(157, 125)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+ratio = 1.26
+stretch_mode = 1
+script = ExtResource("1_w66rm")
+button = NodePath("Button")
+cover = NodePath("MarginContainer/Cover")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=332993204]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Cover" type="TextureRect" parent="MarginContainer" unique_id=1342787694]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("5_k3fia")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Button" type="Button" parent="." unique_id=291843911]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("4_gafx4")
+theme_override_styles/pressed = ExtResource("3_eitd1")
+theme_override_styles/hover = ExtResource("3_eitd1")
+theme_override_styles/focus = ExtResource("2_w8ltc")
+autowrap_mode = 3
