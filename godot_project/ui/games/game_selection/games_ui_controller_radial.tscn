@@ -1,25 +1,42 @@
 [gd_scene format=3 uid="uid://c5hqjhtseppl2"]
 
 [ext_resource type="Script" uid="uid://2qioqorem5i1" path="res://ui/games/game_selection/games_ui_controller.gd" id="1_n2f8t"]
-[ext_resource type="Script" path="res://ui/games/game_selection/radial_container.gd" id="2_xe26v"]
+[ext_resource type="Texture2D" uid="uid://bswxs5vok2prf" path="res://ui/Ellipse.png" id="2_olgev"]
+[ext_resource type="Script" uid="uid://c3v3f6lvk7tvr" path="res://ui/games/game_selection/radial_container.gd" id="2_xe26v"]
 [ext_resource type="Script" uid="uid://blvc838s4o80v" path="res://ui/games/game_selection/games_ui_list_layout_data.gd" id="3_olgev"]
 [ext_resource type="PackedScene" uid="uid://cgf8irmbvbufi" path="res://ui/games/game_selection/game_button_radial.tscn" id="4_olgev"]
 [ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icons/icon.svg" id="5_cmiir"]
+[ext_resource type="Script" uid="uid://c101h00ntpdmv" path="res://ui/games/displays/display_title.gd" id="6_ilrfv"]
 [ext_resource type="Script" uid="uid://dsyx465gqtsdv" path="res://ui/control layout/input_layout_ui.gd" id="6_jc40m"]
 [ext_resource type="PackedScene" uid="uid://c14e5oxfs7rx3" path="res://ui/control layout/input_layout_ui_entry.tscn" id="7_32pca"]
-[ext_resource type="Texture2D" uid="uid://duf533k4oq8lk" path="res://ui/icons/icon_play.svg" id="8_xe26v"]
+[ext_resource type="Script" uid="uid://cl6swo41ecein" path="res://ui/games/displays/display_author.gd" id="7_svqhx"]
+[ext_resource type="Texture2D" uid="uid://dgq3xv1pwgt3y" path="res://ui/icons/icon_play.svg" id="8_xe26v"]
 [ext_resource type="StyleBox" uid="uid://coi68i1w00ibf" path="res://ui/games/theming/launch_button_press.tres" id="9_ilrfv"]
+[ext_resource type="Texture2D" uid="uid://dux4ykeu8sjou" path="res://ui/icons/icon_shuffle.svg" id="9_xe26v"]
+[ext_resource type="Script" uid="uid://dxdhwtebs8xsm" path="res://ui/games/displays/display_player_count.gd" id="10_3fjmy"]
 [ext_resource type="StyleBox" uid="uid://bqjst1on3dc28" path="res://ui/games/theming/launch_button_hover.tres" id="10_svqhx"]
+[ext_resource type="Texture2D" uid="uid://mabbyld7cxos" path="res://ui/icons/icon_playercount.svg" id="11_cmiir"]
 [ext_resource type="Texture2D" uid="uid://c54sfad57xnlu" path="res://icons/joystick_60dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.svg" id="11_f075n"]
+[ext_resource type="Texture2D" uid="uid://71vhkdxe34m4" path="res://ui/icons/icon_playtime.svg" id="11_jc40m"]
+[ext_resource type="Script" uid="uid://cc43h55jgj3dt" path="res://ui/games/displays/display_playtime.gd" id="12_ilrfv"]
 [ext_resource type="Script" uid="uid://db4ljrhuvexou" path="res://ui/games/pre_launch_hint.gd" id="12_vr56l"]
 [ext_resource type="Texture2D" uid="uid://e8sp3acb5a1t" path="res://icons/KeyEscape.png" id="13_yiu8v"]
 [ext_resource type="StyleBox" uid="uid://f5hittjv0uw5" path="res://ui/games/theming/launch_button_normal_round.tres" id="14_avjfl"]
+[ext_resource type="Script" uid="uid://dxulls7inv2tw" path="res://ui/games/displays/display_description.gd" id="15_f075n"]
+[ext_resource type="Texture2D" uid="uid://cu7gnf58p112a" path="res://ui/qr_ifgameshde.png" id="17_6nkyy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2f8t"]
+bg_color = Color(0.70980394, 0.8509804, 0.8235294, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qod8e"]
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 
-[node name="games_ui_controller" type="Control" unique_id=1581566806 node_paths=PackedStringArray("games_ui_list_layout_data", "launch_button", "title_label", "cover_texture_rect", "author_label", "input_layout_manager", "shortText_label")]
+[node name="games_ui_controller" type="Control" unique_id=1581566806 node_paths=PackedStringArray("games_ui_list_layout_data", "launch_button", "cover_texture_rect", "input_layout_manager")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,22 +46,33 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_n2f8t")
 games_ui_list_layout_data = NodePath("RadialContainer/TileLayout")
-launch_button = NodePath("GameInfoBottom/GameContainer/ButtonLaunch")
-title_label = NodePath("GameInfoTop/VBoxContainer/GameTitle")
+launch_button = NodePath("GameInfoBottom/GameContainer/Buttons/ButtonLaunch")
 cover_texture_rect = NodePath("GameInfoBottom/GameContainer/CoverContainer/TextureRect")
-author_label = NodePath("GameInfoTop/VBoxContainer/Author")
 input_layout_manager = NodePath("GameInfoBottom/GameContainer/Details/VBoxContainer/input_layout_ui")
-shortText_label = NodePath("GameInfoBottom/GameContainer/Details/VBoxContainer/About")
 metadata/_custom_type_script = "uid://2qioqorem5i1"
 
 [node name="BG" type="ColorRect" parent="." unique_id=1096847695]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="FG" type="TextureRect" parent="." unique_id=2143087338]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -290.0
+offset_top = 440.0
+offset_right = 290.0
+offset_bottom = 440.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_olgev")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="RadialContainer" type="Container" parent="." unique_id=213304556]
 z_index = 100
@@ -58,6 +86,8 @@ size_flags_horizontal = 3
 script = ExtResource("2_xe26v")
 center = Vector2(0, 1150)
 radius = 1200.0
+scale_minimum = null
+scale_minimum_index = null
 
 [node name="TileLayout" type="Node" parent="RadialContainer" unique_id=1098734429 node_paths=PackedStringArray("button_container")]
 script = ExtResource("3_olgev")
@@ -65,7 +95,7 @@ button_container = NodePath("..")
 button_packed_scene = ExtResource("4_olgev")
 
 [node name="GameInfoTop" type="Control" parent="." unique_id=967480434]
-custom_minimum_size = Vector2(600, 100)
+custom_minimum_size = Vector2(1000, 100)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -82,22 +112,53 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="GameTitle" type="Label" parent="GameInfoTop/VBoxContainer" unique_id=805826374]
-custom_minimum_size = Vector2(300, 0)
+[node name="TitleContainer" type="Control" parent="GameInfoTop/VBoxContainer" unique_id=1009947428]
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+
+[node name="PanelBG" type="Panel" parent="GameInfoTop/VBoxContainer/TitleContainer" unique_id=1153980863]
+custom_minimum_size = Vector2(200, 32)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -16.0
+offset_right = 100.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.034906585
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_n2f8t")
+
+[node name="GameTitle" type="Label" parent="GameInfoTop/VBoxContainer/TitleContainer" unique_id=805826374]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_type_variation = &"GameTitle"
 text = "Game Name"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3
+script = ExtResource("6_ilrfv")
 
 [node name="Author" type="Label" parent="GameInfoTop/VBoxContainer" unique_id=528869908]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(200, 32)
 layout_mode = 2
 size_flags_vertical = 1
 theme_type_variation = &"GameAuthor"
 text = "Who done it"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3
+script = ExtResource("7_svqhx")
 
 [node name="GameInfoBottom" type="Control" parent="." unique_id=753138597]
 z_index = 100
@@ -125,9 +186,24 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_stretch_ratio = 0.23
 
-[node name="ButtonLaunch" type="Button" parent="GameInfoBottom/GameContainer" unique_id=1833507422]
-custom_minimum_size = Vector2(128, 128)
+[node name="Buttons" type="Control" parent="GameInfoBottom/GameContainer" unique_id=968985582]
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
+
+[node name="ButtonLaunch" type="Button" parent="GameInfoBottom/GameContainer/Buttons" unique_id=1833507422]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_type_variation = &"LaunchButton"
@@ -136,7 +212,27 @@ text = "
 icon = ExtResource("8_xe26v")
 icon_alignment = 1
 expand_icon = true
-metadata/_edit_use_anchors_ = true
+
+[node name="ButtonRandom" type="Button" parent="GameInfoBottom/GameContainer/Buttons" unique_id=696124737]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = -32.0
+offset_right = 144.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_type_variation = &"ShuffleButton"
+icon = ExtResource("9_xe26v")
+icon_alignment = 1
+expand_icon = true
 
 [node name="CoverContainer" type="PanelContainer" parent="GameInfoBottom/GameContainer" unique_id=276814201]
 visible = false
@@ -149,6 +245,45 @@ layout_mode = 2
 texture = ExtResource("5_cmiir")
 expand_mode = 5
 stretch_mode = 4
+
+[node name="SmallInfo" type="HBoxContainer" parent="GameInfoBottom/GameContainer" unique_id=607466863]
+layout_mode = 2
+
+[node name="PlayerCount" type="HBoxContainer" parent="GameInfoBottom/GameContainer/SmallInfo" unique_id=222403990]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="GameInfoBottom/GameContainer/SmallInfo/PlayerCount" unique_id=2113562146]
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_type_variation = &"GameInfoSmallIcon"
+texture = ExtResource("11_cmiir")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="PlayerCountLabel" type="Label" parent="GameInfoBottom/GameContainer/SmallInfo/PlayerCount" unique_id=593085044]
+layout_mode = 2
+theme_type_variation = &"GameInfoSmall"
+text = "1-2"
+script = ExtResource("10_3fjmy")
+
+[node name="Time" type="HBoxContainer" parent="GameInfoBottom/GameContainer/SmallInfo" unique_id=2080714384]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="GameInfoBottom/GameContainer/SmallInfo/Time" unique_id=1704606940]
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_type_variation = &"GameInfoSmallIcon"
+texture = ExtResource("11_jc40m")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TimeLabel" type="Label" parent="GameInfoBottom/GameContainer/SmallInfo/Time" unique_id=642405757]
+layout_mode = 2
+theme_type_variation = &"GameInfoSmall"
+text = "20m"
+script = ExtResource("12_ilrfv")
 
 [node name="Details" type="VBoxContainer" parent="GameInfoBottom/GameContainer" unique_id=267886260]
 layout_mode = 2
@@ -166,6 +301,7 @@ theme_override_constants/line_spacing = 0
 theme_override_font_sizes/font_size = 21
 text = "About the game About the game About the game About the gameAbout the game "
 autowrap_mode = 3
+script = ExtResource("15_f075n")
 
 [node name="input_layout_ui" type="VBoxContainer" parent="GameInfoBottom/GameContainer/Details/VBoxContainer" unique_id=219768155]
 layout_mode = 2
@@ -317,4 +453,29 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=134368829]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_bottom = 200.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=2074992055]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("17_6nkyy")
+expand_mode = 2
+stretch_mode = 4
+
 [connection signal="focused_button_changed" from="." to="RadialContainer" method="on_selection_changed"]
+[connection signal="game_changed" from="." to="GameInfoTop/VBoxContainer/TitleContainer/GameTitle" method="set_game_data"]
+[connection signal="game_changed" from="." to="GameInfoTop/VBoxContainer/Author" method="set_game_data"]
+[connection signal="game_changed" from="." to="GameInfoBottom/GameContainer/Details/VBoxContainer/About" method="set_game_data"]
+[connection signal="game_changed" from="." to="GameInfoBottom/GameContainer/SmallInfo/PlayerCount/PlayerCountLabel" method="set_game_data"]
+[connection signal="game_changed" from="." to="GameInfoBottom/GameContainer/SmallInfo/Time/TimeLabel" method="set_game_data"]

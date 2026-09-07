@@ -8,6 +8,10 @@ extends Container
 @export var radius := 500.0;
 @export var angle_between_items := 15.0;
 
+@export_category("Scaling")
+@export var scale_minimum := 0.5;
+@export var scale_minimum_index := 3;
+
 @export var items_rotation := 0.0:
 	set(value):
 		items_rotation = value;
@@ -46,7 +50,7 @@ func _notification(what):
 			var offset := radius * Vector2.UP.rotated(deg_to_rad(angle));
 			control.position = control_center + center + offset - control.size / 2.0;
 			control.z_index = -index_offset;
-			control.scale = Vector2.ONE * lerp(1.0, 0.33, index_offset/3.0);
+			control.scale = Vector2.ONE * lerp(1.0, scale_minimum, float(index_offset)/scale_minimum_index);
 			index = index + 1;
 	
 func _physics_process(delta: float) -> void:

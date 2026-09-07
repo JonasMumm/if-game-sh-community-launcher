@@ -6,7 +6,16 @@
 [ext_resource type="StyleBox" uid="uid://c427ck1338fw5" path="res://ui/games/theming/game_button_normal.tres" id="4_gafx4"]
 [ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icons/icon.svg" id="5_k3fia"]
 
-[node name="game_button_radial" type="AspectRatioContainer" unique_id=1678668106 node_paths=PackedStringArray("button", "cover")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ophl0"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 20
+
+[node name="game_button_radial" type="PanelContainer" unique_id=1269866912 node_paths=PackedStringArray("button", "cover")]
+clip_children = 2
 clip_contents = true
 anchors_preset = 8
 anchor_left = 0.5
@@ -22,11 +31,10 @@ grow_vertical = 2
 pivot_offset = Vector2(157, 125)
 size_flags_horizontal = 4
 size_flags_vertical = 4
-ratio = 1.26
-stretch_mode = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ophl0")
 script = ExtResource("1_w66rm")
 button = NodePath("Button")
-cover = NodePath("MarginContainer/Cover")
+cover = NodePath("Cover")
 metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="." unique_id=291843911]
@@ -37,15 +45,7 @@ theme_override_styles/hover = ExtResource("3_eitd1")
 theme_override_styles/focus = ExtResource("2_w8ltc")
 autowrap_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=332993204]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Cover" type="TextureRect" parent="MarginContainer" unique_id=1342787694]
+[node name="Cover" type="TextureRect" parent="." unique_id=1342787694]
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("5_k3fia")

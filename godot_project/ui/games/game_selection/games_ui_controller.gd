@@ -18,6 +18,7 @@ var buttons : Array[game_button]
 var focused_button : game_button
 
 signal focused_button_changed(button : game_button)
+signal game_changed(data : game_data)
 
 
 func _ready():
@@ -51,22 +52,27 @@ func grab_context_focus(shown : bool):
 func set_focused_button(b : game_button):
 	focused_button = b
 	focused_button_changed.emit(b)
-	title_label.text = focused_button._game.collection_game.game.title
+	
+	# obsolete, use game_changed signal instead
+	if title_label:
+		title_label.text = focused_button._game.collection_game.game.title
 	cover_texture_rect.texture = focused_button._game.get_image()
 	
-	var game =focused_button._game.collection_game.game
-	if game.has("shortText"):
-		shortText_label.text = "\""+game.shortText+"\""
-	else :
-		shortText_label.text = ""
+	# obsolete, use game_changed signal instead
+	if shortText_label:
+		var game = focused_button._game.collection_game.game
+		if game.has("shortText"):
+			shortText_label.text = "\""+game.shortText+"\""
+		else :
+			shortText_label.text = ""
 		
-	var authors := focused_button._game.collection_entry.details.authors
-	if !authors.is_empty():
-		author_label.text = "by "+focused_button._game.collection_entry.details.authors
-		author_label.visible = true
-	else:
-		author_label.visible = false
+	# obsolete, use game_changed signal instead
+	if author_label:
+		author_label.text = GameStringUtility.get_authors_text(focused_button._game.collection_entry.details)
+		author_label.visible = !author_label.text.is_empty()
+	
 	input_layout_manager.set_data(focused_button._game.collection_entry.controls)
+	game_changed.emit(focused_button._game)
 	focused_button.button.grab_focus()
 	
 func on_launch_button_pressed():

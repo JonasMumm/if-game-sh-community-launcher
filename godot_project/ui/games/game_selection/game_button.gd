@@ -35,25 +35,10 @@ func _set_data(game : game_data):
 	var details := game.collection_entry.details
 	
 	if player_count_label:
-		if details.players_max != 0:
-			if details.players_max != details.players_min:
-				player_count_label.text = str(details.players_min)+"-"+str(details.players_max)
-			else:
-				player_count_label.text=str(details.players_max)
-		else:
-			player_count_label.text = ""
+		player_count_label.text = GameStringUtility.get_playercount_text(details)
 		
 	if session_duration_label:
-		var hours := floori(details.session_duration_seconds /60/60)
-		var minutes := floori(details.session_duration_seconds /60)
-		if hours>0:
-			session_duration_label.text = str(hours)+" h"
-		elif minutes>1:
-			session_duration_label.text = str(minutes)+" min"
-		elif details.session_duration_seconds>0:
-			session_duration_label.text = str(details.session_duration_seconds)+" s"
-		else:
-			session_duration_label.text = ""
+		session_duration_label.text = GameStringUtility.get_time_text(details)
 	
 	if cover:
 		cover.texture = game.get_image()
