@@ -287,6 +287,7 @@ labels = [NodePath("../ui_running/VBoxContainer/LabelDE"), NodePath("../ui_runni
 visible = false
 
 [node name="Mouse Cursor Layer" type="Control" parent="CanvasLayer" unique_id=48012226]
+z_index = 4096
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
