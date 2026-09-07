@@ -4,6 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://f7holcw5kcpc" path="res://ui/control layout/input_layout.tscn" id="2_0kdl3"]
 
 [node name="input_layout_ui_entry" type="HBoxContainer" unique_id=1312132099 node_paths=PackedStringArray("target_container", "desc_label")]
+custom_minimum_size = Vector2(300, 0)
+offset_right = 293.0
+offset_bottom = 64.0
 alignment = 2
 script = ExtResource("1_iym05")
 input_layout_packed_scene = ExtResource("2_0kdl3")
@@ -11,15 +14,19 @@ target_container = NodePath("InputContainer")
 desc_label = NodePath("Control Label")
 
 [node name="InputContainer" type="Control" parent="." unique_id=363536817]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
+size_flags_vertical = 4
 
 [node name="Control Label" type="Label" parent="." unique_id=1708137944]
-custom_minimum_size = Vector2(225, 0)
+custom_minimum_size = Vector2(225, 48)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 21
 text = "About the game About the game About the game About the gameAbout the game "
 horizontal_alignment = 2
+vertical_alignment = 1
 autowrap_mode = 3
+clip_text = true
