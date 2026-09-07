@@ -80,7 +80,9 @@ func set_focused_button(b : game_button):
 	# obsolete, use game_changed signal instead
 	if title_label:
 		title_label.text = focused_button._game.collection_game.game.title
-	cover_texture_rect.texture = focused_button._game.get_image()
+		
+	if cover_texture_rect:
+		cover_texture_rect.texture = focused_button._game.get_image()
 	
 	# obsolete, use game_changed signal instead
 	if shortText_label:

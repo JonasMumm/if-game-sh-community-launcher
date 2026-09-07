@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://bswxs5vok2prf" path="res://ui/Ellipse.png" id="2_olgev"]
 [ext_resource type="Texture2D" uid="uid://kvqduskk47oi" path="res://ui/splash.png" id="2_vr56l"]
 [ext_resource type="Script" uid="uid://c3v3f6lvk7tvr" path="res://ui/games/game_selection/radial_container.gd" id="2_xe26v"]
+[ext_resource type="Texture2D" uid="uid://gp1sc7kshhit" path="res://ui/bg.png" id="2_yiu8v"]
 [ext_resource type="Script" uid="uid://blvc838s4o80v" path="res://ui/games/game_selection/games_ui_list_layout_data.gd" id="3_olgev"]
 [ext_resource type="Script" uid="uid://cpfi8n4rv554" path="res://ui/games/game_selection/splash.gd" id="3_yiu8v"]
 [ext_resource type="PackedScene" uid="uid://cgf8irmbvbufi" path="res://ui/games/game_selection/game_button_radial.tscn" id="4_olgev"]
-[ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icons/icon.svg" id="5_cmiir"]
 [ext_resource type="Script" uid="uid://c101h00ntpdmv" path="res://ui/games/displays/display_title.gd" id="6_ilrfv"]
 [ext_resource type="Script" uid="uid://dsyx465gqtsdv" path="res://ui/control layout/input_layout_ui.gd" id="6_jc40m"]
 [ext_resource type="PackedScene" uid="uid://c14e5oxfs7rx3" path="res://ui/control layout/input_layout_ui_entry.tscn" id="7_32pca"]
@@ -34,11 +34,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qod8e"]
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-
-[node name="games_ui_controller" type="Control" unique_id=1581566806 node_paths=PackedStringArray("games_ui_list_layout_data", "launch_button", "cover_texture_rect", "input_layout_manager")]
+[node name="games_ui_controller" type="Control" unique_id=1581566806 node_paths=PackedStringArray("games_ui_list_layout_data", "launch_button", "input_layout_manager")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,18 +44,20 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_n2f8t")
 games_ui_list_layout_data = NodePath("RadialContainer/TileLayout")
-launch_button = NodePath("GameInfoBottom/GameContainer/Buttons/ButtonLaunch")
-cover_texture_rect = NodePath("GameInfoBottom/GameContainer/CoverContainer/TextureRect")
-input_layout_manager = NodePath("GameInfoBottom/GameContainer/Details/VBoxContainer/input_layout_ui")
+launch_button = NodePath("GameInfoBottom/Buttons/ButtonLaunch")
+input_layout_manager = NodePath("GameInfoBottom/MarginContainer/input_layout_ui")
 metadata/_custom_type_script = "uid://2qioqorem5i1"
 
-[node name="BG" type="ColorRect" parent="." unique_id=1096847695]
+[node name="BG" type="TextureRect" parent="." unique_id=824022564]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_yiu8v")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Splash" type="TextureRect" parent="." unique_id=1857388450]
 z_index = 10
@@ -80,10 +78,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -290.0
-offset_top = 440.0
-offset_right = 290.0
-offset_bottom = 440.0
+offset_top = 256.0
+offset_bottom = 254.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_olgev")
@@ -182,90 +178,31 @@ script = ExtResource("7_svqhx")
 z_index = 100
 custom_minimum_size = Vector2(600, 300)
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -300.0
-offset_top = -200.0
-offset_right = 300.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 1
 
 [node name="GameContainer" type="VBoxContainer" parent="GameInfoBottom" unique_id=1937622844]
-custom_minimum_size = Vector2(390, 0)
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = 149.0
+offset_right = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_stretch_ratio = 0.23
 
-[node name="Buttons" type="Control" parent="GameInfoBottom/GameContainer" unique_id=968985582]
-custom_minimum_size = Vector2(0, 128)
-layout_mode = 2
-
-[node name="ButtonLaunch" type="Button" parent="GameInfoBottom/GameContainer/Buttons" unique_id=1833507422]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_type_variation = &"LaunchButton"
-text = "
-"
-icon = ExtResource("8_xe26v")
-icon_alignment = 1
-expand_icon = true
-
-[node name="ButtonRandom" type="Button" parent="GameInfoBottom/GameContainer/Buttons" unique_id=696124737]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 80.0
-offset_top = -32.0
-offset_right = 144.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_type_variation = &"ShuffleButton"
-icon = ExtResource("9_xe26v")
-icon_alignment = 1
-expand_icon = true
-
-[node name="CoverContainer" type="PanelContainer" parent="GameInfoBottom/GameContainer" unique_id=276814201]
-visible = false
-clip_children = 2
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qod8e")
-
-[node name="TextureRect" type="TextureRect" parent="GameInfoBottom/GameContainer/CoverContainer" unique_id=1126282061]
-layout_mode = 2
-texture = ExtResource("5_cmiir")
-expand_mode = 5
-stretch_mode = 4
-
 [node name="SmallInfo" type="HBoxContainer" parent="GameInfoBottom/GameContainer" unique_id=607466863]
 layout_mode = 2
+alignment = 1
 
 [node name="PlayerCount" type="HBoxContainer" parent="GameInfoBottom/GameContainer/SmallInfo" unique_id=222403990]
 layout_mode = 2
@@ -321,12 +258,84 @@ text = "About the game About the game About the game About the gameAbout the gam
 autowrap_mode = 3
 script = ExtResource("15_f075n")
 
-[node name="input_layout_ui" type="VBoxContainer" parent="GameInfoBottom/GameContainer/Details/VBoxContainer" unique_id=219768155]
+[node name="Buttons" type="Control" parent="GameInfoBottom" unique_id=968985582]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 16.0
+offset_right = 300.0
+offset_bottom = 144.0
+grow_horizontal = 2
+
+[node name="ButtonLaunch" type="Button" parent="GameInfoBottom/Buttons" unique_id=1833507422]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"LaunchButton"
+text = "
+"
+icon = ExtResource("8_xe26v")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ButtonRandom" type="Button" parent="GameInfoBottom/Buttons" unique_id=696124737]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = -32.0
+offset_right = 144.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"ShuffleButton"
+icon = ExtResource("9_xe26v")
+icon_alignment = 1
+expand_icon = true
+
+[node name="MarginContainer" type="MarginContainer" parent="GameInfoBottom" unique_id=156031296]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -364.0
+offset_top = -129.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="input_layout_ui" type="VBoxContainer" parent="GameInfoBottom/MarginContainer" unique_id=219768155]
 layout_mode = 2
 script = ExtResource("6_jc40m")
 input_layout_ui_entry_packed_scene = ExtResource("7_32pca")
 
-[node name="ControlsLabel" type="Label" parent="GameInfoBottom/GameContainer/Details/VBoxContainer/input_layout_ui" unique_id=1965607133]
+[node name="ControlsLabel" type="Label" parent="GameInfoBottom/MarginContainer/input_layout_ui" unique_id=1965607133]
 visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -483,7 +492,7 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=2074992055]
-custom_minimum_size = Vector2(128, 128)
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -492,10 +501,10 @@ expand_mode = 2
 stretch_mode = 4
 
 [connection signal="focused_button_changed" from="." to="RadialContainer" method="on_selection_changed"]
+[connection signal="game_changed" from="." to="Splash" method="on_game_set"]
 [connection signal="game_changed" from="." to="GameInfoTop/VBoxContainer/TitleContainer/GameTitle" method="set_game_data"]
 [connection signal="game_changed" from="." to="GameInfoTop/VBoxContainer/Author" method="set_game_data"]
-[connection signal="game_changed" from="." to="GameInfoBottom/GameContainer/Details/VBoxContainer/About" method="set_game_data"]
 [connection signal="game_changed" from="." to="GameInfoBottom/GameContainer/SmallInfo/PlayerCount/PlayerCountLabel" method="set_game_data"]
 [connection signal="game_changed" from="." to="GameInfoBottom/GameContainer/SmallInfo/Time/TimeLabel" method="set_game_data"]
-[connection signal="game_changed" from="." to="Splash" method="on_game_set"]
-[connection signal="pressed" from="GameInfoBottom/GameContainer/Buttons/ButtonRandom" to="." method="focus_random"]
+[connection signal="game_changed" from="." to="GameInfoBottom/GameContainer/Details/VBoxContainer/About" method="set_game_data"]
+[connection signal="pressed" from="GameInfoBottom/Buttons/ButtonRandom" to="." method="focus_random"]
