@@ -1,0 +1,54 @@
+[gd_resource type="Theme" format=3 uid="uid://dbjn6du168h6s"]
+
+[ext_resource type="FontFile" uid="uid://dvx1508fwbf3m" path="res://ui/fonts/ClashDisplay-Variable.ttf" id="1_1ny1p"]
+[ext_resource type="FontVariation" uid="uid://csxfrbf03np0b" path="res://ui/fonts/font_header.tres" id="1_xn3mx"]
+[ext_resource type="StyleBox" uid="uid://csbx6exl4r4b0" path="res://ui/games/theming/launch_button_normal.tres" id="3_ffcug"]
+[ext_resource type="FontVariation" uid="uid://bmgn8yakt2fl4" path="res://ui/fonts/font_text.tres" id="4_ksmss"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ny1p"]
+bg_color = Color(0.70980394, 0.8509804, 0.8235294, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.1254902)
+shadow_size = 16
+
+[resource]
+default_font = ExtResource("4_ksmss")
+default_font_size = 32
+GameAuthor/base_type = &"Label"
+GameAuthor/colors/font_color = Color(0, 0, 0, 1)
+GameAuthor/font_sizes/font_size = 32
+GameDescription/base_type = &"Label"
+GameDescription/colors/font_color = Color(0, 0, 0, 1)
+GameDescription/font_sizes/font_size = 32
+GameInfoSmall/base_type = &"Label"
+GameInfoSmall/colors/font_color = Color(0, 0, 0, 1)
+GameInfoSmall/font_sizes/font_size = 36
+GameInfoSmall/fonts/font = ExtResource("1_xn3mx")
+GameInfoSmallIcon/base_type = &"TextureRect"
+GameInfoSmallIcon/colors/self_modulate = Color(0, 0, 0, 1)
+GameTitle/base_type = &"Label"
+GameTitle/colors/font_color = Color(0, 0, 0, 1)
+GameTitle/font_sizes/font_size = 96
+GameTitle/fonts/font = ExtResource("1_1ny1p")
+LaunchButton/base_type = &"Button"
+LaunchButton/colors/icon_normal_color = Color(1, 1, 1, 1)
+LaunchButton/constants/icon_max_width = 128
+LaunchButton/constants/outline_size = 0
+LaunchButton/styles/hover = ExtResource("3_ffcug")
+LaunchButton/styles/hover_pressed = ExtResource("3_ffcug")
+LaunchButton/styles/normal = ExtResource("3_ffcug")
+LaunchButton/styles/pressed = ExtResource("3_ffcug")
+ShuffleButton/base_type = &"Button"
+ShuffleButton/constants/icon_max_width = 64
+ShuffleButton/styles/hover = SubResource("StyleBoxFlat_1ny1p")
+ShuffleButton/styles/hover_pressed = SubResource("StyleBoxFlat_1ny1p")
+ShuffleButton/styles/normal = SubResource("StyleBoxFlat_1ny1p")
+ShuffleButton/styles/pressed = SubResource("StyleBoxFlat_1ny1p")

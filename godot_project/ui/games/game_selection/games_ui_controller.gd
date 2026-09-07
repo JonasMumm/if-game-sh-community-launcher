@@ -17,16 +17,26 @@ var games : Array[game_data]
 var buttons : Array[game_button]
 var focused_button : game_button
 
+signal focused_button_changed(button : game_button)
+signal game_changed(data : game_data)
+
+# indexes
+var random_sequence : Array[int] = []
+var random_index := 0;
+
+
 func _ready():
 	launch_button.pressed.connect(on_launch_button_pressed)
 
 func set_data(connection : butler_connection, games : Array[game_data]):
 	self.connection = connection
 	self.games = games
+		
+	var games_to_show := games;
+	while games_to_show.size() < 5:
+		games_to_show.append_array(games_to_show);
 	
-	var buttons : Array[game_button]
-	
-	for game in games:
+	for game in games_to_show:
 		var button := games_ui_list_layout_data.button_packed_scene.instantiate() as game_button
 		button._set_data(game)
 		var cave := game.cave_info
@@ -35,30 +45,60 @@ func set_data(connection : butler_connection, games : Array[game_data]):
 		button.launch_pressed.connect(on_launch_button_pressed)
 		games_ui_list_layout_data.button_container.add_child(button)
 		buttons.append(button)
+		
+	_cache_random_indices(buttons);
 	
 	set_focused_button(buttons[0])
+
+func _cache_random_indices(list : Array[game_button]):
+	for i in list.size():
+		random_sequence.append(i);
+		
+	random_sequence.shuffle();
+	
+	
+func focus_random() -> void:
+	random_index += 1;
+	
+	var index := random_sequence[random_index % random_sequence.size()];
+	
+	var button := buttons[index];
+	
+	if focused_button == button:
+		focus_random();
+		return;
+		
+	set_focused_button(buttons[index]);
 
 func grab_context_focus(shown : bool):
 	if shown: focused_button.button.grab_focus()
 	
 func set_focused_button(b : game_button):
 	focused_button = b
-	title_label.text = focused_button._game.collection_game.game.title
-	cover_texture_rect.texture = focused_button._game.get_image()
+	focused_button_changed.emit(b)
 	
-	var game =focused_button._game.collection_game.game
-	if game.has("shortText"):
-		shortText_label.text = "\""+game.shortText+"\""
-	else :
-		shortText_label.text = ""
+	# obsolete, use game_changed signal instead
+	if title_label:
+		title_label.text = focused_button._game.collection_game.game.title
 		
-	var authors := focused_button._game.collection_entry.details.authors
-	if !authors.is_empty():
-		author_label.text = "by "+focused_button._game.collection_entry.details.authors
-		author_label.visible = true
-	else:
-		author_label.visible = false
+	if cover_texture_rect:
+		cover_texture_rect.texture = focused_button._game.get_image()
+	
+	# obsolete, use game_changed signal instead
+	if shortText_label:
+		var game = focused_button._game.collection_game.game
+		if game.has("shortText"):
+			shortText_label.text = "\""+game.shortText+"\""
+		else :
+			shortText_label.text = ""
+		
+	# obsolete, use game_changed signal instead
+	if author_label:
+		author_label.text = GameStringUtility.get_authors_text(focused_button._game.collection_entry.details)
+		author_label.visible = !author_label.text.is_empty()
+	
 	input_layout_manager.set_data(focused_button._game.collection_entry.controls)
+	game_changed.emit(focused_button._game)
 	focused_button.button.grab_focus()
 	
 func on_launch_button_pressed():

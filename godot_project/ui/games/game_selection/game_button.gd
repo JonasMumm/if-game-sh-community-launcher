@@ -1,5 +1,5 @@
 class_name game_button
-extends MarginContainer
+extends Control
 
 const launch_click_threshold_usec := 80000 #0.08 seconds
 
@@ -27,35 +27,28 @@ func _ready():
 
 func _set_data(game : game_data):
 	_game = game
-	game_name_label.text = str(game.collection_game.game.title)
-	genre_label.text = str(game.collection_entry.details.genre)
+	if game_name_label:
+		game_name_label.text = str(game.collection_game.game.title)
+	if genre_label:
+		genre_label.text = str(game.collection_entry.details.genre)
 	
 	var details := game.collection_entry.details
 	
-	if details.players_max != 0:
-		if details.players_max != details.players_min:
-			player_count_label.text = str(details.players_min)+"-"+str(details.players_max)
-		else:
-			player_count_label.text=str(details.players_max)
-	else:
-		player_count_label.text = ""
+	if player_count_label:
+		player_count_label.text = GameStringUtility.get_playercount_text(details)
 		
-	var hours := floori(details.session_duration_seconds /60/60)
-	var minutes := floori(details.session_duration_seconds /60)
-	if hours>0:
-		session_duration_label.text = str(hours)+" h"
-	elif minutes>1:
-		session_duration_label.text = str(minutes)+" min"
-	elif details.session_duration_seconds>0:
-		session_duration_label.text = str(details.session_duration_seconds)+" s"
-	else:
-		session_duration_label.text = ""
+	if session_duration_label:
+		session_duration_label.text = GameStringUtility.get_time_text(details)
 	
-	cover.texture = game.get_image()
+	if cover:
+		cover.texture = game.get_image()
 	
-	genre_visivility_container.visible = !genre_label.text.is_empty()
-	stats_visivility_container.visible = !player_count_label.text.is_empty() || !session_duration_label.text.is_empty()
-	info_visivility_container.visible = genre_visivility_container.visible || stats_visivility_container.visible
+	if genre_visivility_container:
+		genre_visivility_container.visible = !genre_label.text.is_empty()
+	if stats_visivility_container:
+		stats_visivility_container.visible = !player_count_label.text.is_empty() || !session_duration_label.text.is_empty()
+	if info_visivility_container:
+		info_visivility_container.visible = genre_visivility_container.visible || stats_visivility_container.visible
 
 func on_button_down():
 	down_usec = Time.get_ticks_usec();

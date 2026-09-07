@@ -1,0 +1,9 @@
+[gd_resource type="FontVariation" format=3 uid="uid://bmgn8yakt2fl4"]
+
+[ext_resource type="FontFile" uid="uid://dvx1508fwbf3m" path="res://ui/fonts/ClashDisplay-Variable.ttf" id="1_xwfiv"]
+
+[resource]
+base_font = ExtResource("1_xwfiv")
+variation_opentype = {
+2003265652: 500
+}

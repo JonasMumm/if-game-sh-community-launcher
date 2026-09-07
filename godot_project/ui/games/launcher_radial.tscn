@@ -1,0 +1,388 @@
+[gd_scene format=3 uid="uid://b8qusx1tvtxoc"]
+
+[ext_resource type="Script" uid="uid://bes2y6x8kph2i" path="res://ui/games/launcher_bootstrap.gd" id="1_5jp3l"]
+[ext_resource type="Script" uid="uid://bsa6o5ox4ok1a" path="res://ui/games/input_quit_game_controller.gd" id="2_81jj4"]
+[ext_resource type="Script" uid="uid://cg27bp0xwfy4t" path="res://butler/cave_launcher.gd" id="3_gfid4"]
+[ext_resource type="Script" uid="uid://p3d4p8j8pknk" path="res://browser_launch/browser_launcher.gd" id="4_8j84c"]
+[ext_resource type="Script" uid="uid://dl47qghvx374s" path="res://ui/editor/input_editor_quit.gd" id="5_bt3ho"]
+[ext_resource type="Script" uid="uid://vcqtsco552dp" path="res://image_cache/image_loader.gd" id="6_jwv8t"]
+[ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icons/icon.svg" id="7_vafse"]
+[ext_resource type="Script" uid="uid://wqchuqxpjksy" path="res://ui/games/game_ui_state_controller.gd" id="8_0pssh"]
+[ext_resource type="Texture2D" uid="uid://bow1b6jqokd1j" path="res://icons/keyvisual_rot.png" id="9_qyqxn"]
+[ext_resource type="PackedScene" uid="uid://tqukidx1wx50" path="res://logging/log_display.tscn" id="10_olbdl"]
+[ext_resource type="PackedScene" uid="uid://3xjflh5pkjeb" path="res://ui/games/main_ui_state_manager.tscn" id="11_kqqa5"]
+[ext_resource type="Script" uid="uid://bybbytduq32gx" path="res://ui/games/ui_state_entry.gd" id="12_gitf7"]
+[ext_resource type="PackedScene" uid="uid://c5hqjhtseppl2" path="res://ui/games/game_selection/games_ui_controller_radial.tscn" id="13_5jp3l"]
+[ext_resource type="Script" uid="uid://bqxwdwj6mso0a" path="res://ui/games/game_selection/games_ui_focus_controller.gd" id="14_2u668"]
+[ext_resource type="Script" uid="uid://dig5yux8t4imh" path="res://ui/games/launch_state_ui_controller.gd" id="15_kvhp6"]
+[ext_resource type="PackedScene" uid="uid://bxltecj7uxmp3" path="res://ui/choice_selector/choice_selector.tscn" id="16_83n20"]
+[ext_resource type="Script" uid="uid://cfe4uxibhyn18" path="res://ui/fun_mouse_cursor.gd" id="17_y1xrp"]
+[ext_resource type="Texture2D" uid="uid://yvfontsbr21h" path="res://icons/cursor_solid.png" id="18_e02b3"]
+[ext_resource type="Texture2D" uid="uid://da476374mcjok" path="res://icons/cursor.png" id="19_atwtt"]
+
+[node name="Main" type="Node" unique_id=501475641 node_paths=PackedStringArray("games_ui", "games_ui_state", "choicer", "main_ui_manager", "cover_image_loader", "logs", "launch_state_ui_controllers")]
+script = ExtResource("1_5jp3l")
+games_ui = NodePath("CanvasLayer/MainUiStateManager/state_games_ui_controller/games_ui_controller_radial")
+games_ui_state = NodePath("CanvasLayer/MainUiStateManager/state_games_ui_controller")
+choicer = NodePath("CanvasLayer/ChoiceSelector")
+main_ui_manager = NodePath("CanvasLayer/MainUiStateManager")
+cover_image_loader = NodePath("image_loader")
+logs = NodePath("CanvasLayer/log_display")
+launch_state_ui_controllers = [NodePath("CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching_controller"), NodePath("CanvasLayer/MainUiStateManager/state_ui_running/ui_running_controller")]
+metadata/_custom_type_script = "uid://bes2y6x8kph2i"
+
+[node name="input_quit_game_controller" type="Node" parent="." unique_id=2040624726]
+script = ExtResource("2_81jj4")
+metadata/_custom_type_script = "uid://bsa6o5ox4ok1a"
+
+[node name="cave_launcher" type="Node" parent="." unique_id=1321621207 node_paths=PackedStringArray("quit_input_handler", "browser_launcher")]
+script = ExtResource("3_gfid4")
+quit_input_handler = NodePath("../input_quit_game_controller")
+browser_launcher = NodePath("browser_launcher")
+metadata/_custom_type_script = "uid://cg27bp0xwfy4t"
+
+[node name="browser_launcher" type="Node" parent="cave_launcher" unique_id=409537328]
+script = ExtResource("4_8j84c")
+metadata/_custom_type_script = "uid://p3d4p8j8pknk"
+
+[node name="input_editor_quit" type="Node" parent="." unique_id=329162531 node_paths=PackedStringArray("launcher")]
+script = ExtResource("5_bt3ho")
+launcher = NodePath("../cave_launcher")
+
+[node name="image_loader" type="Node" parent="." unique_id=1015137569]
+script = ExtResource("6_jwv8t")
+fallback_image = ExtResource("7_vafse")
+metadata/_custom_type_script = "uid://vcqtsco552dp"
+
+[node name="game_ui_state_controller" type="Node" parent="." unique_id=1534953571 node_paths=PackedStringArray("main_ui", "launcher", "games_ui", "launching_ui", "running_ui")]
+script = ExtResource("8_0pssh")
+main_ui = NodePath("../CanvasLayer/MainUiStateManager")
+launcher = NodePath("../cave_launcher")
+games_ui = NodePath("../CanvasLayer/MainUiStateManager/state_games_ui_controller")
+launching_ui = NodePath("../CanvasLayer/MainUiStateManager/state_ui_launching")
+running_ui = NodePath("../CanvasLayer/MainUiStateManager/state_ui_running")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=497726902]
+
+[node name="BG" type="Control" parent="CanvasLayer" unique_id=1990620783]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/BG" unique_id=166399235]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/BG" unique_id=334809308]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/BG/VBoxContainer" unique_id=438426180]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("9_qyqxn")
+expand_mode = 5
+stretch_mode = 4
+flip_v = true
+
+[node name="Expander" type="Control" parent="CanvasLayer/BG/VBoxContainer" unique_id=967017335]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="log_display" parent="CanvasLayer" unique_id=9466899 instance=ExtResource("10_olbdl")]
+
+[node name="MainUiStateManager" parent="CanvasLayer" unique_id=146958477 node_paths=PackedStringArray("mouse_fun_controller") instance=ExtResource("11_kqqa5")]
+mouse_fun_controller = NodePath("../Mouse Cursor Layer/MouseCursor")
+
+[node name="state_games_ui_controller" type="Control" parent="CanvasLayer/MainUiStateManager" unique_id=1508039923]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_gitf7")
+high_performance_mode = true
+cursor_fun = true
+metadata/_custom_type_script = "uid://bybbytduq32gx"
+metadata/_edit_use_anchors_ = true
+
+[node name="games_ui_controller_radial" parent="CanvasLayer/MainUiStateManager/state_games_ui_controller" unique_id=1900977297 node_paths=PackedStringArray("launcher") instance=ExtResource("13_5jp3l")]
+layout_mode = 1
+launcher = NodePath("../../../../cave_launcher")
+
+[node name="games_ui_focus_controller" type="Node" parent="CanvasLayer/MainUiStateManager/state_games_ui_controller" unique_id=622142278 node_paths=PackedStringArray("games_ui", "games_ui_state")]
+script = ExtResource("14_2u668")
+games_ui = NodePath("../games_ui_controller_radial")
+games_ui_state = NodePath("..")
+
+[node name="state_ui_launching" type="Control" parent="CanvasLayer/MainUiStateManager" unique_id=519635451]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_gitf7")
+high_performance_mode = true
+cursor_fun = true
+metadata/_custom_type_script = "uid://bybbytduq32gx"
+
+[node name="ui_launching" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_launching" unique_id=2019792791]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching" unique_id=918513090]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -420.0
+offset_top = 10.0
+offset_right = 420.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Expander" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer" unique_id=643670653]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GameImage" type="TextureRect" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer" unique_id=239261459]
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 2
+texture = ExtResource("9_qyqxn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LilSpace" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer" unique_id=469406937]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="LabelDE" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer" unique_id=1685124666]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "&&gamename&& wird gestartet, gleich geht's los!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer" unique_id=181857870]
+layout_mode = 2
+
+[node name="LabelEN" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer" unique_id=878405134]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Starting &&gamename&&, it's gonna happen every second now!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Expander2" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_launching/ui_launching/VBoxContainer" unique_id=642963880]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ui_launching_controller" type="Node" parent="CanvasLayer/MainUiStateManager/state_ui_launching" unique_id=1880293722 node_paths=PackedStringArray("launcher", "tex_rect", "labels")]
+script = ExtResource("15_kvhp6")
+launcher = NodePath("../../../../cave_launcher")
+tex_rect = NodePath("../ui_launching/VBoxContainer/GameImage")
+labels = [NodePath("../ui_launching/VBoxContainer/LabelDE"), NodePath("../ui_launching/VBoxContainer/LabelEN")]
+
+[node name="state_ui_running" type="Control" parent="CanvasLayer/MainUiStateManager" unique_id=84013818]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_gitf7")
+metadata/_custom_type_script = "uid://bybbytduq32gx"
+
+[node name="ui_running" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_running" unique_id=728561876]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running" unique_id=1320250751]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -420.0
+offset_top = 10.0
+offset_right = 420.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Expander" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer" unique_id=1250274428]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GameImage" type="TextureRect" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer" unique_id=1551921359]
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 2
+texture = ExtResource("9_qyqxn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LilSpace" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer" unique_id=1710386080]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="LabelDE" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer" unique_id=786922694]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "&&gamename&& läuft! Falls das nicht stimmt, halte die Escape-Taste gedrückt, um zur Spielauswahl zurückzukehren."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer" unique_id=399507175]
+layout_mode = 2
+
+[node name="LabelEN" type="Label" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer" unique_id=2073071991]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "&&gamename&& is running! If it isn't, hold the Escape key to return to the game selection screen."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Expander2" type="Control" parent="CanvasLayer/MainUiStateManager/state_ui_running/ui_running/VBoxContainer" unique_id=2106053006]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ui_running_controller" type="Node" parent="CanvasLayer/MainUiStateManager/state_ui_running" unique_id=1254475638 node_paths=PackedStringArray("launcher", "tex_rect", "labels")]
+script = ExtResource("15_kvhp6")
+launcher = NodePath("../../../../cave_launcher")
+tex_rect = NodePath("../ui_running/VBoxContainer/GameImage")
+labels = [NodePath("../ui_running/VBoxContainer/LabelDE"), NodePath("../ui_running/VBoxContainer/LabelEN")]
+
+[node name="ChoiceSelector" parent="CanvasLayer" unique_id=1473648729 instance=ExtResource("16_83n20")]
+visible = false
+
+[node name="Mouse Cursor Layer" type="Control" parent="CanvasLayer" unique_id=48012226]
+z_index = 4096
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="MouseCursor" type="Control" parent="CanvasLayer/Mouse Cursor Layer" unique_id=1710277966 node_paths=PackedStringArray("mouse_anchor_top", "mouse_anchor_bottom", "mouse_visual_size", "mouse_visual_pos", "mouse_visual_size_level_2", "mouse_visual_pos_level_2", "mouse_visual_size_level_3", "mouse_visual_pos_level_3")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
+script = ExtResource("17_y1xrp")
+mouse_anchor_top = NodePath("mouse_anchor_top")
+mouse_anchor_bottom = NodePath("mouse_anchor_bottom")
+mouse_visual_size = NodePath("mouse_visual_pos/mouse_visual_height")
+mouse_visual_pos = NodePath("mouse_visual_pos")
+bottom_offset = Vector2(60, 60)
+over_scale = 1.1
+wobbler_lambda = 5.0
+wobbler_acceleration = 160000.0
+min_size = 50.0
+wind_scale = 55.0
+wind_variance = Vector3(10, 8, 0)
+mouse_visual_size_level_2 = NodePath("mouse_visual_pos_level_2/mouse_visual_height")
+mouse_visual_pos_level_2 = NodePath("mouse_visual_pos_level_2")
+mouse_level_2_offset = Vector2(0, 5)
+mouse_visual_size_level_3 = NodePath("mouse_visual_pos_level_3/mouse_visual_height")
+mouse_visual_pos_level_3 = NodePath("mouse_visual_pos_level_3")
+mouse_level_3_offset = Vector2(0, 10)
+metadata/_custom_type_script = "uid://cfe4uxibhyn18"
+
+[node name="mouse_anchor_top" type="Control" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor" unique_id=1579543318]
+anchors_preset = 0
+
+[node name="mouse_anchor_bottom" type="Control" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor" unique_id=771774348]
+anchors_preset = 0
+offset_left = 76.0
+offset_top = 98.0
+offset_right = 76.0
+offset_bottom = 98.0
+
+[node name="mouse_visual_pos_level_3" type="CenterContainer" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor" unique_id=1530885980]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="mouse_visual_height" type="TextureRect" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor/mouse_visual_pos_level_3" unique_id=1054862019]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(0, 208.535)
+layout_mode = 2
+texture = ExtResource("18_e02b3")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="mouse_visual_pos_level_2" type="CenterContainer" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor" unique_id=493248149]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="mouse_visual_height" type="TextureRect" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor/mouse_visual_pos_level_2" unique_id=523204001]
+modulate = Color(0.49143595, 0.49143595, 0.49143595, 1)
+custom_minimum_size = Vector2(0, 208.535)
+layout_mode = 2
+texture = ExtResource("18_e02b3")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="mouse_visual_pos" type="CenterContainer" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor" unique_id=1324271313]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="mouse_visual_height" type="TextureRect" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor/mouse_visual_pos" unique_id=2099146665]
+custom_minimum_size = Vector2(0, 208.535)
+layout_mode = 2
+texture = ExtResource("19_atwtt")
+expand_mode = 2
+stretch_mode = 5
