@@ -29,8 +29,17 @@ button = NodePath("Button")
 cover = NodePath("MarginContainer/Cover")
 metadata/_edit_use_anchors_ = true
 
+[node name="Button" type="Button" parent="." unique_id=291843911]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("4_gafx4")
+theme_override_styles/pressed = ExtResource("3_eitd1")
+theme_override_styles/hover = ExtResource("3_eitd1")
+theme_override_styles/focus = ExtResource("2_w8ltc")
+autowrap_mode = 3
+
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=332993204]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -42,11 +51,3 @@ mouse_filter = 2
 texture = ExtResource("5_k3fia")
 expand_mode = 1
 stretch_mode = 6
-
-[node name="Button" type="Button" parent="." unique_id=291843911]
-layout_mode = 2
-theme_override_styles/normal = ExtResource("4_gafx4")
-theme_override_styles/pressed = ExtResource("3_eitd1")
-theme_override_styles/hover = ExtResource("3_eitd1")
-theme_override_styles/focus = ExtResource("2_w8ltc")
-autowrap_mode = 3

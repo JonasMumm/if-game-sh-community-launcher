@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://tqukidx1wx50" path="res://logging/log_display.tscn" id="10_olbdl"]
 [ext_resource type="PackedScene" uid="uid://3xjflh5pkjeb" path="res://ui/games/main_ui_state_manager.tscn" id="11_kqqa5"]
 [ext_resource type="Script" uid="uid://bybbytduq32gx" path="res://ui/games/ui_state_entry.gd" id="12_gitf7"]
-[ext_resource type="PackedScene" uid="uid://tvbq0e7awgo" path="res://ui/games/game_selection/games_ui_controller_radial.tscn" id="13_5jp3l"]
+[ext_resource type="PackedScene" uid="uid://c5hqjhtseppl2" path="res://ui/games/game_selection/games_ui_controller_radial.tscn" id="13_5jp3l"]
 [ext_resource type="Script" uid="uid://bqxwdwj6mso0a" path="res://ui/games/game_selection/games_ui_focus_controller.gd" id="14_2u668"]
 [ext_resource type="Script" uid="uid://dig5yux8t4imh" path="res://ui/games/launch_state_ui_controller.gd" id="15_kvhp6"]
 [ext_resource type="PackedScene" uid="uid://bxltecj7uxmp3" path="res://ui/choice_selector/choice_selector.tscn" id="16_83n20"]
@@ -88,15 +88,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Expander" type="Control" parent="CanvasLayer/BG/VBoxContainer" unique_id=967017335]
-layout_mode = 2
-size_flags_vertical = 3
-
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/BG/VBoxContainer" unique_id=438426180]
 layout_mode = 2
+size_flags_vertical = 0
 texture = ExtResource("9_qyqxn")
 expand_mode = 5
 stretch_mode = 4
+flip_v = true
+
+[node name="Expander" type="Control" parent="CanvasLayer/BG/VBoxContainer" unique_id=967017335]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="log_display" parent="CanvasLayer" unique_id=9466899 instance=ExtResource("10_olbdl")]
 

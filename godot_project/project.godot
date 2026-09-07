@@ -42,6 +42,10 @@ window/size/mode.editor=0
 
 project/assembly_name="if-game-communiy-launcher"
 
+[gui]
+
+theme/custom="uid://dbjn6du168h6s"
+
 [rendering]
 
 renderer/rendering_method="mobile"

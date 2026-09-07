@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icons/icon.svg" id="5_cmiir"]
 [ext_resource type="Script" uid="uid://dsyx465gqtsdv" path="res://ui/control layout/input_layout_ui.gd" id="6_jc40m"]
 [ext_resource type="PackedScene" uid="uid://c14e5oxfs7rx3" path="res://ui/control layout/input_layout_ui_entry.tscn" id="7_32pca"]
-[ext_resource type="StyleBox" uid="uid://csbx6exl4r4b0" path="res://ui/games/theming/launch_button_normal.tres" id="8_3fjmy"]
+[ext_resource type="Texture2D" uid="uid://duf533k4oq8lk" path="res://ui/icons/icon_play.svg" id="8_xe26v"]
 [ext_resource type="StyleBox" uid="uid://coi68i1w00ibf" path="res://ui/games/theming/launch_button_press.tres" id="9_ilrfv"]
 [ext_resource type="StyleBox" uid="uid://bqjst1on3dc28" path="res://ui/games/theming/launch_button_hover.tres" id="10_svqhx"]
 [ext_resource type="Texture2D" uid="uid://c54sfad57xnlu" path="res://icons/joystick_60dp_FFFFFF_FILL0_wght400_GRAD0_opsz48.svg" id="11_f075n"]
@@ -58,7 +58,6 @@ size_flags_horizontal = 3
 script = ExtResource("2_xe26v")
 center = Vector2(0, 1150)
 radius = 1200.0
-metadata/_custom_type_script = "uid://c3v3f6lvk7tvr"
 
 [node name="TileLayout" type="Node" parent="RadialContainer" unique_id=1098734429 node_paths=PackedStringArray("button_container")]
 script = ExtResource("3_olgev")
@@ -86,8 +85,7 @@ alignment = 2
 [node name="GameTitle" type="Label" parent="GameInfoTop/VBoxContainer" unique_id=805826374]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 34
+theme_type_variation = &"GameTitle"
 text = "Game Name"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -96,13 +94,14 @@ autowrap_mode = 3
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_colors/font_color = Color(0.353438, 0.353438, 0.353438, 1)
+theme_type_variation = &"GameAuthor"
 text = "Who done it"
 horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="GameInfoBottom" type="Control" parent="." unique_id=753138597]
-custom_minimum_size = Vector2(600, 200)
+z_index = 100
+custom_minimum_size = Vector2(600, 300)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -127,43 +126,17 @@ grow_vertical = 2
 size_flags_stretch_ratio = 0.23
 
 [node name="ButtonLaunch" type="Button" parent="GameInfoBottom/GameContainer" unique_id=1833507422]
-custom_minimum_size = Vector2(0, 55)
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 34
-theme_override_styles/normal = ExtResource("8_3fjmy")
-theme_override_styles/pressed = ExtResource("9_ilrfv")
-theme_override_styles/hover = ExtResource("10_svqhx")
-theme_override_styles/hover_pressed = ExtResource("9_ilrfv")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_type_variation = &"LaunchButton"
 text = "
 "
-icon_alignment = 2
+icon = ExtResource("8_xe26v")
+icon_alignment = 1
+expand_icon = true
 metadata/_edit_use_anchors_ = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GameInfoBottom/GameContainer/ButtonLaunch" unique_id=1045893732]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -3.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-alignment = 1
-
-[node name="PlayButtonLabel" type="Label" parent="GameInfoBottom/GameContainer/ButtonLaunch/HBoxContainer" unique_id=1369672741]
-layout_mode = 2
-theme_override_font_sizes/font_size = 34
-text = "Play"
-
-[node name="TextureRect" type="TextureRect" parent="GameInfoBottom/GameContainer/ButtonLaunch/HBoxContainer" unique_id=90835189]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-size_flags_vertical = 4
-mouse_filter = 2
-texture = ExtResource("11_f075n")
-expand_mode = 4
-stretch_mode = 5
 
 [node name="CoverContainer" type="PanelContainer" parent="GameInfoBottom/GameContainer" unique_id=276814201]
 visible = false
