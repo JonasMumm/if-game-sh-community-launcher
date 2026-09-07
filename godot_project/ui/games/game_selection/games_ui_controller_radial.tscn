@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://2qioqorem5i1" path="res://ui/games/game_selection/games_ui_controller.gd" id="1_n2f8t"]
 [ext_resource type="Texture2D" uid="uid://bswxs5vok2prf" path="res://ui/Ellipse.png" id="2_olgev"]
+[ext_resource type="Texture2D" uid="uid://kvqduskk47oi" path="res://ui/splash.png" id="2_vr56l"]
 [ext_resource type="Script" uid="uid://c3v3f6lvk7tvr" path="res://ui/games/game_selection/radial_container.gd" id="2_xe26v"]
 [ext_resource type="Script" uid="uid://blvc838s4o80v" path="res://ui/games/game_selection/games_ui_list_layout_data.gd" id="3_olgev"]
+[ext_resource type="Script" uid="uid://cpfi8n4rv554" path="res://ui/games/game_selection/splash.gd" id="3_yiu8v"]
 [ext_resource type="PackedScene" uid="uid://cgf8irmbvbufi" path="res://ui/games/game_selection/game_button_radial.tscn" id="4_olgev"]
 [ext_resource type="Texture2D" uid="uid://dauc0iow3vvll" path="res://icons/icon.svg" id="5_cmiir"]
 [ext_resource type="Script" uid="uid://c101h00ntpdmv" path="res://ui/games/displays/display_title.gd" id="6_ilrfv"]
@@ -59,7 +61,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Splash" type="TextureRect" parent="." unique_id=1857388450]
+z_index = 10
+layout_mode = 0
+offset_left = -9.0
+offset_top = -171.0
+offset_right = 1015.0
+offset_bottom = 761.0
+pivot_offset_ratio = Vector2(0.6, 0.6)
+texture = ExtResource("2_vr56l")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("3_yiu8v")
+
 [node name="FG" type="TextureRect" parent="." unique_id=2143087338]
+z_index = 20
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,7 +91,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="RadialContainer" type="Container" parent="." unique_id=213304556]
-z_index = 100
+z_index = 5
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,8 +102,9 @@ size_flags_horizontal = 3
 script = ExtResource("2_xe26v")
 center = Vector2(0, 1150)
 radius = 1200.0
-scale_minimum = null
-scale_minimum_index = null
+scale_minimum = 0.7
+scale_minimum_index = 4
+scroll_speed = 10.0
 
 [node name="TileLayout" type="Node" parent="RadialContainer" unique_id=1098734429 node_paths=PackedStringArray("button_container")]
 script = ExtResource("3_olgev")
@@ -95,6 +112,7 @@ button_container = NodePath("..")
 button_packed_scene = ExtResource("4_olgev")
 
 [node name="GameInfoTop" type="Control" parent="." unique_id=967480434]
+z_index = 10
 custom_minimum_size = Vector2(1000, 100)
 layout_mode = 1
 anchors_preset = 5
@@ -479,4 +497,5 @@ stretch_mode = 4
 [connection signal="game_changed" from="." to="GameInfoBottom/GameContainer/Details/VBoxContainer/About" method="set_game_data"]
 [connection signal="game_changed" from="." to="GameInfoBottom/GameContainer/SmallInfo/PlayerCount/PlayerCountLabel" method="set_game_data"]
 [connection signal="game_changed" from="." to="GameInfoBottom/GameContainer/SmallInfo/Time/TimeLabel" method="set_game_data"]
+[connection signal="game_changed" from="." to="Splash" method="on_game_set"]
 [connection signal="pressed" from="GameInfoBottom/GameContainer/Buttons/ButtonRandom" to="." method="focus_random"]
