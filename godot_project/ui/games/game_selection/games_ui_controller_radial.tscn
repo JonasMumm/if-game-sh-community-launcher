@@ -479,3 +479,4 @@ stretch_mode = 4
 [connection signal="game_changed" from="." to="GameInfoBottom/GameContainer/Details/VBoxContainer/About" method="set_game_data"]
 [connection signal="game_changed" from="." to="GameInfoBottom/GameContainer/SmallInfo/PlayerCount/PlayerCountLabel" method="set_game_data"]
 [connection signal="game_changed" from="." to="GameInfoBottom/GameContainer/SmallInfo/Time/TimeLabel" method="set_game_data"]
+[connection signal="pressed" from="GameInfoBottom/GameContainer/Buttons/ButtonRandom" to="." method="focus_random"]

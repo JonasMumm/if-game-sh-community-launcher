@@ -20,6 +20,10 @@ var focused_button : game_button
 signal focused_button_changed(button : game_button)
 signal game_changed(data : game_data)
 
+# indexes
+var random_sequence : Array[int] = []
+var random_index := 0;
+
 
 func _ready():
 	launch_button.pressed.connect(on_launch_button_pressed)
@@ -27,9 +31,7 @@ func _ready():
 func set_data(connection : butler_connection, games : Array[game_data]):
 	self.connection = connection
 	self.games = games
-	
-	var buttons : Array[game_button]
-	
+		
 	var games_to_show := games;
 	while games_to_show.size() < 5:
 		games_to_show.append_array(games_to_show);
@@ -43,8 +45,30 @@ func set_data(connection : butler_connection, games : Array[game_data]):
 		button.launch_pressed.connect(on_launch_button_pressed)
 		games_ui_list_layout_data.button_container.add_child(button)
 		buttons.append(button)
+		
+	_cache_random_indices(buttons);
 	
 	set_focused_button(buttons[0])
+
+func _cache_random_indices(list : Array[game_button]):
+	for i in list.size():
+		random_sequence.append(i);
+		
+	random_sequence.shuffle();
+	
+	
+func focus_random() -> void:
+	random_index += 1;
+	
+	var index := random_sequence[random_index % random_sequence.size()];
+	
+	var button := buttons[index];
+	
+	if focused_button == button:
+		focus_random();
+		return;
+		
+	set_focused_button(buttons[index]);
 
 func grab_context_focus(shown : bool):
 	if shown: focused_button.button.grab_focus()
