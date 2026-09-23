@@ -3,21 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dje5tv5exgd0y"
-path="res://.godot/imported/mockup_carousel.png-64a1ddc9f79996ec28225f474503c3d2.ctex"
+path="res://.godot/imported/mockup_carousel.png-444af31bc0ec8d00909000c76ec61f7a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/mockup_carousel.png"
-dest_files=["res://.godot/imported/mockup_carousel.png-64a1ddc9f79996ec28225f474503c3d2.ctex"]
+source_file="res://ui/mockups/mockup_carousel.png"
+dest_files=["res://.godot/imported/mockup_carousel.png-444af31bc0ec8d00909000c76ec61f7a.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.0
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1

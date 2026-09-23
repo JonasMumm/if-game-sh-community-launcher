@@ -26,7 +26,6 @@
 [ext_resource type="StyleBox" uid="uid://f5hittjv0uw5" path="res://ui/games/theming/launch_button_normal_round.tres" id="14_avjfl"]
 [ext_resource type="Script" uid="uid://dxulls7inv2tw" path="res://ui/games/displays/display_description.gd" id="15_f075n"]
 [ext_resource type="Texture2D" uid="uid://cu7gnf58p112a" path="res://ui/qr_ifgameshde.png" id="17_6nkyy"]
-[ext_resource type="Texture2D" uid="uid://dje5tv5exgd0y" path="res://ui/mockup_carousel.png" id="27_avjfl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2f8t"]
 bg_color = Color(0.70980394, 0.8509804, 0.8235294, 1)
@@ -516,14 +515,6 @@ size_flags_vertical = 0
 texture = ExtResource("17_6nkyy")
 expand_mode = 2
 stretch_mode = 4
-
-[node name="MockupCarousel" type="Sprite2D" parent="." unique_id=497029650]
-visible = false
-self_modulate = Color(1, 1, 1, 0.45882353)
-z_index = 100
-position = Vector2(960, 540)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("27_avjfl")
 
 [connection signal="focused_button_changed" from="." to="RadialContainer" method="on_selection_changed"]
 [connection signal="game_changed" from="." to="Splash" method="on_game_set"]
