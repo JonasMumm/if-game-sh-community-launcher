@@ -338,12 +338,10 @@ offset_right = 76.0
 offset_bottom = 98.0
 
 [node name="mouse_visual_pos_level_3" type="CenterContainer" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor" unique_id=1530885980]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_right = 208.535
+offset_bottom = 208.535
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 
 [node name="mouse_visual_height" type="TextureRect" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor/mouse_visual_pos_level_3" unique_id=1054862019]
@@ -355,12 +353,10 @@ expand_mode = 2
 stretch_mode = 5
 
 [node name="mouse_visual_pos_level_2" type="CenterContainer" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor" unique_id=493248149]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_right = 208.535
+offset_bottom = 208.535
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 
 [node name="mouse_visual_height" type="TextureRect" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor/mouse_visual_pos_level_2" unique_id=523204001]
@@ -372,12 +368,10 @@ expand_mode = 2
 stretch_mode = 5
 
 [node name="mouse_visual_pos" type="CenterContainer" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor" unique_id=1324271313]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_right = 208.535
+offset_bottom = 208.535
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 
 [node name="mouse_visual_height" type="TextureRect" parent="CanvasLayer/Mouse Cursor Layer/MouseCursor/mouse_visual_pos" unique_id=2099146665]

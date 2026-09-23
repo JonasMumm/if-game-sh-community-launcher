@@ -16,6 +16,7 @@ func set_active_content(content : ui_state_entry):
 	active = content
 	active.show_state(self)
 	performance_control.set_performance_mode(content.high_performance_mode)
-	mouse_fun_controller.process_mode =Node.PROCESS_MODE_INHERIT if content.cursor_fun else PROCESS_MODE_DISABLED
+	print("Set Content "+str(content.get_path())+" "+str(content.cursor_fun))
+	mouse_fun_controller.process_mode = Node.PROCESS_MODE_INHERIT if content.cursor_fun else PROCESS_MODE_DISABLED
 	mouse_fun_controller.visible = content.cursor_fun
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if content.cursor_fun else Input.MOUSE_MODE_VISIBLE
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN if content.cursor_fun else Input.MOUSE_MODE_VISIBLE
